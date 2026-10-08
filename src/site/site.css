@@ -1,19 +1,24 @@
 /* ------------------------------------------------------------
    Applets — site styles
-   The look of rosie-0525.github.io: one typeface, one accent.
-   The variables are prefixed with --site- so they do not collide
-   with the lecture decks' own (--rule, --ink-soft).
+   The colours are the figures' own: cardinal (the vector v), teal (w) and navy (v + w), on a
+   cool grey stage. Source Serif for reading, and Source Sans, the figures' face (it comes with
+   reveal's theme), for the navigation.
+   The variables are prefixed with --site- so they do not collide with the lecture decks' own
+   (--rule, --ink-soft).
    ------------------------------------------------------------ */
 
 :root {
   --site-paper: #ffffff;
-  --site-ink: #232323;
-  --site-ink-soft: #6b6a66;
-  --site-rule: #e5e3de;
-  --site-wash: #f7f6f3;
-  --site-link: #35597d;
-  --site-link-hover: #1f3d5c;
-  --site-measure: 54rem;
+  --site-ink: #1f2633;
+  --site-heading: #14213d;
+  --site-ink-soft: #5d6472;
+  --site-rule: #e3e6eb;
+  --site-stage: #f4f5f8;
+  --site-accent: #8c1515;
+  --site-link: #8c1515;
+  --site-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --site-sans: "Source Sans Pro", "Source Sans 3", system-ui, sans-serif;
+  color-scheme: light;
 }
 
 html {
@@ -22,76 +27,27 @@ html {
 
 body {
   margin: 0;
-  padding: 0 1.25rem;
   background: var(--site-paper);
   color: var(--site-ink);
-  font-family: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  font-size: 1.1875rem;
+  font-family: var(--site-serif);
+  font-size: 1.125rem;
   line-height: 1.6;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
 }
 
 .site {
-  max-width: var(--site-measure);
+  max-width: 78rem;
   margin: 0 auto;
-  padding: 2.5rem 0 3rem;
+  padding: 0 1.5rem 4rem;
 }
 
-/* Header ---------------------------------------------------- */
-
-.site-header {
-  margin-bottom: 3rem;
-}
-
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.25rem;
-}
-
-.site-nav a {
-  color: var(--site-ink-soft);
-  text-decoration: none;
-}
-
-.site-nav a:hover {
-  color: var(--site-ink);
-}
-
-.site-nav a[aria-current] {
-  color: var(--site-ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.3em;
-}
-
-/* Content --------------------------------------------------- */
-
-.site main a {
-  color: var(--site-link);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
-  text-decoration-color: rgba(53, 89, 125, 0.45);
-}
-
-.site main a:hover {
-  color: var(--site-link-hover);
-  text-decoration-color: currentColor;
-}
-
-.site a:focus-visible {
-  outline: 2px solid var(--site-link);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
+/* (kept from the old styles: some figures have headings and paragraphs, and their spacing was
+   tuned under these rules) */
 .site h1 {
   font-size: 1.85rem;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -0.01em;
   margin: 0 0 0.5rem;
 }
 
@@ -106,29 +62,133 @@ body {
   margin: 0 0 1em;
 }
 
-.site .soft {
-  color: var(--site-ink-soft);
+.site a:focus-visible,
+.site summary:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
-/* Page layout: contents on the left, the applets on the right ---- */
+/* Masthead: the mark, the name, and on a narrow screen the menu of topics ---- */
 
-.site {
-  max-width: 76rem;
-}
-
-.layout {
+.masthead {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--site-rule);
+  font-family: var(--site-sans);
 }
 
-/* on a narrow screen the topics come after the applets, without the applets of this one */
-.sidebar {
-  order: 1;
-  margin: 3rem 0 0;
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  color: var(--site-heading);
+  text-decoration: none;
 }
 
-.toc .toc-sub {
+.wordmark .mark {
+  flex: none;
+  width: 30px;
+  height: 26.5px;
+  fill: none;
+}
+
+.wordmark-name {
+  font-family: var(--site-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.wordmark-tagline {
+  margin-left: 0.35rem;
+  padding-left: 0.95rem;
+  border-left: 1px solid var(--site-rule);
+  color: var(--site-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.masthead .back {
+  color: var(--site-ink-soft);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.masthead .back::before {
+  content: "← ";
+}
+
+.masthead .back:hover {
+  color: var(--site-accent);
+}
+
+/* The menu of topics (a narrow screen only) */
+.topics-menu > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--site-rule);
+  border-radius: 999px;
+  color: var(--site-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.topics-menu > summary::-webkit-details-marker {
   display: none;
+}
+
+/* a chevron, pointing up while the menu is open */
+.topics-menu > summary::after {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: -0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.topics-menu[open] > summary {
+  border-color: var(--site-heading);
+}
+
+.topics-menu[open] > summary::after {
+  margin-top: 0.2rem;
+  transform: rotate(-135deg);
+}
+
+.topics-menu-panel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  max-height: 75vh;
+  overflow-y: auto;
+  padding: 1.25rem 1.25rem 0.75rem;
+  background: var(--site-paper);
+  border: 1px solid var(--site-rule);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px -12px rgba(20, 33, 61, 0.28);
+}
+
+/* Contents: the topics, and the headings of this one ---- */
+
+.toc {
+  font-family: var(--site-sans);
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 .toc ul {
@@ -137,67 +197,162 @@ body {
   margin: 0;
 }
 
-.toc li {
-  margin: 0 0 0.35rem;
-  line-height: 1.35;
+.toc-area + .toc-area {
+  margin-top: 2.25rem;
 }
 
-.toc a {
+/* the subject, set like a heading (in the serif) over its topics */
+.site .toc-area-title {
+  margin: 0 0 0.7rem;
+  color: var(--site-heading);
+  font-family: var(--site-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* the topics on a rail; this one marked on it in cardinal */
+.toc-area > ul {
+  border-left: 1px solid var(--site-rule);
+}
+
+.toc-area > ul > li > a {
+  display: block;
+  margin-left: -1px;
+  padding: 0.3rem 0 0.3rem 0.9rem;
+  border-left: 2px solid transparent;
   color: var(--site-ink-soft);
   text-decoration: none;
 }
 
-.toc a:hover,
-.toc a[aria-current="page"] {
-  color: var(--site-ink);
+.toc-area > ul > li > a:hover {
+  color: var(--site-heading);
 }
 
-.layout .toc .toc-sub {
-  margin: 0.4rem 0 0.6rem 0.75rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid var(--site-rule);
-  font-size: 0.9em;
+.toc-area > ul > li > a[aria-current="page"] {
+  border-left-color: var(--site-accent);
+  color: var(--site-heading);
+  font-weight: 600;
 }
 
-.toc-area,
-.area-title {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.toc-sub {
+  margin: 0.1rem 0 0.5rem !important;
+  padding-left: 1.6rem !important;
+  font-size: 0.875rem;
+}
+
+.toc-sub a {
+  position: relative;
+  display: block;
+  padding: 0.2rem 0;
   color: var(--site-ink-soft);
-  margin: 0 0 0.6rem !important;
+  text-decoration: none;
 }
 
-.site main > h1 {
-  margin-bottom: 2.25rem;
+.toc-sub a:hover {
+  color: var(--site-heading);
 }
 
-.applet {
-  margin: 0 0 3.25rem;
+/* the heading being read */
+.toc-sub a[aria-current="location"] {
+  color: var(--site-heading);
+}
+
+.toc-sub a[aria-current="location"]::before {
+  content: "";
+  position: absolute;
+  left: -0.7rem;
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--site-accent);
+}
+
+/* Page layout: on a wide screen the contents on the left, sticky; on a narrow one, in the menu ---- */
+
+.layout {
+  padding-top: 2.5rem;
+}
+
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .topics-menu {
+    display: none;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: 4rem;
+    align-items: start;
+    padding-top: 3rem;
+  }
+
+  .sidebar {
+    display: block;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 0.6rem 0 2rem;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+  }
+}
+
+/* The topic and its applets ---- */
+
+.site .topic-title {
+  margin: 0 0 2.75rem;
+  color: var(--site-heading);
+  font-size: clamp(2.4rem, 1.6rem + 2.4vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.applet,
+.group,
+.motivation {
   scroll-margin-top: 1.5rem;
 }
 
-.site .applet-title {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin: 0 0 0.25rem;
+.applet {
+  margin: 0 0 4rem;
 }
 
-.site main .applet-title a {
+.site .applet-title,
+.site .group-title {
+  margin: 0 0 0.35rem;
+  color: var(--site-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.site :is(.applet-title, .group-title) a {
   color: inherit;
   text-decoration: none;
 }
 
-.site main .applet-title a:hover {
+.site :is(.applet-title, .group-title) a:hover {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
 
-.caption {
+.site .caption {
+  max-width: 42rem;
+  margin: 0;
   color: var(--site-ink-soft);
-  max-width: 46rem;
-  margin: 0 0 1rem !important;
 }
 
 .caption b {
@@ -205,88 +360,132 @@ body {
   font-weight: 600;
 }
 
-/* Applets under a shared heading (`group` in applets.js): the heading looks like an applet's
-   title, and the applets' own titles are set smaller under it */
-.group {
-  scroll-margin-top: 1.5rem;
-}
-
+/* Applets under a shared heading (`group` in applets.js): their own titles smaller under it */
 .site .group > .group-title {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.25rem;
 }
 
-.site .group .applet .applet-title {
-  font-size: 1.05rem;
-  font-weight: 400;
+.site .group .applet-title {
+  font-size: 1.15rem;
 }
 
 /* The applets that are just for fun, at the bottom of a topic */
 .motivation {
-  margin-top: 4.5rem;
-  scroll-margin-top: 1.5rem;
+  margin-top: 5.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--site-rule);
 }
 
-.site .motivation > h2 {
-  font-size: 1.55rem;
+.site .motivation-title {
+  margin: 0 0 2.25rem;
+  color: var(--site-heading);
+  font-size: 2rem;
   font-weight: 400;
-  margin: 0 0 1.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--site-rule);
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 /* Previous and next topic */
 .pager {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  flex-wrap: wrap;
-  margin-top: 3.5rem;
-  padding-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--site-rule);
 }
 
-.site main .pager a {
-  color: var(--site-ink-soft);
+.pager a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
   text-decoration: none;
 }
 
-.site main .pager a:hover {
-  color: var(--site-ink);
-}
-
-.site main .pager a[rel="next"] {
-  margin-left: auto;
+.pager a[rel="next"] {
+  grid-column: 2;
+  align-items: flex-end;
   text-align: right;
 }
 
-@media (min-width: 64rem) {
-  .layout {
-    display: grid;
-    grid-template-columns: 12.5rem minmax(0, 1fr);
-    column-gap: 3.5rem;
-    align-items: start;
+.pager-label {
+  color: var(--site-ink-soft);
+  font-family: var(--site-sans);
+  font-size: 0.85rem;
+}
+
+.pager-title {
+  color: var(--site-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.pager a:hover .pager-title {
+  color: var(--site-accent);
+  text-decoration-color: currentColor;
+}
+
+/* ?only=<id>: one applet on its own */
+.site-only main {
+  padding-top: 2.5rem;
+}
+
+/* Small screens */
+@media (max-width: 40rem) {
+  .wordmark-tagline {
+    display: none;
+  }
+}
+
+@media (max-width: 30rem) {
+  body {
+    font-size: 1.0625rem;
   }
 
-  .sidebar {
-    order: 0;
-    position: sticky;
-    top: 1.5rem;
-    margin: 0.4rem 0 0;
-    font-size: 0.95rem;
+  .site {
+    padding: 0 1rem 3rem;
   }
 
-  .layout .toc .toc-sub {
-    display: block;
+  .layout,
+  .site-only main {
+    padding-top: 1.75rem;
+  }
+
+  .site .topic-title {
+    margin-bottom: 2rem;
+  }
+
+  .applet {
+    margin-bottom: 3rem;
+  }
+
+  .site .applet-title {
+    font-size: 1.25rem;
+  }
+
+  .viz {
+    margin-inline: -0.5rem;
+    padding: 1rem 0.5rem !important;
+  }
+
+  .pager-title {
+    font-size: 1.125rem;
   }
 }
 
 /* The visualization: the slide's figure, in the deck's own styles (see Applet.jsx) ---- */
 
 .viz {
-  border: 1px solid var(--site-rule);
-  border-radius: 6px;
-  background: #fcfcfa;
-  padding: 1.5rem 1.25rem;
+  margin-top: 1.1rem;
+  border-radius: 12px;
+  background: var(--site-stage);
+  padding: 1.75rem 1.5rem;
 }
 
 .viz-box {
@@ -298,9 +497,11 @@ body {
   height: 22rem;
 }
 
-.viz-error {
+.site .viz-error {
+  margin: 0;
   color: var(--site-ink-soft);
-  margin: 0 !important;
+  font-family: var(--site-sans);
+  font-size: 0.95rem;
 }
 
 .viz .viz-scale {
@@ -467,53 +668,6 @@ body {
   margin-inline: auto;
 }
 
-/* ?only=<id>: one applet on its own */
-
-.site-only main {
-  max-width: none;
-}
-
-/* Footer ---------------------------------------------------- */
-
-.site-footer {
-  margin-top: 4.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--site-rule);
-  color: var(--site-ink-soft);
-  font-size: 0.95rem;
-}
-
-.site-footer p {
-  margin: 0 0 0.4rem;
-}
-
-.site-footer a {
-  color: inherit;
-}
-
-/* Small screens */
-
-@media (max-width: 30rem) {
-  body {
-    font-size: 1.0625rem;
-  }
-
-  .site {
-    padding-top: 1.75rem;
-  }
-
-  .site-header {
-    margin-bottom: 2.25rem;
-  }
-
-  .site h1 {
-    font-size: 1.6rem;
-  }
-
-  .viz {
-    padding: 1rem 0.5rem;
-  }
-}
 
 /* A line over a figure saying what to do with it */
 .viz .viz-hint {

@@ -92,7 +92,7 @@ export default function Applet({ applet, load }) {
   return (
     <div className="viz" ref={outer} data-ready={size ? '' : undefined}>
       <div className="viz-box" ref={box} style={{ height: size ? size.height : undefined }}>
-        {error && <p className="viz-error">This applet did not load.</p>}
+        {error && <p className="viz-error">This applet did not load. Reload the page to try again.</p>}
         {!mod && !error && <div className="viz-placeholder" />}
         {Viz && (
           <div

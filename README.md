@@ -23,7 +23,7 @@ npm run preview    # serve dist/
 ```
 
 `?only=<id>` shows one applet on its own, e.g. to project it in class:
-`…/calculus-applets/?only=bike-wind`. `…/projections/#bike-wind` links to it on its page.
+`…/calculus-applets/?only=bike-wind`; an applet's title on its page links there. `…/projections/#bike-wind` links to it on its page.
 
 ## Layout
 
@@ -32,7 +32,7 @@ src/applets.js            the list: areas → topics → applets (id, title, cap
 src/viz/<id>.jsx          one module per applet: the figure(s), plus any glue (state, sliders, layout)
 src/main.jsx              the pages: the list of topics, and a topic (picked from the address)
 src/site/Applet.jsx       loads a module when it scrolls near, renders and scales it
-src/site/site.css         the look of rosie-0525.github.io (Newsreader, one accent)
+src/site/site.css         the look of the site (the figures' colours, Source Serif and Source Sans)
 src/lectures/l<N>/        files copied from the lecture decks by `npm run sync` (do not edit here)
 scripts/sync-slides.mjs   copy the slides named in src/applets.js, and what they import
 scripts/shots.mjs         screenshot the applets with headless Chrome, and report console errors
