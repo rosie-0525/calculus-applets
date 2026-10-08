@@ -1,0 +1,556 @@
+/* ------------------------------------------------------------
+   Applets — site styles
+   The look of rosie-0525.github.io: one typeface, one accent.
+   The variables are prefixed with --site- so they do not collide
+   with the lecture decks' own (--rule, --ink-soft).
+   ------------------------------------------------------------ */
+
+:root {
+  --site-paper: #ffffff;
+  --site-ink: #232323;
+  --site-ink-soft: #6b6a66;
+  --site-rule: #e5e3de;
+  --site-wash: #f7f6f3;
+  --site-link: #35597d;
+  --site-link-hover: #1f3d5c;
+  --site-measure: 54rem;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0 1.25rem;
+  background: var(--site-paper);
+  color: var(--site-ink);
+  font-family: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.site {
+  max-width: var(--site-measure);
+  margin: 0 auto;
+  padding: 2.5rem 0 3rem;
+}
+
+/* Header ---------------------------------------------------- */
+
+.site-header {
+  margin-bottom: 3rem;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+}
+
+.site-nav a {
+  color: var(--site-ink-soft);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--site-ink);
+}
+
+.site-nav a[aria-current] {
+  color: var(--site-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+/* Content --------------------------------------------------- */
+
+.site main a {
+  color: var(--site-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: rgba(53, 89, 125, 0.45);
+}
+
+.site main a:hover {
+  color: var(--site-link-hover);
+  text-decoration-color: currentColor;
+}
+
+.site a:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.site h1 {
+  font-size: 1.85rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+}
+
+.site h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 2.75rem 0 0.9rem;
+}
+
+.site p {
+  margin: 0 0 1em;
+}
+
+.site .soft {
+  color: var(--site-ink-soft);
+}
+
+/* Page layout: contents on the left, the applets on the right ---- */
+
+.site {
+  max-width: 76rem;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* on a narrow screen the topics come after the applets, without the applets of this one */
+.sidebar {
+  order: 1;
+  margin: 3rem 0 0;
+}
+
+.toc .toc-sub {
+  display: none;
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin: 0 0 0.35rem;
+  line-height: 1.35;
+}
+
+.toc a {
+  color: var(--site-ink-soft);
+  text-decoration: none;
+}
+
+.toc a:hover,
+.toc a[aria-current="page"] {
+  color: var(--site-ink);
+}
+
+.layout .toc .toc-sub {
+  margin: 0.4rem 0 0.6rem 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--site-rule);
+  font-size: 0.9em;
+}
+
+.toc-area,
+.area-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-ink-soft);
+  margin: 0 0 0.6rem !important;
+}
+
+.site main > h1 {
+  margin-bottom: 2.25rem;
+}
+
+.applet {
+  margin: 0 0 3.25rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.site .applet-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem;
+}
+
+.site main .applet-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site main .applet-title a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.caption {
+  color: var(--site-ink-soft);
+  max-width: 46rem;
+  margin: 0 0 1rem !important;
+}
+
+.caption b {
+  color: var(--site-ink);
+  font-weight: 600;
+}
+
+/* Applets under a shared heading (`group` in applets.js): the heading looks like an applet's
+   title, and the applets' own titles are set smaller under it */
+.group {
+  scroll-margin-top: 1.5rem;
+}
+
+.site .group > .group-title {
+  margin-bottom: 1.1rem;
+}
+
+.site .group .applet .applet-title {
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+/* The applets that are just for fun, at the bottom of a topic */
+.motivation {
+  margin-top: 4.5rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.site .motivation > h2 {
+  font-size: 1.55rem;
+  font-weight: 400;
+  margin: 0 0 1.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--site-rule);
+}
+
+/* Previous and next topic */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--site-rule);
+}
+
+.site main .pager a {
+  color: var(--site-ink-soft);
+  text-decoration: none;
+}
+
+.site main .pager a:hover {
+  color: var(--site-ink);
+}
+
+.site main .pager a[rel="next"] {
+  margin-left: auto;
+  text-align: right;
+}
+
+@media (min-width: 64rem) {
+  .layout {
+    display: grid;
+    grid-template-columns: 12.5rem minmax(0, 1fr);
+    column-gap: 3.5rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    order: 0;
+    position: sticky;
+    top: 1.5rem;
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .layout .toc .toc-sub {
+    display: block;
+  }
+}
+
+/* The visualization: the slide's figure, in the deck's own styles (see Applet.jsx) ---- */
+
+.viz {
+  border: 1px solid var(--site-rule);
+  border-radius: 6px;
+  background: #fcfcfa;
+  padding: 1.5rem 1.25rem;
+}
+
+.viz-box {
+  position: relative;
+  min-height: 4rem;
+}
+
+.viz-placeholder {
+  height: 22rem;
+}
+
+.viz-error {
+  color: var(--site-ink-soft);
+  margin: 0 !important;
+}
+
+.viz .viz-scale {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max-content;
+  transform-origin: top center;
+  /* the decks' slide text is 36px; on the page it is set smaller */
+  --r-main-font-size: 22px;
+}
+
+.viz .viz-scale .reveal {
+  position: relative;
+  line-height: 1.3;
+}
+
+.viz .viz-scale .reveal .slides,
+.viz .viz-scale .reveal .slides > section {
+  position: static;
+  text-align: left;
+}
+
+/* weigh-penguin.jsx, regression.jsx: the chart and the story beside it, a fixed width for the
+   story (on the slide it takes what the chart leaves); in a narrow box, one under the other */
+.viz .motiv-side {
+  width: 300px;
+}
+
+.viz .viz-scale.narrow .motiv {
+  grid-template-columns: auto;
+  justify-items: center;
+}
+
+/* orthogonal-basis.jsx: the two pictures one under the other in a narrow box */
+.viz .viz-scale.narrow .ortho-pair {
+  grid-template-columns: auto;
+}
+
+/* denoise.jsx: without the slide's middle column, two columns: the equation and the picture */
+.viz .viz-scale:not(.narrow) .denoise {
+  grid-template-columns: auto auto;
+  justify-content: center;
+  column-gap: 64px;
+}
+
+/* (its padding lined the recording up with the middle column's first card) */
+.viz .viz-scale .denoise .split-col {
+  padding-top: 0;
+}
+
+/* In a narrow box, figures that sit side by side are stacked (see Applet.jsx) */
+.viz .viz-scale.narrow :is(.viz-row, .perp-figs, .pictures-pair, .dtv-pair) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow :is(.dims-cards, .end-eyes, .denoise) {
+  grid-template-columns: auto;
+  justify-items: center;
+}
+
+.viz .viz-scale.narrow :is(.subspace-panels, .note-tracks) {
+  grid-template-columns: repeat(2, auto);
+}
+
+/* chords.jsx: the two chords side by side, one above the other in a narrow box */
+.viz .chord-tracks {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  column-gap: 24px;
+}
+
+.viz .viz-scale.narrow .chord-tracks {
+  grid-template-columns: auto;
+}
+
+/* Lecture 7: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.scalar-pair, .level-stage, .steep, .ex3d, .helix-row) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow :is(.ext-row, .print-slide, .arm) {
+  grid-template-columns: auto;
+  justify-items: center;
+}
+
+/* helix.jsx: the formula and the slider above the helix and its components */
+.viz .helix-applet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.viz .viz-scale .reveal .helix-applet .helix-intro {
+  margin-top: 0;
+}
+
+.viz .viz-scale .reveal .helix-applet .helix-intro .vex-slider {
+  margin-top: 10px;
+}
+
+.viz .viz-scale .reveal .helix-applet .helix-row {
+  justify-content: center;
+  gap: 40px;
+}
+
+/* photo.jsx: the text above the pictures (on the slide it is beside them, too wide for the page) */
+.viz .viz-scale .reveal .pfn-row {
+  grid-template-columns: auto;
+  row-gap: 10px;
+}
+
+.viz .viz-scale .reveal .pfn-side {
+  padding-bottom: 0;
+}
+
+/* photo.jsx: the credit under the pictures (on the slide it sits in the corner) */
+.viz .viz-scale .reveal .pfn-credit {
+  position: static;
+  max-width: none;
+  margin-top: 14px;
+}
+
+/* robot-arm.jsx: the button under the map, on the right */
+.viz .arm-descend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 6px 12px 0 0;
+  font-size: 0.66em;
+  color: var(--site-ink-soft);
+}
+
+/* print-mountain.jsx, robot-arm.jsx: a button in the site's accent */
+.viz .viz-button {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--site-link);
+  background: var(--site-paper);
+  border: 1px solid var(--site-link);
+  border-radius: 6px;
+  padding: 4px 14px;
+  cursor: pointer;
+}
+
+.viz .viz-button:hover {
+  color: var(--site-paper);
+  background: var(--site-link);
+}
+
+.viz .viz-button:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+/* the sentence under the parallelogram law wraps to the width of one figure */
+.viz .viz-scale.narrow .parallelogram-statement {
+  max-width: 334px;
+  margin-inline: auto;
+}
+
+/* ?only=<id>: one applet on its own */
+
+.site-only main {
+  max-width: none;
+}
+
+/* Footer ---------------------------------------------------- */
+
+.site-footer {
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--site-rule);
+  color: var(--site-ink-soft);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.4rem;
+}
+
+.site-footer a {
+  color: inherit;
+}
+
+/* Small screens */
+
+@media (max-width: 30rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  .site {
+    padding-top: 1.75rem;
+  }
+
+  .site-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .site h1 {
+    font-size: 1.6rem;
+  }
+
+  .viz {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* A line over a figure saying what to do with it */
+.viz .viz-hint {
+  margin: 0 0 0.4em;
+  font-size: 0.65em;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* The line under a picture of similar vectors says what it means: larger than on the slide
+   (src/viz/similar-taste.jsx, src/viz/similar-meaning.jsx) */
+.viz .sim-card .aside {
+  margin-top: 0.6em;
+  font-size: 1em;
+}
+
+/* A card of the slide on higher-dimensional vectors, at a width of its own (src/viz/pagerank.jsx,
+   src/viz/language-models.jsx) */
+.viz .hd-card {
+  width: 340px;
+}
+
+/* convex-two.jsx, convex-three.jsx: the combination in numbers, under the sliders */
+.viz .cvx-readout {
+  margin: 0.5em 0 0;
+  text-align: center;
+}
+
+/* Layout helpers for a visualization made of several figures */
+.viz .viz-row {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.viz .viz-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

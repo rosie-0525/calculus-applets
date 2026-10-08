@@ -1,0 +1,3895 @@
+/* reveal.js sizes itself from its parent: the React root must fill the viewport */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* ---------- Theme overrides (applied on top of reveal's "white" theme) ---------- */
+:root {
+  --r-background-color: #fcfcfa;
+  --r-main-font-size: 36px;
+  --r-main-color: #1f2937;
+  --r-heading-color: #14213d;
+  --r-heading-font-weight: 700;
+  --r-heading-text-transform: none;
+  --r-heading-letter-spacing: -0.01em;
+  --r-heading1-size: 2.3em;
+  --r-heading2-size: 1.45em;
+  --r-heading3-size: 1.1em;
+  --r-link-color: #1d4ed8;
+  --r-link-color-hover: #1e40af;
+  --r-block-margin: 18px;
+
+  /* Stanford cardinal in place of the Taylor deck's orange */
+  --accent: #8c1515;
+  --accent-soft: #fbeaea;
+  --accent-2: #0e7490;
+  --accent-3: #175e54;
+  --ink-soft: #6b7280;
+  --box-border: #8c1515;
+  --box-bg: #fbeaea;
+  --mark-bg: #fde68a;
+  --rule: #e5e7eb;
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal .slides section.centered {
+  text-align: center;
+}
+
+/* For the one or two slides that legitimately carry more than a screenful */
+.reveal .slides section.dense {
+  font-size: 0.82em;
+}
+
+.reveal .slides section.dense h2 {
+  margin-bottom: 0.35em;
+}
+
+.reveal h1,
+.reveal h2 {
+  margin-bottom: 0.6em;
+}
+
+.reveal h2 {
+  border-bottom: 4px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 0.15em;
+}
+
+.reveal h2 .katex {
+  font-size: 1em;
+}
+
+.reveal p {
+  margin: 0.4em 0;
+}
+
+.reveal strong {
+  font-weight: 700;
+}
+
+.reveal a {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+/* ---------- Fragments ---------- */
+.reveal .slides section .fragment {
+  transition: opacity 0.35s ease;
+}
+
+.reveal .slides section .fx-marker {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ---------- KaTeX tweaks ---------- */
+.reveal .tex-display {
+  margin: 0.35em 0;
+}
+
+.reveal .tex-display .katex-display {
+  margin: 0.25em 0;
+}
+
+.reveal .katex {
+  font-size: 1.08em;
+}
+
+.reveal .katex .fbox {
+  /* KaTeX layers this box element on top of the boxed content,
+     so it must stay transparent. */
+  border: 3px solid var(--box-border);
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* An answer written into a blank on the board (slide 21) */
+.reveal .fx-answer {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.reveal .fx-marker[data-fx='answer'].visible ~ .fx-host .fx-answer {
+  opacity: 1;
+}
+
+/* The rest of an equation, revealed on a key press in the same ink (slide 9) */
+.reveal .fx-more {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.reveal .fx-marker[data-fx='more'].visible ~ .fx-host .fx-more {
+  opacity: 1;
+}
+
+/* ---------- Reusable pieces ---------- */
+.reveal .label {
+  color: var(--ink-soft);
+  font-size: 0.7em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0.6em 0 0.1em;
+}
+
+.reveal .label .katex,
+.reveal .dates .what .katex,
+.reveal .title-slide .eyebrow .katex {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.25em;
+}
+
+.reveal .label-inline {
+  font-size: 0.85em;
+  margin-right: 0.6em;
+  white-space: nowrap;
+}
+
+.reveal .row-eq {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2em 0.6em;
+}
+
+.reveal .row-eq-center {
+  justify-content: center;
+}
+
+.reveal .callout {
+  margin-top: 0.9em;
+  font-size: 1.05em;
+}
+
+/* not KaTeX's own .accent, which wraps \bar, \hat, ... */
+.reveal .accent:not(.katex .accent) {
+  color: var(--accent);
+}
+
+.reveal mark {
+  background: var(--mark-bg);
+  color: #7c2d12;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+}
+
+.reveal .question {
+  margin-top: 1em;
+  font-size: 1.05em;
+  color: var(--accent);
+}
+
+.reveal .note {
+  margin-top: 0.8em;
+  padding: 0.45em 0.9em;
+  border-left: 6px solid var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.85em;
+  line-height: 1.35;
+  border-radius: 0 8px 8px 0;
+}
+
+.reveal .aside {
+  margin-top: 0.7em;
+  font-size: 0.78em;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.reveal .pointer {
+  font-size: 0.78em;
+  color: var(--accent-3);
+  font-weight: 700;
+}
+
+/* A textbook pointer on its own line, set flush right (after a display formula) */
+.reveal .pointer.right {
+  margin: 0;
+  text-align: right;
+}
+
+/* A textbook pointer as the last child of a block sits in the block's bottom-right corner */
+.reveal .block:has(> .pointer.corner) {
+  position: relative;
+}
+
+.reveal .block > .pointer.corner {
+  position: absolute;
+  right: 0.9em;
+  bottom: 0.55em;
+  margin: 0;
+}
+
+.reveal .compact {
+  font-size: 0.9em;
+}
+
+/* Two columns: prose or equations on the left, a picture on the right */
+.reveal .stage {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+}
+
+.reveal .stage > .stage-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.reveal .stage > svg,
+.reveal .stage > .stage-fig {
+  flex: 0 0 auto;
+}
+
+/* Only our own figures -- NOT KaTeX's inline SVG, which draws the surd of
+   \sqrt and would be covered by a white background and a border. */
+.reveal svg.figure-svg {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+/* A display equation set flush left, in line with the prose around it */
+.reveal .tex-left .katex-display,
+.reveal .tex-left .katex-display > .katex {
+  text-align: left;
+}
+
+/* In a two-column slide the equations line up with the prose next to them */
+.reveal .stage .tex-display .katex-display,
+.reveal .stage .tex-display .katex-display > .katex {
+  text-align: left;
+}
+
+.reveal figure {
+  margin: 0;
+}
+
+.reveal figcaption {
+  margin-top: 0.3em;
+  font-size: 0.6em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- Lists ---------- */
+.reveal .bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal .bullets > li {
+  position: relative;
+  padding-left: 1.2em;
+  margin: 0 0 0.7em;
+  line-height: 1.32;
+}
+
+.reveal .bullets > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.44em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.reveal .bullets.teal > li::before {
+  background: var(--accent-2);
+}
+
+/* A list right under a theorem box (slide 10) */
+.reveal .bullets.after-block {
+  margin-top: 0.7em;
+}
+
+/* Numbered steps (slide 4) */
+.reveal .steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal .steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 0.8em;
+  line-height: 1.35;
+}
+
+.reveal .steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide 4: a due date set off under a step, as a light borderless wash */
+.reveal .due-box {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.35em 0 0.2em;
+  padding: 0.3em 0.9em;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  font-size: 0.85em;
+}
+
+/* ---------- Slide 8: definitions ---------- */
+.reveal .defs > li {
+  margin-bottom: 0.55em;
+}
+
+.reveal .defs .tex-display {
+  margin: 0.1em 0 0;
+}
+
+/* ---------- Slide 9: pictures for n = 2 and 3 ---------- */
+.reveal .pictures-pair {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 0.4em;
+}
+
+.reveal .pictures-pair figcaption {
+  font-size: 0.62em;
+}
+
+/* ---------- Slide 13: the parallelogram law (reuses .pictures-pair) ---------- */
+.reveal .parallelogram-statement {
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+/*
+ * Right-hand diagram, stepped by two invisible FxMarker fragments:
+ *   tt-slide   w slides up by v (a transition, so stepping back slides it home)
+ *   tt-redraw  v + w vanishes, redraws from tail to head, then its head and
+ *              label return
+ */
+.reveal .tip-to-tail .tt-w {
+  transition: transform 1.2s ease-in-out;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-slide'].visible ~ .fx-host .tt-w {
+  transform: translate(var(--tt-dx), var(--tt-dy));
+}
+
+.reveal .tip-to-tail .tt-sum-shaft {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-redraw'].visible ~ .fx-host .tt-sum-shaft {
+  animation: tt-redraw 1.4s linear both;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-redraw'].visible ~ .fx-host .tt-sum-head {
+  animation: tt-blink 1.4s linear both;
+}
+
+@keyframes tt-redraw {
+  0%,
+  15% {
+    stroke-dashoffset: 1;
+  }
+  85%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* fill-opacity rather than opacity: the head and label are filled shapes, and
+   this keeps the animation on the main thread alongside the shaft's. */
+@keyframes tt-blink {
+  0%,
+  85% {
+    fill-opacity: 0;
+  }
+  92%,
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .tip-to-tail * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Definition and theorem blocks (as in the Math 245A deck) ---------- */
+/* A tinted panel with a coloured rule down its left edge and a coloured title */
+.reveal .block {
+  margin: 0.3em 0;
+  padding: 0.45em 0.9em 0.55em;
+  border-left: 3px solid;
+  border-radius: 0 4px 4px 0;
+}
+
+.reveal .block .block-title {
+  margin: 0 0 0.2em;
+  font-weight: 700;
+}
+
+.reveal .block p {
+  margin: 0.15em 0;
+}
+
+.reveal .block .tex-display .katex-display,
+.reveal .stage .block .tex-display .katex-display > .katex {
+  margin: 0.2em 0;
+  text-align: center;
+}
+
+.reveal .block.definition {
+  background: #f0f4f8;
+  border-color: #4a6fa5;
+}
+
+.reveal .block.definition .block-title {
+  color: #4a6fa5;
+}
+
+.reveal .block.theorem {
+  background: #fdf6f0;
+  border-color: #a51c30;
+}
+
+.reveal .block.theorem .block-title {
+  color: #a51c30;
+}
+
+/* ---------- Slide 12: example 1 ---------- */
+/* A worked answer, set off from the problem statement by a teal rule */
+.reveal .worked-answer {
+  margin-top: 0.5em;
+  padding: 0.1em 0 0.1em 0.7em;
+  border-left: 4px solid var(--accent-2);
+}
+
+.reveal .worked-answer .answer-label {
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+/* ---------- Slide 11: the algebra of vectors ---------- */
+.reveal .algebra-setup {
+  gap: 0.2em 0.5em;
+  margin-bottom: 0.6em;
+  font-size: 0.9em;
+}
+
+/* The two operations side by side, split by a thin rule -- no boxes */
+.reveal .algebra-ops {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.5em;
+}
+
+.reveal .algebra-op {
+  text-align: center;
+  padding: 0 1em;
+}
+
+.reveal .algebra-op + .algebra-op {
+  border-left: 1px solid var(--rule);
+}
+
+.reveal .algebra-op .op-title {
+  margin: 0 0 0.2em;
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.reveal .algebra-op .tex-display .katex-display {
+  margin: 0.1em 0;
+}
+
+.reveal .algebra-op .katex {
+  font-size: 1.2em;
+}
+
+/* ---------- Slide 10: higher-dimensional vectors ---------- */
+.reveal .dims-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 0.3em;
+}
+
+.reveal .dims-card {
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.reveal .dims-card .card-title {
+  margin: 0 0 0.35em;
+}
+
+.reveal .dims-card .figure-svg {
+  margin: 0 auto;
+}
+
+.reveal .dims-card .tex-display .katex-display {
+  margin: 0.25em 0;
+}
+
+.reveal .dims-card .aside {
+  margin-top: 0.2em;
+}
+
+.reveal .dims-bullets {
+  margin-top: 0.5em;
+  text-align: left;
+}
+
+.reveal .dims-bullets > li {
+  margin-bottom: 0.35em;
+}
+
+.reveal .dims-table {
+  width: 100%;
+  margin: 1.1em 0 0;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  text-align: left;
+}
+
+.reveal .dims-table th {
+  padding: 0 0.5em 0.35em;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--r-heading-color);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.reveal .dims-table td {
+  padding: 0.3em 0.5em;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+.reveal .dims-table td:first-child {
+  white-space: nowrap;
+}
+
+.reveal .dims-table td.year {
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .dims-table th.num,
+.reveal .dims-table td.num {
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.reveal .dims-table tr.unknown td {
+  border-bottom: none;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.reveal .dims-table tr.unknown td:first-child {
+  font-style: normal;
+  color: var(--r-main-color);
+}
+
+.reveal .dims-pointer {
+  margin-top: 0.7em;
+  text-align: center;
+}
+
+/* ---------- Slide 2: motivation ---------- */
+.reveal .motivation-cards {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+
+.reveal .motivation-card {
+  font-size: 0.72em;
+  text-align: center;
+}
+
+.reveal .motivation-card .card-title {
+  margin: 0 0 0.3em;
+}
+
+.reveal .motivation-card .card-fig {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .motivation-card .figure-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal .motivation-card .tex-display .katex-display {
+  margin: 0.2em 0 0;
+}
+
+/* ---------- Slide 11a: spam or not? (the picture alone, larger) ---------- */
+.reveal svg.spam-figure {
+  width: 640px;
+  height: auto;
+  margin: 0.4em auto 0;
+}
+
+/* ---------- Slide 1: welcome ---------- */
+/*
+ * Everything here rests in its final position; the entrance animations run
+ * only while the slide is .present (reveal re-adds the class each time the
+ * slide is entered, so the builds replay) and fill backwards from the hidden
+ * state. Print/PDF and reduced-motion therefore get the finished picture.
+ */
+.reveal .welcome-slide .welcome-stage {
+  position: relative;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .welcome-slide .welcome-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reveal .welcome-slide .welcome-text {
+  position: relative;
+  text-align: center;
+}
+
+.reveal .welcome-slide .eyebrow {
+  font-size: 0.6em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.2em;
+}
+
+.reveal .welcome-slide h1 {
+  font-size: 3.6em;
+  line-height: 1.05;
+  margin: 0 0 0.15em;
+}
+
+.reveal .welcome-slide .letter {
+  display: inline-block;
+}
+
+.reveal .welcome-slide .welcome-rule {
+  width: 180px;
+  height: 7px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.reveal .welcome-slide .welcome-arrow {
+  opacity: 0.75;
+}
+
+.reveal .welcome-slide .shaft {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.reveal .welcome-slide.present .welcome-grid {
+  animation: welcome-fade 1.2s ease-out both;
+}
+
+/*
+ * Once the word is in place, a gentle ripple runs through it every 4.5 s:
+ * each letter in turn lifts slightly and blushes cardinal, then settles.
+ * The wave is listed second so it wins over the finished rise while running.
+ */
+.reveal .welcome-slide.present .letter {
+  animation:
+    welcome-rise 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both,
+    welcome-wave 4.5s ease-in-out infinite;
+  animation-delay:
+    calc(0.25s + var(--i) * 0.07s),
+    calc(2.2s + var(--i) * 0.18s);
+}
+
+.reveal .welcome-slide.present .eyebrow {
+  animation: welcome-fade 0.8s ease-out 0.1s both;
+}
+
+.reveal .welcome-slide.present .welcome-rule {
+  animation: welcome-grow 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) 0.85s both;
+}
+
+/* Each arrow draws its shaft, then its head appears, then it sways about its tail. */
+.reveal .welcome-slide.present .welcome-arrow {
+  animation: welcome-sway 7s ease-in-out infinite alternate;
+  animation-delay: calc(2s + var(--i) * -0.9s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .tail {
+  animation: welcome-fade 0.3s ease-out both;
+  animation-delay: calc(0.9s + var(--i) * 0.12s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .shaft {
+  animation: welcome-draw 0.7s ease-out both;
+  animation-delay: calc(0.9s + var(--i) * 0.12s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .head {
+  animation: welcome-fade 0.25s ease-out both;
+  animation-delay: calc(1.55s + var(--i) * 0.12s);
+}
+
+@keyframes welcome-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes welcome-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes welcome-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes welcome-wave {
+  0%,
+  14%,
+  100% {
+    transform: none;
+    color: var(--r-heading-color);
+  }
+  7% {
+    transform: translateY(-0.12em);
+    color: var(--accent);
+  }
+}
+
+@keyframes welcome-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes welcome-sway {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .welcome-slide * {
+    animation: none !important;
+  }
+}
+
+/* ---------- Slide 6: title ---------- */
+.reveal .title-slide {
+  display: flex !important;
+  align-items: center;
+  gap: 60px;
+}
+
+.reveal .title-slide .title-fig {
+  flex: 0 0 auto;
+}
+
+.reveal .title-slide .title-fig svg.figure-svg {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.reveal .title-slide .eyebrow {
+  font-size: 0.6em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+}
+
+.reveal .title-slide h1 {
+  font-size: 2.4em;
+  line-height: 1.02;
+  margin-bottom: 0.2em;
+}
+
+.reveal .title-slide .subtitle {
+  font-size: 0.8em;
+  line-height: 1.35;
+  margin: 0 0 0.6em;
+}
+
+.reveal .title-slide .reference {
+  font-size: 0.62em;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---------- Slide 2: course staff ---------- */
+/* Label/value pairs: tight inside a pair, even gaps between pairs */
+.reveal .staff-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+}
+
+.reveal .staff-info .label {
+  margin: 0 0 0.2em;
+}
+
+.reveal .staff-info .value {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.3;
+}
+
+/* ---------- Slide 2b: who am I? ---------- */
+/* All pictures sit in the same grid cell, so each one replaces the last */
+.reveal .photo-stack {
+  display: grid;
+  width: 420px;
+  height: 330px;
+}
+
+.reveal .photo-stack .photo-slot {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.reveal .photo-stack figure {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .photo-stack img {
+  display: block;
+  max-width: 420px;
+  max-height: 330px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(20, 33, 61, 0.18);
+}
+
+.reveal .photo-stack figcaption {
+  margin-top: 0.2em;
+  font-size: 0.7em;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+/* ---------- Slide 3: where everything lives ---------- */
+.reveal .cards {
+  display: flex;
+  gap: 34px;
+  align-items: stretch;
+}
+
+.reveal .card {
+  flex: 1 1 0;
+  border: 2px solid var(--rule);
+  border-left: 8px solid var(--accent);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.6em 1em 0.9em;
+}
+
+.reveal .card.teal {
+  border-left-color: var(--accent-2);
+}
+
+.reveal .card h3 {
+  margin: 0 0 0.3em;
+  font-size: 0.95em;
+  color: var(--r-heading-color);
+}
+
+/* The link after a card title is set smaller so the title stays on one line */
+.reveal .card h3 a {
+  font-size: 0.7em;
+  white-space: nowrap;
+}
+
+.reveal .card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.72em;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.reveal .card ul li::before {
+  content: '·';
+  margin-right: 0.5em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* A trailing "and more" line under a card's list, without a bullet */
+.reveal .card .card-more {
+  margin: 0.1em 0 0;
+  font-size: 0.72em;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 5: exams ---------- */
+.reveal .dates {
+  list-style: none;
+  margin: 0.2em 0 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+.reveal .dates > li {
+  display: grid;
+  grid-template-columns: 5.4em 1fr;
+  gap: 0.8em;
+  margin-bottom: 0.35em;
+  line-height: 1.3;
+}
+
+.reveal .dates .what {
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding-top: 0.18em;
+}
+
+/* ---------- Slide 18: table of convex combinations ---------- */
+/* Turned on its side: a row of t values over a row of results, one column
+   per t, with the row labels in a narrow grey column on the left */
+.reveal table.tvals {
+  border-collapse: collapse;
+  font-size: 0.8em;
+  margin: 0.6em 0 0;
+}
+
+.reveal table.tvals th,
+.reveal table.tvals td {
+  border: none;
+  padding: 0.25em 0.75em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reveal table.tvals th {
+  padding-right: 0.8em;
+  border-right: 2px solid var(--rule);
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: 0.85em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reveal table.tvals .tvals-t td,
+.reveal table.tvals .tvals-t th {
+  border-bottom: 1px solid var(--rule);
+}
+
+.reveal table.tvals .tvals-result td {
+  vertical-align: top;
+  padding-top: 0.4em;
+}
+
+.reveal table.tvals .katex {
+  font-size: 1em;
+}
+
+.reveal table.tvals .tvals-name {
+  display: block;
+  font-size: 0.8em;
+}
+
+/* ---------- Slide 23: recap ---------- */
+/* One line per learning goal */
+.reveal .recap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+.reveal .recap > li {
+  margin-bottom: 0.7em;
+}
+
+.reveal .recap .recap-goal {
+  margin: 0;
+  line-height: 1.3;
+}
+
+.reveal .recap .n {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.3em;
+}
+
+.reveal .recap-next {
+  margin-top: 0.9em;
+  font-size: 0.72em;
+}
+
+.reveal .recap-next p {
+  margin: 0.2em 0;
+}
+
+.reveal .recap-next .bullets {
+  margin: 0.1em 0 0.3em;
+}
+
+.reveal .recap-next .bullets > li {
+  margin-bottom: 0.15em;
+}
+
+/* ---------- Slide 5b: AI policy ---------- */
+.reveal blockquote.quote {
+  width: auto;
+  margin: 1.4em 0 0 1.2em;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  font-size: 0.85em;
+  font-style: italic;
+  text-align: left;
+}
+
+.reveal blockquote.quote p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.reveal blockquote.quote footer {
+  margin-top: 0.4em;
+  font-size: 0.8em;
+  font-style: normal;
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 16: linear combination explorer ---------- */
+/* The one-vector and two-vector versions take turns in the same grid cell */
+.reveal .lc-stack {
+  display: grid;
+  align-items: start;
+}
+
+.reveal .lc-stack > * {
+  grid-area: 1 / 1;
+}
+
+.reveal .lc-readout {
+  margin-top: 1em;
+}
+
+.reveal .lc-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  margin-top: 0.4em;
+  font-size: 0.7em;
+}
+
+.reveal .lc-slider {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  cursor: pointer;
+}
+
+.reveal .lc-slider .lc-name {
+  width: 1.3em;
+  font-family: KaTeX_Math, Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.reveal .lc-slider input {
+  flex: 1 1 auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.reveal .lc-slider .lc-value {
+  width: 2.4em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Slide 16b: algebraic laws ---------- */
+.reveal .laws .bullets {
+  margin: 0.4em 0 0;
+  font-size: 0.85em;
+}
+
+.reveal .laws .bullets > li {
+  margin-bottom: 0.45em;
+}
+
+.reveal .laws .law-name {
+  color: var(--ink-soft);
+  margin-right: 0.3em;
+}
+
+.reveal .laws .law-note {
+  margin: 0 0 0 1.2em;
+  font-size: 0.75em;
+  color: var(--ink-soft);
+}
+
+/* =====================================================================
+   Lecture 2 additions
+   ===================================================================== */
+
+/* The "board" tag: the prompt is worked on the board, not the slide */
+.reveal .board-pill {
+  display: inline-block;
+  margin-left: 0.6em;
+  padding: 0.12em 0.2em;
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2f4a3a;
+  vertical-align: middle;
+}
+
+/* Inside a line of text (an example box) rather than a title: a larger share of the font */
+.reveal p .board-pill {
+  margin-left: 0.2em;
+  font-size: 0.72em;
+}
+
+/* ... after a stick-figure teacher pointing at a little chalkboard */
+.reveal .board-pill::before {
+  content: '';
+  display: inline-block;
+  width: 3em;
+  height: 1.8em;
+  margin-right: 0.4em;
+  vertical-align: -0.6em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='16' y='1.5' width='22.5' height='15' rx='1.2' fill='%232f4a3a' stroke='%238b5e3c' stroke-width='1.8'/%3E%3Cpath d='M20 9c1.5-2 3 2 4.5 0s3 2 4.5 0' stroke='%23f5f5ef' stroke-width='1.3'/%3E%3Cg stroke='%2314213d' stroke-width='1.6'%3E%3Ccircle cx='7' cy='5' r='2.6' fill='%23fff'/%3E%3Cpath d='M7 7.6v8M7 15.6l-3 7M7 15.6l3 7M7 10l-3.5 4M7 10l7-3'/%3E%3C/g%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+/* More than one blank on a slide: markers answer-1, answer-2, ... */
+.reveal .fx-answer-1,
+.reveal .fx-answer-2,
+.reveal .fx-answer-3 {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.reveal .fx-marker[data-fx='answer-1'].visible ~ .fx-host .fx-answer-1,
+.reveal .fx-marker[data-fx='answer-2'].visible ~ .fx-host .fx-answer-2,
+.reveal .fx-marker[data-fx='answer-3'].visible ~ .fx-host .fx-answer-3 {
+  opacity: 1;
+}
+
+.reveal .fx-answer-1,
+.reveal .fx-answer-2,
+.reveal .fx-answer-3,
+.reveal .fx-answer {
+  color: var(--accent-2);
+}
+
+/* ---------- Poll block ---------- */
+.reveal .block.poll {
+  background: #eef6f3;
+  border-color: var(--accent-3);
+}
+
+.reveal .block.poll .block-title {
+  color: var(--accent-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.reveal .poll-options {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 0.35em 2.2em;
+  margin: 0.5em 0 0.2em;
+  padding: 0;
+}
+
+.reveal .poll-options.two {
+  grid-template-columns: repeat(2, auto);
+}
+
+.reveal .poll-options li {
+  padding: 0.1em 0.5em;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.reveal .poll-options .opt {
+  margin-right: 0.45em;
+  font-weight: 700;
+  color: var(--accent-3);
+}
+
+/* The correct option lights up once the poll-answer marker is reached */
+.reveal .fx-marker[data-fx='poll-answer'].visible ~ .fx-host .poll-options li.correct {
+  background: #d6ebe3;
+  box-shadow: inset 0 0 0 2px var(--accent-3);
+}
+
+/* ---------- Slide 4 & 10: movie ratings ---------- */
+.reveal table.ratings {
+  border-collapse: collapse;
+  margin: 0.4em auto 0;
+  font-size: 0.78em;
+}
+
+.reveal table.ratings th,
+.reveal table.ratings td {
+  border: none;
+  padding: 0.28em 0.9em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reveal table.ratings thead th {
+  border-bottom: 2px solid var(--r-heading-color);
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.reveal table.ratings tbody td {
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal table.ratings tbody th {
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  font-weight: 700;
+}
+
+.reveal table.ratings tr.you th,
+.reveal table.ratings tr.you td {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.reveal table.ratings td.pos {
+  background: #eaf4f6;
+}
+
+.reveal table.ratings td.neg {
+  background: #fbeaea;
+}
+
+.reveal table.ratings td.result {
+  border-left: 2px solid var(--rule);
+  font-weight: 700;
+}
+
+.reveal .ratings-comment {
+  margin-top: 0.5em;
+  font-size: 0.78em;
+}
+
+/* Bars for the cosine similarities (slide 10) */
+.reveal .sim-bar {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 14px;
+  vertical-align: middle;
+  background: linear-gradient(to right, transparent calc(50% - 1px), #9ca3af calc(50% - 1px), #9ca3af calc(50% + 1px), transparent calc(50% + 1px));
+}
+
+.reveal .sim-bar span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+}
+
+/* ---------- Slide 9: the angle explorer ---------- */
+.reveal .angle-readout {
+  margin-top: 0.3em;
+  font-size: 0.72em;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .angle-readout .row {
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+}
+
+.reveal .angle-readout .what {
+  width: 7.5em;
+  color: var(--ink-soft);
+}
+
+.reveal .angle-readout .sign-pos {
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+.reveal .angle-readout .sign-neg {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.reveal .angle-readout .sign-zero {
+  color: var(--accent-3);
+  font-weight: 700;
+}
+
+.reveal .angle-explorer .lc-sliders {
+  width: 380px;
+}
+
+/* ---------- Slide 19: three scatter plots ---------- */
+.reveal .neuron-plots {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 26px;
+  margin-top: 0.3em;
+}
+
+.reveal .neuron-plots figcaption {
+  font-size: 0.7em;
+  font-weight: 700;
+  color: var(--r-heading-color);
+}
+
+/* ---------- Slides 5 & 16: statements in a block, one per line ---------- */
+.reveal .block .bullets {
+  margin: 0.3em 0 0;
+}
+
+.reveal .block .bullets > li {
+  margin-bottom: 0.3em;
+}
+
+/* ---------- Slide 18: fill-in-the-blank statements ---------- */
+.reveal .blank {
+  display: inline-block;
+  min-width: 2.2em;
+  border-bottom: 2px solid var(--r-main-color);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.reveal .block.interpret {
+  font-size: 0.75em;
+}
+
+.reveal .block.interpret p {
+  margin: 0.2em 0;
+}
+
+/* ---------- Slide 5: v · v, built up piece by piece ---------- */
+.reveal .block.self-dot {
+  margin-top: 0.6em;
+}
+
+.reveal .block.self-dot p.self-dot-lead {
+  margin-top: 0.15em;
+  text-align: left;
+}
+
+.reveal .block.self-dot .row-eq {
+  gap: 0.2em 0.3em;
+}
+
+.reveal .block.self-dot p {
+  margin-top: 0.4em;
+  text-align: left;
+}
+
+/* ---------- Slide 7: Theorem 2.2.1, items (i)-(iii') ---------- */
+.reveal .thm-items {
+  list-style: none;
+  margin: 0.3em 0 0;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.reveal .thm-items > li {
+  margin-bottom: 0.4em;
+  line-height: 1.35;
+}
+
+.reveal .thm-items .tex-display .katex-display {
+  margin: 0.2em 0 0;
+}
+
+/* A small warning triangle before a "Careful:" remark */
+.reveal .warn-sign {
+  display: inline-block;
+  vertical-align: -0.2em;
+  margin-right: 0.15em;
+}
+
+/*
+ * Slide 8, key press 5: Dana's row does not exist until then. When it is
+ * inserted it pushes the question down by one row; the question's animation
+ * starts it one row higher, so it slides down smoothly, and then the row
+ * fades in. --row-h is the height of one row of table.ratings.
+ */
+.reveal .dana-host {
+  --row-h: 53px;
+}
+
+.reveal .dana-host .late-row {
+  display: none;
+}
+
+.reveal .fx-marker[data-fx='dana'].visible ~ .dana-host .late-row {
+  display: table-row;
+  animation: dana-fade 0.4s ease 0.6s both;
+}
+
+.reveal .fx-marker[data-fx='dana'].visible ~ .dana-host .question {
+  animation: dana-slide 0.6s ease-in-out both;
+}
+
+@keyframes dana-slide {
+  from {
+    transform: translateY(calc(-1 * var(--row-h)));
+  }
+}
+
+@keyframes dana-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .dana-host * {
+    animation: none !important;
+  }
+}
+
+/* A textbook pointer set in gray instead of green (slide 9) */
+.reveal .pointer.muted {
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 11: the scaling picture ---------- */
+.reveal figure.scale-demo {
+  margin: 0;
+}
+
+.reveal figure.scale-demo figcaption {
+  font-size: 0.55em;
+}
+
+/* ---------- Poll: how to vote (QR code + PollEv address) ---------- */
+.reveal .poll-join {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: 0.5em;
+}
+
+.reveal .poll-join .poll-qr {
+  flex: 0 0 auto;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.reveal .poll-join-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12em;
+  line-height: 1.2;
+}
+
+.reveal .poll-join-label {
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.reveal .poll-join-url {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--r-heading-color);
+}
+
+.reveal .poll-join-note {
+  font-size: 0.65em;
+  color: var(--ink-soft);
+}
+
+.reveal .poll-join-host {
+  font-size: 0.75em;
+  color: var(--ink-soft);
+}
+
+/* Slide 13: the six options and the join panel share one row */
+.reveal .poll-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.reveal .poll-row .poll-options {
+  gap: 0.35em 1.1em;
+}
+
+.reveal .poll-join.compact {
+  flex: 0 0 auto;
+  gap: 0.5em;
+  margin-top: 0;
+}
+
+.reveal .poll-join.compact .poll-join-url {
+  font-size: 0.9em;
+}
+
+/* ---------- Slide 14: the shadow formula, one equality per key press ---------- */
+.reveal .stage .tex-display.centered .katex-display,
+.reveal .stage .tex-display.centered .katex-display > .katex {
+  text-align: center;
+}
+
+/* The formula is rendered once, at its full width, and centred; its pieces
+   are \htmlClass groups that keep their space but stay invisible until their
+   marker is reached, so nothing shifts as the equation is built up. */
+.reveal .shadow-formula .fx-sh-1,
+.reveal .shadow-formula .fx-sh-2,
+.reveal .shadow-formula .fx-sh-3 {
+  visibility: hidden;
+}
+
+.reveal .fx-marker[data-fx='sh-1'].visible ~ .shadow-formula .fx-sh-1,
+.reveal .fx-marker[data-fx='sh-2'].visible ~ .shadow-formula .fx-sh-2,
+.reveal .fx-marker[data-fx='sh-3'].visible ~ .shadow-formula .fx-sh-3 {
+  visibility: visible;
+  animation: sh-fade 0.4s ease;
+}
+
+/* The brace and its label keep their space but wait for their own key press.
+   They are hidden with visibility, not opacity: a transparent descendant makes
+   Chrome draw the whole formula lighter. */
+.reveal .shadow-formula .fx-sh-3 .stretchy,
+.reveal .shadow-formula .fx-sh-label {
+  visibility: hidden;
+}
+
+.reveal .fx-marker[data-fx='sh-brace'].visible ~ .shadow-formula .fx-sh-3 .stretchy,
+.reveal .fx-marker[data-fx='sh-brace'].visible ~ .shadow-formula .fx-sh-label {
+  visibility: visible;
+  animation: sh-fade 0.4s ease;
+}
+
+@keyframes sh-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Slide 14b: wind on a bike ride (Lecture 2; Lecture 5, slide 9) ---------- */
+/* The formula sits alone beside the map: centred (see Slide 14) and larger */
+.reveal .tex-display.large .katex {
+  font-size: 1.7em;
+}
+
+/* The slide fills the frame so the pointer can sit on its bottom edge; the
+   body is centred in the space above it, as reveal centres the other slides. */
+.reveal .footed {
+  height: 680px; /* the 720 px frame minus reveal's 20 px section padding */
+  display: flex;
+  flex-direction: column;
+}
+
+.reveal .footed > .body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reveal .footed > .body > h2 {
+  align-self: flex-start;
+}
+
+.reveal .footed > .foot {
+  flex: 0 0 auto;
+}
+
+/* Each gust fades in, drifts downwind and fades out; its duration, delay and
+   peak opacity (--op) are set per gust in the slide. */
+.reveal .gust {
+  opacity: 0;
+  animation: gust-drift 2s linear infinite;
+}
+
+@keyframes gust-drift {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  25%,
+  70% {
+    opacity: var(--op);
+  }
+  100% {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+}
+
+/* Leaves tumble across the whole field */
+.reveal .leaf-drift {
+  animation: leaf-drift 8s linear infinite;
+}
+
+.reveal .leaf-wobble {
+  animation: leaf-wobble 1.4s ease-in-out infinite alternate;
+}
+
+.reveal .leaf-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: leaf-spin 1.9s linear infinite;
+}
+
+@keyframes leaf-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(680px);
+  }
+}
+
+@keyframes leaf-wobble {
+  from {
+    transform: translateY(-9px);
+  }
+  to {
+    transform: translateY(9px);
+  }
+}
+
+@keyframes leaf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Clouds cross the whole field slowly, along (--tx, --ty) */
+.reveal .cloud-drift {
+  animation: cloud-drift 45s linear infinite;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--tx), var(--ty));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .gust {
+    animation: none;
+    opacity: var(--op);
+  }
+
+  .reveal .leaf-drift,
+  .reveal .leaf-wobble,
+  .reveal .leaf-spin,
+  .reveal .cloud-drift {
+    animation: none;
+  }
+
+  /* a still cloud waits halfway along its path, over the field */
+  .reveal .cloud-drift {
+    transform: translate(calc(var(--tx) / 2), calc(var(--ty) / 2));
+  }
+}
+
+/* ---------- Slide 16: data points in ℝ² and the vectors X, Y in ℝ³ ---------- */
+.reveal .data-to-vectors .dtv-pair {
+  display: flex;
+  gap: 14px;
+}
+
+.reveal .data-to-vectors .dtv-space {
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+.reveal .data-to-vectors .dtv-readout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 4px;
+  font-size: 0.7em;
+}
+
+.reveal .data-to-vectors .dtv-cos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* the guided tour: a gray slider with one level per stop */
+.reveal .data-to-vectors .dtv-tour {
+  width: 300px;
+  margin: 8px auto 0;
+}
+
+.reveal .data-to-vectors .dtv-tour input {
+  display: block;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.reveal .data-to-vectors .dtv-tour input::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+}
+
+.reveal .data-to-vectors .dtv-tour input::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+}
+
+.reveal .data-to-vectors .dtv-tour input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -5px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #6b7280;
+  box-shadow: 0 0 0 1px #9ca3af;
+}
+
+.reveal .data-to-vectors .dtv-tour input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #6b7280;
+  box-shadow: 0 0 0 1px #9ca3af;
+}
+
+/* dots under the track, one per level; inset by half the thumb */
+.reveal .data-to-vectors .dtv-ticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5.5px;
+  margin-top: 3px;
+}
+
+.reveal .data-to-vectors .dtv-ticks span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d1d5db;
+}
+
+.reveal .data-to-vectors .dtv-ticks span.on {
+  background: #6b7280;
+}
+
+
+/* the centring assumption: boxed on a key press, with a gray note below.
+   The border is always there (transparent), so boxing it moves nothing. */
+.reveal .centre-cond {
+  display: inline-block;
+  padding: 0 6px;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  transition: border-color 0.35s ease;
+}
+
+.reveal .fx-marker[data-fx='centre-box'].visible ~ .fx-host .centre-cond {
+  border-color: var(--ink-soft);
+}
+
+/* the arrow from "Averages ..." to the box: an overlay on the text column */
+.reveal .centre-host {
+  position: relative;
+}
+
+.reveal svg.centre-arrow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.reveal .aside.centre-means,
+.reveal .aside.centre-note {
+  margin: 0.5em 0 0;
+  font-size: 0.7em;
+}
+
+/* =====================================================================
+   Lecture 3 additions
+   ===================================================================== */
+
+/* ---------- Space.jsx: pictures of ℝ³ ---------- */
+/* A picture that can be turned by hand */
+.reveal svg.space.space-drag {
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+/* ---------- Slide 2: the shooter game (aim with the mouse, click to fire) ---------- */
+.reveal .cover-game {
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- Slide 1a: the 3-D game (src/game/Game3D.js draws it; the HUD is HTML on top) ---------- */
+.reveal .slides section.game3d-slide {
+  padding: 0;
+}
+
+.reveal .g3-stage {
+  --g3-teal: #5eead4;
+  --g3-red: #ff8f8f;
+  --g3-glass: rgba(10, 16, 30, 0.62);
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(#2c5c9e, #efd2ae 52%, #d6c39c 52%);
+  color: #f8fafc;
+  font-size: 18px;
+  line-height: 1.3;
+  text-align: left;
+  cursor: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+.reveal .g3-canvas,
+.reveal section img.g3-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  background: none;
+  max-width: none;
+  max-height: none;
+}
+
+.reveal .g3-canvas {
+  display: block;
+}
+
+.reveal section img.g3-still {
+  display: none;
+}
+
+.reveal .g3-stage[data-still='on'] img.g3-still {
+  display: block;
+}
+
+.reveal .g3-stage[data-still='on'] .g3-canvas {
+  visibility: hidden;
+}
+
+/* darker corners; in math vision a cool tint and a teal frame */
+.reveal .g3-vignette,
+.reveal .g3-vignette::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.reveal .g3-vignette {
+  background: radial-gradient(ellipse at 50% 55%, transparent 58%, rgba(5, 10, 20, 0.42) 100%);
+}
+
+.reveal .g3-vignette::after {
+  content: '';
+  background: radial-gradient(ellipse at 50% 55%, transparent 62%, rgba(2, 28, 40, 0.38) 100%);
+  box-shadow: inset 0 0 0 2px rgba(94, 234, 212, 0.4);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.reveal .g3-stage[data-math='on'] .g3-vignette::after {
+  opacity: 1;
+}
+
+.reveal .g3-labels,
+.reveal .g3-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* labels pinned to points in space (placed by the game every frame) */
+.reveal .g3-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  will-change: transform;
+}
+
+.reveal .g3-label.m {
+  padding: 1px 8px 2px;
+  border-radius: 6px;
+  background: rgba(8, 14, 28, 0.74);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.reveal .g3-label b {
+  font-family: KaTeX_Main, 'Times New Roman', serif;
+  font-size: 1.2em;
+}
+
+.reveal .g3-label.m-t {
+  color: var(--g3-teal);
+}
+
+.reveal .g3-label.m-n {
+  color: var(--g3-red);
+}
+
+.reveal .g3-label.m-g {
+  color: #e5e7eb;
+}
+
+.reveal .g3-label.m-b {
+  color: #fde68a;
+}
+
+.reveal .g3-label.tick {
+  padding: 0 4px;
+  background: rgba(8, 14, 28, 0.5);
+  font-size: 13px;
+  color: var(--g3-teal);
+}
+
+.reveal .g3-label.pop-hit {
+  color: var(--g3-teal);
+  font-size: 26px;
+  text-shadow:
+    0 0 10px rgba(20, 184, 166, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.reveal .g3-label.pop-block {
+  color: #ff6b6b;
+  font-size: 21px;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* title, status line and score */
+.reveal .g3-title {
+  position: absolute;
+  left: 26px;
+  top: 18px;
+}
+
+.reveal .g3-kicker {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fecaca;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.reveal .g3-title h2 {
+  display: block;
+  margin: 2px 0 0;
+  padding: 0;
+  border: 0;
+  font-size: 36px;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.reveal .g3-status {
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 6px 16px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: var(--g3-glass);
+  backdrop-filter: blur(8px);
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    opacity 0.5s;
+}
+
+.reveal .g3-status:empty {
+  display: none;
+}
+
+.reveal .g3-status[data-side='yours'] {
+  color: var(--g3-teal);
+  border-color: rgba(94, 234, 212, 0.5);
+}
+
+.reveal .g3-status[data-side='other'] {
+  color: var(--g3-red);
+  border-color: rgba(255, 143, 143, 0.5);
+}
+
+.reveal .g3-score {
+  position: absolute;
+  right: 24px;
+  top: 22px;
+  display: flex;
+  gap: 10px;
+  transition: opacity 0.5s;
+}
+
+.reveal .g3-stat {
+  min-width: 96px;
+  padding: 6px 14px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: var(--g3-glass);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+.reveal .g3-stat span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+.reveal .g3-stat b {
+  display: block;
+  font-size: 30px;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .g3-stat-hit b {
+  color: var(--g3-teal);
+}
+
+.reveal .g3-stat-block b {
+  color: var(--g3-red);
+}
+
+/* the math-vision panel */
+.reveal .g3-math {
+  position: absolute;
+  left: 22px;
+  top: 112px;
+  width: 452px;
+  padding: 10px 16px 8px;
+  border: 1px solid rgba(94, 234, 212, 0.4);
+  border-radius: 12px;
+  background: rgba(8, 14, 28, 0.76);
+  backdrop-filter: blur(10px);
+  font-size: 16px;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.reveal .g3-stage[data-math='on'] .g3-math {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal .g3-math p {
+  margin: 0;
+}
+
+.reveal .g3-math-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--g3-teal);
+}
+
+.reveal .g3-block {
+  padding: 6px 0 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reveal .g3-eqline {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.reveal .g3-key {
+  flex: none;
+  width: 124px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.reveal .g3-vals {
+  margin: 1px 0 0 134px !important;
+  color: #e2e8f0;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .g3-math .katex {
+  font-size: 1.05em;
+  color: #fff;
+}
+
+.reveal .g3-gap {
+  display: inline-block;
+  width: 14px;
+}
+
+.reveal .g3-tag {
+  margin-left: 6px;
+  font-size: 0.92em;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.reveal .g3-tag[data-side='yours'] {
+  color: var(--g3-teal);
+}
+
+.reveal .g3-tag[data-side='other'] {
+  color: var(--g3-red);
+}
+
+/* the math-vision button and the hint, bottom left */
+.reveal .g3-bottom {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: opacity 0.5s;
+}
+
+.reveal .g3-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid rgba(94, 234, 212, 0.55);
+  border-radius: 10px;
+  background: var(--g3-glass);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.reveal .g3-btn:hover {
+  background: rgba(14, 116, 144, 0.6);
+}
+
+.reveal .g3-btn[aria-pressed='true'] {
+  border-color: var(--g3-teal);
+  background: #0e7490;
+}
+
+.reveal .g3-btn kbd {
+  padding: 0 6px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.reveal .g3-hint {
+  margin: 0;
+  font-size: 15px;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transition: opacity 0.6s;
+}
+
+.reveal .g3-stage[data-played='yes'] .g3-hint,
+.reveal .g3-stage[data-still='on'] .g3-hint {
+  opacity: 0;
+}
+
+/* the crosshair (moved by the game with a transform) */
+.reveal .g3-cross {
+  position: absolute;
+  left: -24px;
+  top: -24px;
+  color: #fff;
+  stroke: currentColor;
+  fill: none;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.85));
+  will-change: transform;
+  transition: opacity 0.5s;
+}
+
+.reveal .g3-cross-x,
+.reveal .g3-cross-hit {
+  opacity: 0;
+}
+
+.reveal .g3-stage[data-cross='clear'] .g3-cross {
+  color: var(--g3-teal);
+}
+
+.reveal .g3-stage[data-cross='blocked'] .g3-cross {
+  color: var(--g3-red);
+}
+
+.reveal .g3-stage[data-cross='blocked'] .g3-cross-x {
+  opacity: 1;
+}
+
+.reveal .g3-stage[data-hitmark='on'] .g3-cross-hit {
+  opacity: 1;
+  stroke: #fff;
+}
+
+/* during the fly-in only the title shows */
+.reveal .g3-stage[data-mode='intro'] .g3-cross,
+.reveal .g3-stage[data-mode='intro'] .g3-score,
+.reveal .g3-stage[data-mode='intro'] .g3-status,
+.reveal .g3-stage[data-mode='intro'] .g3-bottom {
+  opacity: 0;
+}
+
+.reveal .g3-nogl {
+  display: none;
+}
+
+.reveal .g3-stage[data-webgl='off'] .g3-nogl {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--g3-glass);
+}
+
+/* ---------- Examples with parts (i), (ii), ... ---------- */
+.reveal .parts {
+  list-style: none;
+  counter-reset: part;
+  margin: 0.3em 0 0;
+  padding: 0;
+}
+
+.reveal .parts[start='3'] {
+  counter-reset: part 2;
+}
+
+.reveal .parts > li {
+  counter-increment: part;
+  position: relative;
+  padding-left: 2.1em;
+  margin-bottom: 0.6em;
+  line-height: 1.35;
+}
+
+.reveal .parts > li::before {
+  content: '(' counter(part, lower-roman) ')';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* An empty answer box still takes a little room, so the layout is stable */
+.reveal .parts .worked-answer,
+.reveal .example-box .worked-answer {
+  margin-top: 0.3em;
+  min-height: 1.5em;
+}
+
+.reveal .worked-answer + .worked-answer {
+  margin-top: 0.15em;
+}
+
+/* Board examples (slides 6-7, 9-10, 15-16, 20-21, one part a slide): the worked answer under the
+   part, a little smaller than the part */
+.reveal .parts .worked-answer {
+  font-size: 0.8em;
+  min-height: 0;
+  line-height: 1.35;
+}
+
+.reveal .parts .worked-answer p {
+  margin: 0 0 0.25em;
+}
+
+.reveal .parts .worked-answer .katex-display {
+  margin: 0.2em 0;
+}
+
+.reveal .worked-answer .katex-display,
+.reveal .worked-answer .katex-display > .katex {
+  text-align: left;
+}
+
+/* an inline formula of the answer stays on one line: the prose breaks around it */
+.reveal .worked-answer .tex-inline .katex {
+  white-space: nowrap;
+}
+
+/* the second slide of an example starts at (ii) */
+.reveal .parts[start='2'] {
+  counter-reset: part 1;
+}
+
+/* a row of the answer: a system or formula, and beside it how it is solved */
+.reveal .worked-answer .answer-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  margin: 0.2em 0 0.3em;
+}
+
+.reveal .worked-answer .answer-row > p {
+  margin: 0;
+}
+
+/* the answer in two columns (Example 4 (ii)) */
+.reveal .worked-answer .answer-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4em;
+}
+
+/* a remark after the answer, in green as in the answer key */
+.reveal .worked-answer .answer-remark {
+  margin-top: 0.3em;
+  color: var(--accent-3);
+}
+
+/* the second slide of an example recalls what it needs from the first */
+.reveal .recall {
+  margin: 0 0 0.3em;
+  font-size: 0.8em;
+  color: var(--ink-soft);
+}
+
+/* Slide 17: the example stated under the theorem, in a light wash */
+.reveal .example-box {
+  margin-top: 0.5em;
+  padding: 0.3em 0.8em 0.4em;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.reveal .example-box .tex-display .katex-display {
+  margin: 0.15em 0;
+}
+
+/* ---------- Slide 7: the four descriptions of a plane ---------- */
+.reveal .four-ways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2em 36px;
+  margin-top: 0.2em;
+}
+
+.reveal .ways-lead {
+  margin: 0 0 0.3em;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--r-heading-color);
+}
+
+.reveal .way-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.35em;
+}
+
+/* the figures are drawn at 340 x 204 and scaled up, labels and all */
+.reveal .way-card .figure-svg {
+  width: 440px;
+  height: auto;
+}
+
+.reveal .way-name {
+  margin: 0 0 0.2em;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ---------- Slide 9: two sliders side by side ---------- */
+.reveal .angle-explorer .lc-sliders.slider-pair {
+  flex-direction: row;
+  gap: 1.4em;
+  width: 470px;
+}
+
+.reveal .slider-pair .lc-slider {
+  flex: 1 1 0;
+}
+
+/* ---------- Slides 3 and 9: coordinate readouts ---------- */
+.reveal .angle-readout .sign-pos,
+.reveal .angle-readout .sign-neg,
+.reveal .angle-readout .sign-zero {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Slide 18: two pictures beside the text ---------- */
+.reveal .stage > .stage-fig.pictures-pair {
+  gap: 18px;
+}
+
+/* ---------- Slide 3: the line in ℝ² and in ℝ³ ---------- */
+.reveal .line-explorer .pictures-pair {
+  gap: 18px;
+  margin-top: 0;
+}
+
+.reveal .line-explorer .lc-sliders {
+  width: auto;
+  margin: 0.4em 2.5em 0;
+}
+
+/* ---------- Slide 2b: the video game in 3-D (RoofGame3D, src/game3d) ---------- */
+/* The game fills the slide; the HUD is DOM over the canvas, always dark. */
+.reveal .slides section.g3d-slide {
+  padding: 0;
+}
+
+.reveal .g3d {
+  --g-teal: #3ee6ff;
+  --g-cardinal: #ff4d64;
+  --g-amber: #ffb940;
+  --g-ink: #e8ecf5;
+  --g-dim: rgba(232, 236, 245, 0.58);
+  --g-glass: rgba(9, 8, 22, 0.64);
+  --g-line: rgba(255, 255, 255, 0.14);
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: #05040b;
+  color: var(--g-ink);
+  font-size: 16px;
+  line-height: 1.3;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+  cursor: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.reveal .g3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.reveal .g3d > :not(.g3d-canvas) {
+  pointer-events: none;
+}
+
+.reveal .g3d .tex .katex {
+  font-size: 1.08em;
+}
+
+.reveal .g3d-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, transparent 58%, rgba(0, 0, 0, 0.5) 100%);
+  transition: box-shadow 0.25s;
+}
+
+.reveal .g3d.red-flash .g3d-vignette {
+  box-shadow: inset 0 0 140px rgba(255, 40, 60, 0.75);
+  transition: none;
+}
+
+/* the title, the score and the buttons, faded out during the fly-in and the bullet cam */
+.reveal .g3d-head,
+.reveal .g3d-score,
+.reveal .g3d-buttons,
+.reveal .g3d-hint,
+.reveal .g3d-layer,
+.reveal .g3d-panel {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.reveal .g3d.is-intro :is(.g3d-head, .g3d-score, .g3d-buttons, .g3d-hint, .g3d-layer, .g3d-panel),
+.reveal .g3d.is-cam :is(.g3d-head, .g3d-score, .g3d-buttons, .g3d-hint) {
+  opacity: 0;
+}
+
+.reveal .g3d-head {
+  position: absolute;
+  left: 36px;
+  top: 24px;
+}
+
+.reveal .g3d .g3d-eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--g-teal);
+  text-shadow: 0 0 10px rgba(62, 230, 255, 0.6);
+}
+
+.reveal .g3d .g3d-title {
+  margin: 2px 0 0;
+  font-size: 40px;
+  color: #fff;
+  border-bottom-color: var(--g-cardinal);
+  text-shadow: 0 0 18px rgba(255, 77, 100, 0.55), 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+.reveal .g3d-score {
+  position: absolute;
+  right: 32px;
+  top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.reveal .g3d-count,
+.reveal .g3d-buttons button {
+  background: var(--g-glass);
+  border: 1px solid var(--g-line);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.reveal .g3d-count {
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--g-dim);
+}
+
+.reveal .g3d-count b {
+  margin-left: 6px;
+  font-size: 21px;
+  letter-spacing: 0;
+}
+
+.reveal .g3d-count.hit b {
+  color: var(--g-teal);
+}
+
+.reveal .g3d-count.blocked b {
+  color: var(--g-cardinal);
+}
+
+.reveal .g3d-demo {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--g-amber);
+  opacity: 0;
+}
+
+.reveal .g3d.is-idle .g3d-demo {
+  opacity: 1;
+  animation: g3d-blink 1.6s ease-in-out infinite;
+}
+
+.reveal .g3d.is-idle .g3d-count {
+  opacity: 0.45;
+}
+
+.reveal .g3d-buttons {
+  position: absolute;
+  right: 32px;
+  top: 76px;
+  display: flex;
+  gap: 8px;
+}
+
+.reveal .g3d-buttons button {
+  pointer-events: auto;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--g-dim);
+  border-radius: 8px;
+  padding: 5px 12px;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.reveal .g3d-buttons button:hover {
+  color: #fff;
+}
+
+.reveal .g3d-buttons button.on {
+  color: #fff;
+  border-color: rgba(62, 230, 255, 0.65);
+  box-shadow: inset 0 0 12px rgba(62, 230, 255, 0.28);
+}
+
+.reveal .g3d-buttons button:focus-visible {
+  outline: 2px solid var(--g-teal);
+  outline-offset: 2px;
+}
+
+.reveal .g3d-hint {
+  position: absolute;
+  left: 660px;
+  top: 34px;
+  translate: -50% 0;
+  margin: 0;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(9, 8, 22, 0.55);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--g-dim);
+  white-space: nowrap;
+}
+
+.reveal .g3d-hint .idle,
+.reveal .g3d.is-idle .g3d-hint .user {
+  display: none;
+}
+
+.reveal .g3d.is-idle .g3d-hint .idle {
+  display: inline;
+  color: var(--g-amber);
+}
+
+/* the live math */
+.reveal .g3d-panel {
+  position: absolute;
+  left: 26px;
+  bottom: 40px;
+  width: 452px;
+  padding: 10px 16px 11px;
+  background: var(--g-glass);
+  border: 1px solid var(--g-line);
+  border-left: 3px solid var(--g-cardinal);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 15px;
+}
+
+.reveal .g3d.no-math .g3d-panel {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+
+.reveal .g3d.is-cam .g3d-panel {
+  transform: translateY(-36px);
+}
+
+.reveal .g3d .g3d-panel-title {
+  margin: 0 0 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--g-dim);
+}
+
+.reveal .g3d-panel .row {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  align-items: baseline;
+  min-height: 22px;
+}
+
+.reveal .g3d-panel .row:not(.sub) + .row:not(.sub),
+.reveal .g3d-panel .row.sub + .row:not(.sub) {
+  margin-top: 5px;
+}
+
+.reveal .g3d-panel .lab {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--g-dim);
+}
+
+.reveal .g3d .num {
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .g3d-panel .eq {
+  color: #ffc2ca;
+}
+
+.reveal .g3d-panel .unit {
+  margin-left: 10px;
+  font-size: 12px;
+  color: var(--g-dim);
+}
+
+.reveal .g3d-panel b {
+  color: #fff;
+}
+
+.reveal .g3d .verdict {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--g-dim);
+}
+
+.reveal .g3d [data-state='clear'] {
+  color: var(--g-teal);
+}
+
+.reveal .g3d [data-state='blocked'] {
+  color: var(--g-cardinal);
+}
+
+/* things placed over the 3-D scene by the engine (transform: translate) */
+.reveal .g3d-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.reveal .g3d.is-cam .g3d-layer > :not(.g3d-pop) {
+  opacity: 0;
+}
+
+.reveal .g3d-chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% -100%;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 2px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: rgba(9, 8, 22, 0.72);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 0.2s, scale 0.2s;
+}
+
+.reveal .g3d-chip .v {
+  color: #fff;
+}
+
+.reveal .g3d-chip[data-state='hidden'],
+.reveal .g3d.no-math .g3d-chip {
+  opacity: 0;
+}
+
+.reveal .g3d-chip[data-focus='yes'] {
+  scale: 1.12;
+  box-shadow: 0 0 14px currentColor;
+}
+
+.reveal .g3d-pop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% -50%;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  opacity: 0;
+  text-shadow: 0 0 12px currentColor, 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+.reveal .g3d-pop.blocked {
+  color: var(--g-cardinal);
+}
+
+.reveal .g3d-pop.hit {
+  color: var(--g-teal);
+  font-size: 32px;
+}
+
+.reveal .g3d.is-cam .g3d-pop {
+  visibility: hidden;
+}
+
+.reveal .g3d-cross {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  color: #fff;
+  transition: color 0.12s, opacity 0.3s;
+}
+
+.reveal .g3d-cross svg {
+  display: block;
+  overflow: visible;
+  stroke: currentColor;
+  fill: currentColor;
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+.reveal .g3d-cross[data-state='clear'] svg {
+  animation: g3d-lock 0.5s ease-out;
+}
+
+.reveal .g3d-cross .lab {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  translate: -50% 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  text-shadow: 0 0 8px currentColor, 0 1px 0 #000;
+}
+
+.reveal .g3d.is-idle .g3d-cross {
+  opacity: 0.75;
+}
+
+/* the bullet cam: letterbox, readout, and a callout at the impact */
+.reveal .g3d-bar {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: #000;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal .g3d-bar.top {
+  top: 0;
+  transform: translateY(-100%);
+}
+
+.reveal .g3d-bar.bottom {
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+.reveal .g3d.is-cam .g3d-bar {
+  transform: none;
+}
+
+.reveal .g3d-camhud {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.reveal .g3d.is-cam .g3d-camhud {
+  opacity: 1;
+}
+
+.reveal .g3d-camhud .rec {
+  position: absolute;
+  left: 36px;
+  top: 22px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--g-cardinal);
+  animation: g3d-blink 1s steps(2, jump-none) infinite;
+}
+
+.reveal .g3d-camhud .eq {
+  position: absolute;
+  left: 36px;
+  bottom: 18px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.reveal .g3d-camhud .tt {
+  position: absolute;
+  right: 140px;
+  bottom: 12px;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--g-teal);
+  text-shadow: 0 0 16px rgba(62, 230, 255, 0.6);
+}
+
+.reveal .g3d-callout {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 380px;
+  padding: 12px 18px 13px;
+  background: rgba(9, 8, 22, 0.82);
+  border: 1px solid var(--g-line);
+  border-left: 4px solid var(--g-cardinal);
+  border-radius: 10px;
+  opacity: 0;
+  scale: 0.92;
+  transition: opacity 0.25s, scale 0.25s;
+}
+
+.reveal .g3d.cam-impact .g3d-callout {
+  opacity: 1;
+  scale: 1;
+}
+
+.reveal .g3d .g3d-callout .t {
+  margin: 0 0 3px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--g-cardinal);
+}
+
+.reveal .g3d .g3d-callout .b {
+  margin: 0;
+  font-size: 16px;
+}
+
+.reveal .g3d-callout[data-kind='enemy'] {
+  border-left-color: var(--g-teal);
+}
+
+.reveal .g3d-callout[data-kind='enemy'] .t {
+  color: var(--g-teal);
+}
+
+/* the fly-in title */
+.reveal .g3d-intro {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.reveal .g3d.is-intro .g3d-intro {
+  animation: g3d-intro 4.4s ease both;
+}
+
+.reveal .g3d .g3d-intro .big {
+  margin: 0;
+  font-size: 76px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 28px rgba(255, 77, 100, 0.95), 0 0 90px rgba(255, 77, 100, 0.55);
+}
+
+.reveal .g3d .g3d-intro .small {
+  margin: 8px 0 0;
+  font-size: 25px;
+  letter-spacing: 0.04em;
+  color: var(--g-teal);
+  text-shadow: 0 0 14px rgba(62, 230, 255, 0.7);
+}
+
+.reveal .g3d-fail {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #05040b;
+  font-size: 22px;
+}
+
+@keyframes g3d-intro {
+  0% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  14% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.98);
+  }
+  76%,
+  100% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+@keyframes g3d-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes g3d-lock {
+  from {
+    transform: scale(1.6) rotate(45deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .g3d * {
+    animation: none !important;
+  }
+}
+
+/* =====================================================================
+   Lecture 4 additions
+   ===================================================================== */
+
+/* ---------- Slide 2: motivation (a color mixer and taste profiles) ---------- */
+.reveal .mix-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 0.3em;
+}
+
+.reveal .mix-card {
+  font-size: 0.78em;
+  text-align: center;
+}
+
+.reveal .mix-card .card-title {
+  margin: 0 0 0.35em;
+}
+
+.reveal .mix-card .figure-svg {
+  margin: 0 auto;
+}
+
+.reveal .color-mixer .tex-display .katex-display {
+  margin: 0.2em 0 0;
+}
+
+.reveal .color-mixer .mix-readout {
+  margin: 0;
+  font-size: 0.8em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.reveal .color-mixer .mix-name {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.reveal .color-mixer .lc-sliders {
+  width: 360px;
+  margin: 0.2em auto 0;
+}
+
+.reveal .taste-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.2em;
+}
+
+.reveal .taste-row .taste-op {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.reveal .taste-bars .figure-svg {
+  width: 140px;
+  height: auto;
+}
+
+.reveal .taste-bars figcaption {
+  font-size: 0.8em;
+}
+
+.reveal .mix-card .aside {
+  margin-top: 1em;
+}
+
+/* the dictionary from everyday words to today's terms */
+.reveal .mix-key {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 0.7em;
+  font-size: 0.72em;
+  text-align: center;
+}
+
+.reveal .mix-key > div {
+  padding: 0.3em 0.5em;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.reveal .mix-key .everyday {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.85em;
+}
+
+.reveal .mix-key .term {
+  display: block;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- Slide 3: span of one and of two vectors ---------- */
+.reveal .span-readouts {
+  margin-top: 0.6em;
+}
+
+/* ---------- Slides 6 and 15: verdicts ---------- */
+.reveal .verdict {
+  display: block;
+  font-weight: 700;
+}
+
+.reveal .verdict.yes {
+  color: var(--accent-3);
+}
+
+.reveal .verdict.no {
+  color: var(--accent);
+}
+
+/* ---------- Slide 6: subspace or not? ---------- */
+.reveal .subspace-panels {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  gap: 14px;
+  margin-top: 0.6em;
+}
+
+/* the pictures are drawn at 250 x 190 and scaled up, labels and all */
+.reveal .subspace-panel .figure-svg {
+  width: 288px;
+  height: auto;
+}
+
+.reveal .subspace-panel figcaption {
+  font-size: 0.68em;
+  line-height: 1.35;
+}
+
+/* ---------- Polls with typeset options and a reason under each ---------- */
+.reveal .poll-options.poll-grid {
+  grid-template-columns: repeat(3, auto);
+  gap: 0.5em 1em;
+  font-size: 0.8em;
+}
+
+.reveal .poll-options.poll-grid.two {
+  grid-template-columns: repeat(2, auto);
+  gap: 0.5em 1.6em;
+  font-size: 0.9em;
+}
+
+/* the letter, then the option; the reason goes under the option */
+.reveal .poll-options.poll-grid li {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: center;
+  column-gap: 0.1em;
+}
+
+.reveal .poll-options.poll-grid .poll-why {
+  grid-column: 2;
+}
+
+.reveal .poll-why {
+  display: block;
+  margin: 0.1em 0 0;
+  font-size: 0.72em;
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 13: dimension criterion, four small pictures ---------- */
+.reveal .stage.criterion {
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.reveal .criterion .bullets > li {
+  margin-bottom: 0.3em;
+}
+
+.reveal .criterion-figs {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 8px 10px;
+}
+
+/* drawn at 205 x 150 and scaled up */
+.reveal .criterion-figs .figure-svg {
+  width: 228px;
+  height: auto;
+}
+
+.reveal .criterion-figs figcaption {
+  margin-top: 0.1em;
+  font-size: 0.66em;
+}
+
+/* ---------- Slide 14: the two examples of bases ---------- */
+.reveal .basis-examples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 0.4em;
+}
+
+.reveal .basis-example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reveal .basis-example p {
+  align-self: stretch;
+}
+
+.reveal .basis-example .figure-svg {
+  width: 300px;
+  height: auto;
+}
+
+/* ---------- Slide 15: which are bases too? ---------- */
+.reveal .bases-quiz {
+  list-style: none;
+  margin: 0.5em 0 0;
+  padding: 0;
+}
+
+.reveal .bases-quiz > li {
+  display: grid;
+  grid-template-columns: 17em 1fr;
+  column-gap: 1em;
+  align-items: baseline;
+  margin-bottom: 0.45em;
+}
+
+.reveal .bases-quiz .verdict {
+  font-size: 0.9em;
+}
+
+/* ---------- Slide 17: coordinates with respect to a basis ---------- */
+.reveal .coords-explorer .drag-target {
+  cursor: grab;
+  touch-action: none;
+}
+
+.reveal .coords-explorer .drag-target:active {
+  cursor: grabbing;
+}
+
+.reveal .coords-explorer .angle-readout .what {
+  width: 8.5em;
+}
+
+.reveal .color-coords {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 0.8em;
+}
+
+.reveal .color-coords .swatch {
+  flex: 0 0 auto;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 8px;
+}
+
+/* ========== Lecture 5: orthogonal bases and projections ========== */
+
+/* ---------- Slide 2: motivation (notes, chords, denoising) ---------- */
+/* three white panels: the notes in a strip across the top, then the chords and the denoising side
+   by side, two panels of the same shape */
+.reveal .sound-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  font-size: 0.66em;
+}
+
+.reveal .sound-panel {
+  padding: 14px 22px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(20, 33, 61, 0.06);
+}
+
+.reveal .sound-panel.notes-panel {
+  grid-column: 1 / -1;
+}
+
+.reveal .sound-panel .panel-title {
+  margin: 0 0 0.45em;
+  font-weight: 600;
+  color: var(--r-heading-color);
+}
+
+/* inside a panel a wave needs no frame of its own */
+.reveal .sound-panel svg.figure-svg.wave {
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+.reveal .note-tracks {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-between;
+}
+
+/* one sound: its play button, its wave, and the caption under the wave */
+.reveal .track {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.reveal .track .wave-caption {
+  grid-column: 2;
+  margin: 0 0 0.5em;
+  font-size: 0.78em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.reveal .track .wave-caption .katex {
+  color: var(--r-main-color);
+}
+
+.reveal .track .wave-caption .note-formula .katex {
+  color: var(--ink-soft);
+}
+
+.reveal .play-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.reveal .play-button svg {
+  width: 13px;
+  height: 13px;
+  margin-left: 2px;
+  fill: currentColor;
+}
+
+.reveal .play-button:hover {
+  background: var(--accent-soft);
+}
+
+/* the mystery chord: the question marks give way to the coefficients */
+.reveal .swap .swap-answer {
+  display: none;
+}
+
+.reveal .fx-marker[data-fx='solve'].visible ~ .fx-host .swap .swap-question {
+  display: none;
+}
+
+.reveal .fx-marker[data-fx='solve'].visible ~ .fx-host .swap .swap-answer {
+  display: inline;
+}
+
+/* ---------- Slide 3: three questions about a span ---------- */
+.reveal .questions {
+  list-style: none;
+  margin: 0.3em 0 0.5em;
+  padding: 0;
+}
+
+.reveal .questions > li {
+  display: flex;
+  gap: 0.6em;
+  margin-bottom: 0.35em;
+  line-height: 1.32;
+}
+
+.reveal .questions .q-n {
+  flex: 0 0 1.6em;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: KaTeX_Main, Georgia, serif;
+}
+
+/* ---------- Slide 5: why orthogonal vectors are a basis ---------- */
+.reveal .why-box {
+  margin: 0.6em 0 0.4em;
+  padding: 0.3em 0.9em 0.2em;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.reveal .why-box .tex-display .katex-display {
+  margin: 0.15em 0;
+}
+
+/* ---------- Slides 10 and 17: warnings ---------- */
+.reveal .warning {
+  display: inline-block;
+  margin-top: 0.4em;
+  padding: 0.15em 0.7em;
+  border-radius: 8px;
+  background: #fde8e8;
+  color: var(--accent);
+}
+
+.reveal .warning .warning-sign {
+  width: 1.15em;
+  height: 1.05em;
+  margin-right: 0.15em;
+  vertical-align: -0.15em;
+}
+
+/* ---------- Slides 8 and 17: a result worth remembering, in a tinted box ---------- */
+.reveal .key-box {
+  display: inline-block;
+  margin-top: 0.5em;
+  padding: 0.2em 0.8em;
+  border-radius: 8px;
+  background: #e3f1f4;
+}
+
+/* ---------- Slide 17: the Fourier terms are projections ---------- */
+/* The braces and their Proj labels keep their space, so nothing shifts when they appear;
+   hidden with visibility, not opacity (see the shadow formula above). */
+.reveal .pf-formula .fx-pf .stretchy,
+.reveal .pf-formula .fx-pf-label {
+  visibility: hidden;
+}
+
+.reveal .fx-marker[data-fx='pf-brace'].visible ~ .pf-formula .fx-pf .stretchy,
+.reveal .fx-marker[data-fx='pf-brace'].visible ~ .pf-formula .fx-pf-label {
+  visibility: visible;
+  animation: sh-fade 0.4s ease;
+}
+
+/* ---------- Slide 19: x = (x − Proj_V(x)) + Proj_V(x), one brace per key press ---------- */
+/* Same trick as slide 17: the braces and labels keep their space and are hidden with visibility. */
+.reveal .split-formula .fx-split-perp .stretchy,
+.reveal .split-formula .fx-split-perp-label,
+.reveal .split-formula .fx-split-in .stretchy,
+.reveal .split-formula .fx-split-in-label {
+  visibility: hidden;
+}
+
+.reveal .fx-marker[data-fx='split-perp'].visible ~ .split-formula .fx-split-perp .stretchy,
+.reveal .fx-marker[data-fx='split-perp'].visible ~ .split-formula .fx-split-perp-label,
+.reveal .fx-marker[data-fx='split-in'].visible ~ .split-formula .fx-split-in .stretchy,
+.reveal .fx-marker[data-fx='split-in'].visible ~ .split-formula .fx-split-in-label {
+  visibility: visible;
+  animation: sh-fade 0.4s ease;
+}
+
+/* The summary box spans the column, with its formula centred */
+.reveal .key-box.pf-box {
+  display: block;
+  margin-top: 0.3em;
+  padding: 0.35em 0.9em 0.1em;
+}
+
+.reveal .key-box.pf-box p {
+  margin: 0;
+}
+
+.reveal .key-box.pf-box .katex-display {
+  margin: 0.3em 0;
+}
+
+/* ---------- Slides 9 and 10: the bases of Example 2 ---------- */
+.reveal .basis-figs {
+  display: flex;
+  gap: 18px;
+}
+
+.reveal .basis-fig {
+  margin: 0;
+}
+
+/* the picture beside the worked answer (it comes first, a key press before the answer) */
+.reveal .answer-with-fig {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8em;
+}
+
+.reveal .answer-with-fig > .worked-answer {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.reveal .basis-fig figcaption {
+  margin-bottom: 0.15em;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.8em;
+}
+
+/* ---------- Slide 8: a portrait of Fourier ---------- */
+.reveal .portrait {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .portrait img {
+  display: block;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(20, 33, 61, 0.15);
+}
+
+.reveal .portrait figcaption {
+  margin-top: 0.4em;
+  font-size: 0.7em;
+  font-weight: 700;
+  color: var(--r-main-color);
+}
+
+.reveal .portrait .portrait-credit {
+  margin: 0.1em 0 0;
+  font-size: 0.45em;
+  color: var(--ink-soft);
+}
+
+/* an equation that must not be split across two lines */
+.reveal .nowrap {
+  white-space: nowrap;
+}
+
+/* ---------- Slide 13: poll ---------- */
+.reveal .poll-question + .fragment,
+.reveal .poll-question {
+  margin-bottom: 0.4em;
+}
+
+.reveal .poll-question + .fragment {
+  margin-top: 0.9em;
+}
+
+/* Each question with its picture on the right */
+.reveal .poll-question.pictured {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
+.reveal .poll-question.pictured > .poll-text {
+  flex: 1 1 auto;
+}
+
+.reveal .poll-question.pictured > svg {
+  flex: 0 0 auto;
+}
+
+.reveal .poll-question .poll-options {
+  margin: 0.2em 0 0.1em 1.4em;
+  gap: 0.3em 2.6em;
+}
+
+/* ---------- Slide 18: the definition above the theorem box ---------- */
+.reveal .block.below-text {
+  margin-top: 0.7em;
+}
+
+/* ---------- Slide 22: the three questions, answered ---------- */
+/* each question of slide 3 on the left (its numeral in cardinal, as there), its answer on the right */
+.reveal .qa {
+  display: grid;
+  grid-template-columns: 430px 1fr;
+  gap: 14px 24px;
+  align-items: center;
+  margin-top: 0.4em;
+  font-size: 0.86em;
+}
+
+.reveal .qa .qa-q {
+  display: flex;
+  gap: 0.5em;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.reveal .qa .qa-q .q-n {
+  flex: 0 0 1.5em;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: KaTeX_Main, Georgia, serif;
+}
+
+.reveal .qa .qa-a {
+  padding: 0.3em 0.9em;
+  border-radius: 10px;
+  background: #eef6f3;
+}
+
+.reveal .qa .qa-a p {
+  margin: 0.15em 0;
+}
+
+.reveal .qa .qa-a .tex-display .katex-display {
+  margin: 0.15em 0;
+}
+
+/* ---------- Slide 23: back to sound ---------- */
+/* three columns: x = Proj_V(x) + (x − Proj_V(x)) written downwards, one card per sound; the
+   projections onto the four notes, a card each; the picture */
+.reveal .denoise {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+  align-items: start;
+  margin-top: 0.3em;
+  font-size: 0.66em;
+}
+
+.reveal .denoise > .stage-fig {
+  align-self: center;
+}
+
+.reveal .denoise .denoise-card {
+  padding: 8px 14px 0;
+}
+
+/* the recording lines up with the first projection, under the heading of the middle column */
+.reveal .split-col {
+  padding-top: 1.6em;
+}
+
+/* each line of the equation: its sign in a gutter on the left, then the card */
+.reveal .split-line {
+  display: grid;
+  grid-template-columns: 26px auto;
+  align-items: center;
+  column-gap: 6px;
+  margin-bottom: 10px;
+}
+
+.reveal .split-line .split-op {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/* the name of each wave in the equation, then what it is in words */
+.reveal .track .wave-caption.split-caption {
+  grid-column: 1 / -1;
+  line-height: 1.3;
+}
+
+.reveal .track .wave-caption.split-caption .katex {
+  font-size: 1.1em;
+}
+
+.reveal .track .wave-caption.split-caption.teal .katex {
+  color: #0e7490;
+}
+
+.reveal .track .wave-caption.split-caption.red .katex {
+  color: var(--accent);
+}
+
+.reveal .denoise .denoise-title {
+  margin: 0 0 0.3em;
+  font-weight: 600;
+  color: var(--r-heading-color);
+}
+
+.reveal .proj-cards {
+  display: grid;
+  gap: 8px;
+}
+

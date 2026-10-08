@@ -1,0 +1,1177 @@
+/* reveal.js sizes itself from its parent: the React root must fill the viewport */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* ---------- Theme overrides (applied on top of reveal's "white" theme) ---------- */
+:root {
+  --r-background-color: #fcfcfa;
+  --r-main-font-size: 36px;
+  --r-main-color: #1f2937;
+  --r-heading-color: #14213d;
+  --r-heading-font-weight: 700;
+  --r-heading-text-transform: none;
+  --r-heading-letter-spacing: -0.01em;
+  --r-heading1-size: 2.3em;
+  --r-heading2-size: 1.45em;
+  --r-heading3-size: 1.1em;
+  --r-link-color: #1d4ed8;
+  --r-link-color-hover: #1e40af;
+  --r-block-margin: 18px;
+
+  /* Stanford cardinal in place of the Taylor deck's orange */
+  --accent: #8c1515;
+  --accent-soft: #fbeaea;
+  --accent-2: #0e7490;
+  --accent-3: #175e54;
+  --ink-soft: #6b7280;
+  --box-border: #8c1515;
+  --box-bg: #fbeaea;
+  --mark-bg: #fde68a;
+  --rule: #e5e7eb;
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+.reveal .slides section.centered {
+  text-align: center;
+}
+
+/* For the one or two slides that legitimately carry more than a screenful */
+.reveal .slides section.dense {
+  font-size: 0.82em;
+}
+
+.reveal .slides section.dense h2 {
+  margin-bottom: 0.35em;
+}
+
+.reveal h1,
+.reveal h2 {
+  margin-bottom: 0.6em;
+}
+
+.reveal h2 {
+  border-bottom: 4px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 0.15em;
+}
+
+.reveal h2 .katex {
+  font-size: 1em;
+}
+
+.reveal p {
+  margin: 0.4em 0;
+}
+
+.reveal strong {
+  font-weight: 700;
+}
+
+.reveal a {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+/* ---------- Fragments ---------- */
+.reveal .slides section .fragment {
+  transition: opacity 0.35s ease;
+}
+
+.reveal .slides section .fx-marker {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ---------- KaTeX tweaks ---------- */
+.reveal .tex-display {
+  margin: 0.35em 0;
+}
+
+.reveal .tex-display .katex-display {
+  margin: 0.25em 0;
+}
+
+.reveal .katex {
+  font-size: 1.08em;
+}
+
+.reveal .katex .fbox {
+  /* KaTeX layers this box element on top of the boxed content,
+     so it must stay transparent. */
+  border: 3px solid var(--box-border);
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* An answer written into a blank on the board (slide 21) */
+.reveal .fx-answer {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.reveal .fx-marker[data-fx='answer'].visible ~ .fx-host .fx-answer {
+  opacity: 1;
+}
+
+/* ---------- Reusable pieces ---------- */
+.reveal .label {
+  color: var(--ink-soft);
+  font-size: 0.7em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0.6em 0 0.1em;
+}
+
+.reveal .label .katex,
+.reveal .dates .what .katex,
+.reveal .title-slide .eyebrow .katex {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.25em;
+}
+
+.reveal .label-inline {
+  font-size: 0.85em;
+  margin-right: 0.6em;
+  white-space: nowrap;
+}
+
+.reveal .row-eq {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2em 0.6em;
+}
+
+.reveal .row-eq-center {
+  justify-content: center;
+}
+
+.reveal .callout {
+  margin-top: 0.9em;
+  font-size: 1.05em;
+}
+
+.reveal .accent {
+  color: var(--accent);
+}
+
+.reveal mark {
+  background: var(--mark-bg);
+  color: #7c2d12;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+}
+
+.reveal .question {
+  margin-top: 1em;
+  font-size: 1.05em;
+  color: var(--accent);
+}
+
+.reveal .note {
+  margin-top: 0.8em;
+  padding: 0.45em 0.9em;
+  border-left: 6px solid var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.85em;
+  line-height: 1.35;
+  border-radius: 0 8px 8px 0;
+}
+
+.reveal .aside {
+  margin-top: 0.7em;
+  font-size: 0.78em;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.reveal .pointer {
+  font-size: 0.78em;
+  color: var(--accent-3);
+  font-weight: 700;
+}
+
+.reveal .compact {
+  font-size: 0.9em;
+}
+
+/* Two columns: prose or equations on the left, a picture on the right */
+.reveal .stage {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+}
+
+.reveal .stage > .stage-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.reveal .stage > svg,
+.reveal .stage > .stage-fig {
+  flex: 0 0 auto;
+}
+
+/* Only our own figures -- NOT KaTeX's inline SVG, which draws the surd of
+   \sqrt and would be covered by a white background and a border. */
+.reveal svg.figure-svg {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+/* A display equation set flush left, in line with the prose around it */
+.reveal .tex-left .katex-display,
+.reveal .tex-left .katex-display > .katex {
+  text-align: left;
+}
+
+/* In a two-column slide the equations line up with the prose next to them */
+.reveal .stage .tex-display .katex-display,
+.reveal .stage .tex-display .katex-display > .katex {
+  text-align: left;
+}
+
+.reveal figure {
+  margin: 0;
+}
+
+.reveal figcaption {
+  margin-top: 0.3em;
+  font-size: 0.6em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- Lists ---------- */
+.reveal .bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal .bullets > li {
+  position: relative;
+  padding-left: 1.2em;
+  margin: 0 0 0.7em;
+  line-height: 1.32;
+}
+
+.reveal .bullets > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.44em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.reveal .bullets.teal > li::before {
+  background: var(--accent-2);
+}
+
+/* Numbered steps (slide 4) */
+.reveal .steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal .steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 0.8em;
+  line-height: 1.35;
+}
+
+.reveal .steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide 4: a due date set off under a step, as a light borderless wash */
+.reveal .due-box {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.35em 0 0.2em;
+  padding: 0.3em 0.9em;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  font-size: 0.85em;
+}
+
+/* ---------- Slide 8: definitions ---------- */
+.reveal .defs > li {
+  margin-bottom: 0.55em;
+}
+
+.reveal .defs .tex-display {
+  margin: 0.1em 0 0;
+}
+
+/* ---------- Slide 9: pictures for n = 2 and 3 ---------- */
+.reveal .pictures-pair {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 0.4em;
+}
+
+.reveal .pictures-pair figcaption {
+  font-size: 0.62em;
+}
+
+/* ---------- Slide 13: the parallelogram law (reuses .pictures-pair) ---------- */
+.reveal .parallelogram-statement {
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+/*
+ * Right-hand diagram, stepped by two invisible FxMarker fragments:
+ *   tt-slide   w slides up by v (a transition, so stepping back slides it home)
+ *   tt-redraw  v + w vanishes, redraws from tail to head, then its head and
+ *              label return
+ */
+.reveal .tip-to-tail .tt-w {
+  transition: transform 1.2s ease-in-out;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-slide'].visible ~ .fx-host .tt-w {
+  transform: translate(var(--tt-dx), var(--tt-dy));
+}
+
+.reveal .tip-to-tail .tt-sum-shaft {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-redraw'].visible ~ .fx-host .tt-sum-shaft {
+  animation: tt-redraw 1.4s linear both;
+}
+
+.reveal .tip-to-tail .fx-marker[data-fx='tt-redraw'].visible ~ .fx-host .tt-sum-head {
+  animation: tt-blink 1.4s linear both;
+}
+
+@keyframes tt-redraw {
+  0%,
+  15% {
+    stroke-dashoffset: 1;
+  }
+  85%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* fill-opacity rather than opacity: the head and label are filled shapes, and
+   this keeps the animation on the main thread alongside the shaft's. */
+@keyframes tt-blink {
+  0%,
+  85% {
+    fill-opacity: 0;
+  }
+  92%,
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .tip-to-tail * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Definition and theorem blocks (as in the Math 245A deck) ---------- */
+/* A tinted panel with a coloured rule down its left edge and a coloured title */
+.reveal .block {
+  margin: 0.3em 0;
+  padding: 0.45em 0.9em 0.55em;
+  border-left: 3px solid;
+  border-radius: 0 4px 4px 0;
+}
+
+.reveal .block .block-title {
+  margin: 0 0 0.2em;
+  font-weight: 700;
+}
+
+.reveal .block p {
+  margin: 0.15em 0;
+}
+
+.reveal .block .tex-display .katex-display,
+.reveal .stage .block .tex-display .katex-display > .katex {
+  margin: 0.2em 0;
+  text-align: center;
+}
+
+.reveal .block.definition {
+  background: #f0f4f8;
+  border-color: #4a6fa5;
+}
+
+.reveal .block.definition .block-title {
+  color: #4a6fa5;
+}
+
+.reveal .block.theorem {
+  background: #fdf6f0;
+  border-color: #a51c30;
+}
+
+.reveal .block.theorem .block-title {
+  color: #a51c30;
+}
+
+/* ---------- Slide 12: example 1 ---------- */
+/* A worked answer, set off from the problem statement by a teal rule */
+.reveal .worked-answer {
+  margin-top: 0.5em;
+  padding: 0.1em 0 0.1em 0.7em;
+  border-left: 4px solid var(--accent-2);
+}
+
+.reveal .worked-answer .answer-label {
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+/* ---------- Slide 11: the algebra of vectors ---------- */
+.reveal .algebra-setup {
+  gap: 0.2em 0.5em;
+  margin-bottom: 0.6em;
+  font-size: 0.9em;
+}
+
+/* The two operations side by side, split by a thin rule -- no boxes */
+.reveal .algebra-ops {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.5em;
+}
+
+.reveal .algebra-op {
+  text-align: center;
+  padding: 0 1em;
+}
+
+.reveal .algebra-op + .algebra-op {
+  border-left: 1px solid var(--rule);
+}
+
+.reveal .algebra-op .op-title {
+  margin: 0 0 0.2em;
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.reveal .algebra-op .tex-display .katex-display {
+  margin: 0.1em 0;
+}
+
+.reveal .algebra-op .katex {
+  font-size: 1.2em;
+}
+
+/* ---------- Slide 10: higher-dimensional vectors ---------- */
+.reveal .dims-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 0.3em;
+}
+
+.reveal .dims-card {
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.reveal .dims-card .card-title {
+  margin: 0 0 0.35em;
+}
+
+.reveal .dims-card .figure-svg {
+  margin: 0 auto;
+}
+
+.reveal .dims-card .tex-display .katex-display {
+  margin: 0.25em 0;
+}
+
+.reveal .dims-card .aside {
+  margin-top: 0.2em;
+}
+
+.reveal .dims-bullets {
+  margin-top: 0.5em;
+  text-align: left;
+}
+
+.reveal .dims-bullets > li {
+  margin-bottom: 0.35em;
+}
+
+.reveal .dims-table {
+  width: 100%;
+  margin: 1.1em 0 0;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  text-align: left;
+}
+
+.reveal .dims-table th {
+  padding: 0 0.5em 0.35em;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--r-heading-color);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.reveal .dims-table td {
+  padding: 0.3em 0.5em;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+.reveal .dims-table td:first-child {
+  white-space: nowrap;
+}
+
+.reveal .dims-table td.year {
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .dims-table th.num,
+.reveal .dims-table td.num {
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.reveal .dims-table tr.unknown td {
+  border-bottom: none;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.reveal .dims-table tr.unknown td:first-child {
+  font-style: normal;
+  color: var(--r-main-color);
+}
+
+.reveal .dims-pointer {
+  margin-top: 0.7em;
+  text-align: center;
+}
+
+/* ---------- Slide 7: motivation ---------- */
+.reveal .motivation-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 0.5em;
+}
+
+.reveal .motivation-card {
+  font-size: 0.72em;
+  text-align: center;
+}
+
+.reveal .motivation-card .card-title {
+  margin: 0 0 0.3em;
+}
+
+/* Same height for the three pictures, so the vectors below them line up */
+.reveal .motivation-card .card-fig {
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .motivation-card .figure-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal .motivation-card .tex-display .katex-display {
+  margin: 0.2em 0 0;
+}
+
+.reveal .motivation-card .aside {
+  margin-top: 0.2em;
+  font-size: 0.85em;
+}
+
+/* ---------- Slide 1: welcome ---------- */
+/*
+ * Everything here rests in its final position; the entrance animations run
+ * only while the slide is .present (reveal re-adds the class each time the
+ * slide is entered, so the builds replay) and fill backwards from the hidden
+ * state. Print/PDF and reduced-motion therefore get the finished picture.
+ */
+.reveal .welcome-slide .welcome-stage {
+  position: relative;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .welcome-slide .welcome-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reveal .welcome-slide .welcome-text {
+  position: relative;
+  text-align: center;
+}
+
+.reveal .welcome-slide .eyebrow {
+  font-size: 0.6em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.2em;
+}
+
+.reveal .welcome-slide h1 {
+  font-size: 3.6em;
+  line-height: 1.05;
+  margin: 0 0 0.15em;
+}
+
+.reveal .welcome-slide .letter {
+  display: inline-block;
+}
+
+.reveal .welcome-slide .welcome-rule {
+  width: 180px;
+  height: 7px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.reveal .welcome-slide .welcome-arrow {
+  opacity: 0.75;
+}
+
+.reveal .welcome-slide .shaft {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.reveal .welcome-slide.present .welcome-grid {
+  animation: welcome-fade 1.2s ease-out both;
+}
+
+/*
+ * Once the word is in place, a gentle ripple runs through it every 4.5 s:
+ * each letter in turn lifts slightly and blushes cardinal, then settles.
+ * The wave is listed second so it wins over the finished rise while running.
+ */
+.reveal .welcome-slide.present .letter {
+  animation:
+    welcome-rise 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both,
+    welcome-wave 4.5s ease-in-out infinite;
+  animation-delay:
+    calc(0.25s + var(--i) * 0.07s),
+    calc(2.2s + var(--i) * 0.18s);
+}
+
+.reveal .welcome-slide.present .eyebrow {
+  animation: welcome-fade 0.8s ease-out 0.1s both;
+}
+
+.reveal .welcome-slide.present .welcome-rule {
+  animation: welcome-grow 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) 0.85s both;
+}
+
+/* Each arrow draws its shaft, then its head appears, then it sways about its tail. */
+.reveal .welcome-slide.present .welcome-arrow {
+  animation: welcome-sway 7s ease-in-out infinite alternate;
+  animation-delay: calc(2s + var(--i) * -0.9s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .tail {
+  animation: welcome-fade 0.3s ease-out both;
+  animation-delay: calc(0.9s + var(--i) * 0.12s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .shaft {
+  animation: welcome-draw 0.7s ease-out both;
+  animation-delay: calc(0.9s + var(--i) * 0.12s);
+}
+
+.reveal .welcome-slide.present .welcome-arrow .head {
+  animation: welcome-fade 0.25s ease-out both;
+  animation-delay: calc(1.55s + var(--i) * 0.12s);
+}
+
+@keyframes welcome-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes welcome-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes welcome-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes welcome-wave {
+  0%,
+  14%,
+  100% {
+    transform: none;
+    color: var(--r-heading-color);
+  }
+  7% {
+    transform: translateY(-0.12em);
+    color: var(--accent);
+  }
+}
+
+@keyframes welcome-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes welcome-sway {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .welcome-slide * {
+    animation: none !important;
+  }
+}
+
+/* ---------- Slide 6: title ---------- */
+.reveal .title-slide {
+  display: flex !important;
+  align-items: center;
+  gap: 60px;
+}
+
+.reveal .title-slide .title-fig {
+  flex: 0 0 auto;
+}
+
+.reveal .title-slide .title-fig svg.figure-svg {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.reveal .title-slide .eyebrow {
+  font-size: 0.6em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+}
+
+.reveal .title-slide h1 {
+  font-size: 3em;
+  line-height: 1.02;
+  margin-bottom: 0.2em;
+}
+
+.reveal .title-slide .subtitle {
+  font-size: 0.8em;
+  line-height: 1.35;
+  margin: 0 0 0.6em;
+}
+
+.reveal .title-slide .reference {
+  font-size: 0.62em;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---------- Slide 2: course staff ---------- */
+/* Label/value pairs: tight inside a pair, even gaps between pairs */
+.reveal .staff-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+}
+
+.reveal .staff-info .label {
+  margin: 0 0 0.2em;
+}
+
+.reveal .staff-info .value {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.3;
+}
+
+/* ---------- Slide 2b: who am I? ---------- */
+/* All pictures sit in the same grid cell, so each one replaces the last */
+.reveal .photo-stack {
+  display: grid;
+  width: 420px;
+  height: 330px;
+}
+
+.reveal .photo-stack .photo-slot {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.reveal .photo-stack figure {
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .photo-stack img {
+  display: block;
+  max-width: 420px;
+  max-height: 330px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(20, 33, 61, 0.18);
+}
+
+.reveal .photo-stack figcaption {
+  margin-top: 0.2em;
+  font-size: 0.7em;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+/* ---------- Slide 3: where everything lives ---------- */
+.reveal .cards {
+  display: flex;
+  gap: 34px;
+  align-items: stretch;
+}
+
+.reveal .card {
+  flex: 1 1 0;
+  border: 2px solid var(--rule);
+  border-left: 8px solid var(--accent);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.6em 1em 0.9em;
+}
+
+.reveal .card.teal {
+  border-left-color: var(--accent-2);
+}
+
+.reveal .card h3 {
+  margin: 0 0 0.3em;
+  font-size: 0.95em;
+  color: var(--r-heading-color);
+}
+
+/* The link after a card title is set smaller so the title stays on one line */
+.reveal .card h3 a {
+  font-size: 0.7em;
+  white-space: nowrap;
+}
+
+.reveal .card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.72em;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.reveal .card ul li::before {
+  content: '·';
+  margin-right: 0.5em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* A trailing "and more" line under a card's list, without a bullet */
+.reveal .card .card-more {
+  margin: 0.1em 0 0;
+  font-size: 0.72em;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 5: exams ---------- */
+.reveal .dates {
+  list-style: none;
+  margin: 0.2em 0 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+.reveal .dates > li {
+  display: grid;
+  grid-template-columns: 5.4em 1fr;
+  gap: 0.8em;
+  margin-bottom: 0.35em;
+  line-height: 1.3;
+}
+
+.reveal .dates .what {
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding-top: 0.18em;
+}
+
+/* ---------- Slide 18: table of convex combinations ---------- */
+/* Turned on its side: a row of t values over a row of results, one column
+   per t, with the row labels in a narrow grey column on the left */
+.reveal table.tvals {
+  border-collapse: collapse;
+  font-size: 0.8em;
+  margin: 0.6em 0 0;
+}
+
+.reveal table.tvals th,
+.reveal table.tvals td {
+  border: none;
+  padding: 0.25em 0.75em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reveal table.tvals th {
+  padding-right: 0.8em;
+  border-right: 2px solid var(--rule);
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: 0.85em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reveal table.tvals .tvals-t td,
+.reveal table.tvals .tvals-t th {
+  border-bottom: 1px solid var(--rule);
+}
+
+.reveal table.tvals .tvals-result td {
+  vertical-align: top;
+  padding-top: 0.4em;
+}
+
+.reveal table.tvals .katex {
+  font-size: 1em;
+}
+
+.reveal table.tvals .tvals-name {
+  display: block;
+  font-size: 0.8em;
+}
+
+/* ---------- Slide 23: recap ---------- */
+/* One line per learning goal */
+.reveal .recap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+.reveal .recap > li {
+  margin-bottom: 0.7em;
+}
+
+.reveal .recap .recap-goal {
+  margin: 0;
+  line-height: 1.3;
+}
+
+.reveal .recap .n {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.3em;
+}
+
+.reveal .recap-next {
+  margin-top: 0.9em;
+  font-size: 0.72em;
+}
+
+.reveal .recap-next p {
+  margin: 0.2em 0;
+}
+
+.reveal .recap-next .bullets {
+  margin: 0.1em 0 0.3em;
+}
+
+.reveal .recap-next .bullets > li {
+  margin-bottom: 0.15em;
+}
+
+/* ---------- Slide 5b: AI policy ---------- */
+.reveal blockquote.quote {
+  width: auto;
+  margin: 1.4em 0 0 1.2em;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  font-size: 0.85em;
+  font-style: italic;
+  text-align: left;
+}
+
+.reveal blockquote.quote p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.reveal blockquote.quote footer {
+  margin-top: 0.4em;
+  font-size: 0.8em;
+  font-style: normal;
+  color: var(--ink-soft);
+}
+
+/* ---------- Slide 16: linear combination explorer ---------- */
+/* The one-vector and two-vector versions take turns in the same grid cell */
+.reveal .lc-stack {
+  display: grid;
+  align-items: start;
+}
+
+.reveal .lc-stack > * {
+  grid-area: 1 / 1;
+}
+
+.reveal .lc-readout {
+  margin-top: 1em;
+}
+
+.reveal .lc-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  margin-top: 0.4em;
+  font-size: 0.7em;
+}
+
+.reveal .lc-slider {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  cursor: pointer;
+}
+
+.reveal .lc-slider .lc-name {
+  width: 1.3em;
+  font-family: KaTeX_Math, Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.reveal .lc-slider input {
+  flex: 1 1 auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.reveal .lc-slider .lc-value {
+  width: 2.4em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Slide 16b: algebraic laws ---------- */
+.reveal .laws .bullets {
+  margin: 0.4em 0 0;
+  font-size: 0.85em;
+}
+
+.reveal .laws .bullets > li {
+  margin-bottom: 0.45em;
+}
+
+.reveal .laws .law-name {
+  color: var(--ink-soft);
+  margin-right: 0.3em;
+}
+
+.reveal .laws .law-note {
+  margin: 0 0 0 1.2em;
+  font-size: 0.75em;
+  color: var(--ink-soft);
+}
