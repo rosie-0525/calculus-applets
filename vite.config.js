@@ -74,8 +74,31 @@ function topicPages() {
   };
 }
 
+/*
+ * Google Analytics (the same property as rosie-0525.github.io), in the built pages only, so that
+ * visits to the dev server are not counted. Every topic page gets it, since topicPages copies the
+ * built index.html.
+ */
+function analytics(id) {
+  return {
+    name: 'analytics',
+    apply: 'build',
+    transformIndexHtml: () => [
+      { tag: 'script', attrs: { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${id}` }, injectTo: 'head' },
+      {
+        tag: 'script',
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${id}');`,
+        injectTo: 'head',
+      },
+    ],
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), topicPages()],
+  plugins: [react(), topicPages(), analytics('G-39WKKSKNVW')],
   base: '/calculus-applets/',
   css: { postcss: { plugins: [scopeLectureDecks()] } },
   build: { chunkSizeWarningLimit: 1500 },
