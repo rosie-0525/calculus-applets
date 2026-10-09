@@ -373,6 +373,44 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'partial-derivatives',
+        title: 'Partial derivatives',
+        applets: [
+          {
+            id: 'tangent-line',
+            title: 'Single variable function',
+            caption: 'The derivative is the slope of the tangent line',
+            from: { lecture: 8, slides: ['Slide02Recall'] },
+          },
+          {
+            id: 'slices',
+            title: 'Partial derivatives',
+            from: { lecture: 8, slides: ['Slide03Question', 'Slide05bLinearApprox', 'Slide05Compute'] },
+          },
+          {
+            id: 'density',
+            title: 'Partial derivatives on a contour plot',
+            caption:
+              '|f<sub>x</sub>| indicates density of the level sets; <span style="white-space: nowrap">f<sub>x</sub> &gt; 0</span> if the labels on the level sets increase in the +x direction',
+            from: { lecture: 8, slides: ['Slide13Density'] },
+          },
+          {
+            id: 'magic-wand',
+            fun: true,
+            title: 'Removing the background of a photo',
+            caption: 'Click the sky with the Magic Wand, then Delete. How does the computer find the sky?',
+            from: { lecture: 8, slides: ['Slide01dPhotoshop'] },
+          },
+          {
+            id: 'edges',
+            fun: true,
+            title: 'Detecting edges with partial derivatives',
+            caption: 'How much the colour changes across pixels detects edges',
+            from: { lecture: 8, slides: ['Slide01cBackground'] },
+          },
+        ],
+      },
     ],
   },
 ];

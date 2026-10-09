@@ -580,8 +580,8 @@ body {
   grid-template-columns: auto;
 }
 
-/* Lecture 7: in a narrow box, the pictures (and the text beside them) one under the other */
-.viz .viz-scale.narrow :is(.scalar-pair, .level-stage, .steep, .ex3d, .helix-row) {
+/* Lectures 7 and 8: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.scalar-pair, .level-stage, .steep, .ex3d, .helix-row, .density-row) {
   flex-direction: column;
   align-items: center;
 }
@@ -660,6 +660,30 @@ body {
 .viz .viz-button:focus-visible {
   outline: 2px solid var(--site-link);
   outline-offset: 2px;
+}
+
+/* slices.jsx, density.jsx: buttons that pick what the pictures show, the one
+   showing filled in */
+.viz .viz-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.viz .viz-button[aria-pressed='true'] {
+  color: var(--site-paper);
+  background: var(--site-link);
+}
+
+/* edges.jsx: the four pictures two by two in a narrow box; the button under the slider */
+.viz .viz-scale.narrow .edges-row {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  row-gap: 16px;
+}
+
+.viz .edges-row .viz-button {
+  margin-top: 0.4em;
 }
 
 /* the sentence under the parallelogram law wraps to the width of one figure */
