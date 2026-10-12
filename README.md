@@ -84,7 +84,8 @@ scripts/shots.mjs         screenshot the applets with headless Chrome, and repor
 4. Check it: with `npm run dev` running, `npm run shots -- --only <id> --out /tmp/shots` saves a
    screenshot of it and prints any console errors (Google Chrome must be installed). `--page` takes
    whole pages instead (the list of topics and every topic; `--only` picks them), and `--width 390`
-   a phone.
+   a phone. It waits for the page to settle before each screenshot, and flags `NOT SETTLED` or
+   `UNSTABLE` (the applet changed during the screenshot) when it does not.
 
 The decks are read from `$MATH51` (see the top of `scripts/sync-slides.mjs` for the default).
 

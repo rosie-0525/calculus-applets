@@ -77,6 +77,10 @@ export default function Applet({ applet, load }) {
       const w = inner.current.offsetWidth;
       const h = inner.current.offsetHeight;
       const avail = box.current.clientWidth;
+      // A box with no width (the window shrunk to nothing for a moment, as headless Chrome does
+      // while it takes a screenshot): keep the last fit, or the applet is drawn at scale 0 and
+      // stacked, and is caught half-way on its way back.
+      if (!avail) return;
       setNarrow(avail < NARROW);
       const scale = Math.min(mod.zoom ?? 1, avail / w);
       setSize((s) => (s && s.scale === scale && s.height === h * scale ? s : { scale, height: h * scale }));
