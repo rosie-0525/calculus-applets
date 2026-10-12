@@ -3,7 +3,8 @@
 Interactive pictures for linear algebra and multivariable calculus, for
 <https://rosie-0525.github.io/calculus-applets/>. Each concept (vectors, linear combinations, dot
 products, lines and planes, span, bases, projections, least squares; scalar and vector-valued
-functions, graphs and contour plots, partial derivatives) has a page of its own: its applets, each with a title and a
+functions, graphs and contour plots, partial derivatives, critical points and local extrema, global
+extrema on a region) has a page of its own: its applets, each with a title and a
 question to think about, and at the bottom, under "Motivation – just for fun!", the applications
 that students do not need to know (PageRank, denoising a chord, a 3-D game, a 3-D printer, a robot
 arm, …). The first topic, Vectors, is the front page, `/calculus-applets/`; the others are at

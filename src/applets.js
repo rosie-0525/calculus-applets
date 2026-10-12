@@ -411,6 +411,117 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'critical-points',
+        title: 'Critical points and local extrema',
+        applets: [
+          {
+            id: 'critical-recall',
+            title: 'Single variable function',
+            caption: 'At a local maximum or minimum, f′(c) = 0: c is a critical point. Is every critical point a local maximum or minimum?',
+            from: { lecture: 9, slides: ['Slide03Recall'] },
+          },
+          {
+            id: 'critical-tangents',
+            title: 'Critical points',
+            caption:
+              'A critical point is a point where all the partial derivatives vanish: (a, b) is a critical point of f(x, y) if f<sub>x</sub>(a, b) = 0 and f<sub>y</sub>(a, b) = 0. Both tangent lines are horizontal there.',
+            from: { lecture: 9, slides: ['Slide04Critical'] },
+          },
+          {
+            id: 'local-extrema',
+            title: 'Local maximum and minimum',
+            caption:
+              'f has a local minimum at <b>p</b> if f(<b>x</b>) ≥ f(<b>p</b>) for every point <b>x</b> sufficiently close to <b>p</b>, and a local maximum if f(<b>x</b>) ≤ f(<b>p</b>).',
+            from: { lecture: 9, slides: ['Slide05Local'] },
+          },
+          {
+            id: 'extremum-slice',
+            title: 'A local extremum is a critical point',
+            caption:
+              'Why? If f has a local extremum at (a, b), the slice f(x, b) has a local extremum at x = a, so f<sub>x</sub>(a, b) = 0. Similarly, f<sub>y</sub>(a, b) = 0.',
+            from: { lecture: 9, slides: ['Slide06Theorem'] },
+          },
+          {
+            id: 'saddle-point',
+            title: 'Saddle points',
+            caption:
+              'f(x, y) = x² − y² at (0, 0): along the x-axis, <span style="color: #8c1515">f(x, 0) = x²</span> has a local minimum; along the y-axis, <span style="color: #175e54">f(0, y) = −y²</span> has a local maximum.',
+            from: { lecture: 9, slides: ['Slide08Saddle'] },
+          },
+          {
+            id: 'classify-contour',
+            title: 'Critical points on a contour plot',
+            caption:
+              'g(x, y) = 3x²y + y³ − 6xy. Nested ovals surround a local maximum or minimum, and at a saddle point a level curve crosses itself in an X.',
+            from: { lecture: 9, slides: ['Slide08bNeither'] },
+          },
+          {
+            id: 'neither',
+            title: 'Neither a local extremum nor a saddle point',
+            caption:
+              'f(x, y) = x³ + y² at its critical point (0, 0): along the x-axis, <span style="color: #8c1515">f(x, 0) = x³</span> has neither a maximum nor a minimum; along the y-axis, <span style="color: #175e54">f(0, y) = y²</span> has a local minimum.',
+            from: { lecture: 9, slides: ['Slide08bNeither'] },
+          },
+          {
+            id: 'sierra',
+            fun: true,
+            title: 'How did the railroad cross the Sierra Nevada?',
+            caption:
+              'In the 1860s, Leland Stanford’s Central Pacific Railroad had to cross the mountains east of Sacramento. Draw a route across the map, from the west edge to the east edge: can you find one whose highest point is as low as possible?',
+            from: { lecture: 9, slides: ['Slide02Sierra'] },
+          },
+          {
+            id: 'donner-pass',
+            fun: true,
+            title: 'Donner Pass is a saddle point',
+            caption:
+              'Along the route the pass is the highest point, and along the crest the lowest. The level curve through the pass crosses itself in an X, and the ground lower than the pass (in blue) is in two pieces, which meet only there.',
+            from: { lecture: 9, slides: ['Slide09Donner'] },
+          },
+        ],
+      },
+      {
+        id: 'global-extrema',
+        title: 'Global extrema on a region',
+        applets: [
+          {
+            id: 'region-extrema',
+            title: 'Local extrema on a region',
+            caption:
+              'f: D → ℝ has a local maximum on D at <b>a</b> if f(<b>x</b>) ≤ f(<b>a</b>) for every point <b>x</b> in D sufficiently close to <b>a</b>. Which of these local extrema are critical points?',
+            from: { lecture: 9, slides: ['Slide12bLocalRegion'] },
+          },
+          {
+            id: 'boundary-examples',
+            title: 'Critical point or boundary point',
+            caption:
+              'If f: D → ℝ has a local extremum at <b>a</b>, then <b>a</b> is a critical point of f in the interior of D, or a boundary point of D.',
+            from: { lecture: 9, slides: ['Slide15bTheoremExamples'] },
+          },
+          {
+            id: 'global-extrema',
+            title: 'Global extrema',
+            caption:
+              'f has a global maximum on D at <b>a</b> if f(<b>a</b>) ≥ f(<b>x</b>) for all <b>x</b> in D. We can find the global extrema by finding all the local extrema and comparing their values.',
+            from: { lecture: 9, slides: ['Slide13Global'] },
+          },
+          {
+            id: 'global-steps',
+            title: 'Finding global extrema',
+            caption: 'f(x, y) = 3x² − 2y² + 2x + 2y − 1 on the square [−1, 1] × [−1, 1], one step at a time.',
+            from: { lecture: 9, slides: ['Slide16Method'] },
+          },
+          {
+            id: 'connecticut',
+            fun: true,
+            title: 'Where is the highest point in Connecticut?',
+            caption:
+              'E(x, y) = height above sea level at (x, y), on Connecticut only. Bear Mountain is the highest summit in Connecticut, but it is not the highest point. Where is it?',
+            from: { lecture: 9, slides: ['Slide14Connecticut'] },
+          },
+        ],
+      },
     ],
   },
 ];

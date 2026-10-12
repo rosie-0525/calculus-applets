@@ -591,6 +591,43 @@ body {
   justify-items: center;
 }
 
+/* Lecture 9: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.sierra-stage, .donner-stage, .exg-figs, .global-pics, .thm-exs, .method-stage) {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* global-steps.jsx: the steps at a width of their own (on the slide they take what the picture
+   leaves) */
+.viz .viz-scale .reveal .method-stage > .stage-text {
+  flex: none;
+  width: 440px;
+}
+
+/* sierra.jsx: drawing a route does not select the map's labels */
+.viz .sierra-map svg {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* sierra.jsx: the button under the profile; connecticut.jsx: the button, then the sentence that
+   replaces it, under the map */
+.viz .sierra-side .viz-toggle {
+  margin-top: 14px;
+}
+
+.viz .ct-answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 2.6em;
+  margin-top: 0.4em;
+}
+
+.viz .viz-scale .reveal .ct-answer .ct-top {
+  margin: 0;
+}
+
 /* helix.jsx: the formula and the slider above the helix and its components */
 .viz .helix-applet {
   display: flex;
