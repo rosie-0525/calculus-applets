@@ -604,6 +604,128 @@ body {
   width: 440px;
 }
 
+/* springs.jsx: the springs beside the rest (on the slide they hang from its top right corner,
+   placed absolutely), cut off at the bottom of their picture as at the slide's edge; the sliders
+   and Let go in one row under the contour plot */
+.viz .spr-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.viz .spr-hang {
+  flex: none;
+  display: block;
+  overflow: hidden;
+}
+
+/* while the weights are held, no forces (the slide shows them, key presses 6 and 7, only once the
+   weights have settled) */
+.viz .spr-hang.held :is([data-fragment-index='6'], [data-fragment-index='7']) {
+  display: none;
+}
+
+/* the forces on the bottom weight (key press 7), and "spring 2 holds up the bottom weight", in
+   green, apart from the violet of the top weight's forces and "spring 1 holds up both weights"
+   (the slide draws the forces in violet: CSS overrides its fill and stroke attributes, not the
+   arrows' white halos) */
+.viz .spr-stage {
+  --spr-bottom: #15803d;
+}
+
+.viz .spr-hang [data-fragment-index='7'] [fill='#6d28d9'] {
+  fill: var(--spr-bottom);
+}
+
+.viz .spr-hang [data-fragment-index='7'] [stroke='#6d28d9'] {
+  stroke: var(--spr-bottom);
+}
+
+.viz .viz-scale .reveal p.spr-says.spr-bottom {
+  color: var(--spr-bottom);
+}
+
+.viz .viz-scale .reveal .spr-derive {
+  margin-bottom: 0.7em;
+  font-size: 0.9em;
+}
+
+.viz .viz-scale .reveal .spr-derive p {
+  margin: 0 0 0.15em;
+}
+
+.viz .viz-scale .reveal .spr-side {
+  font-size: 0.85em;
+}
+
+.viz .viz-scale .reveal p.spr-caption {
+  font-size: 0.8em;
+}
+
+.viz .spr-page-controls {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin-top: 0.9em;
+  font-size: 0.85em;
+}
+
+.viz .viz-scale .reveal .spr-page-controls .lc-sliders {
+  flex-direction: row;
+  gap: 2em;
+  margin-top: 0;
+  font-size: 1em;
+}
+
+.viz .viz-scale .reveal .spr-page-controls .lc-slider input {
+  flex: 0 0 8em;
+}
+
+.viz .viz-scale .reveal .spr-page-controls .lc-slider .lc-value {
+  width: 3.6em;
+}
+
+/* springs.jsx in a narrow box: one column as wide as the contour plot, in the order of the page
+   (V, smaller and wrapping after its +; the contour plot; the equations; the sliders one under the
+   other beside Let go), and the springs last, under what moves them */
+.viz .viz-scale.narrow .spr-stage {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 480px;
+}
+
+.viz .viz-scale.narrow :is(.spr-page, .spr-row) {
+  display: contents;
+}
+
+.viz .viz-scale.narrow .reveal .spr-derive {
+  font-size: 0.8em;
+}
+
+.viz .viz-scale.narrow .spr-derive :is(.spr-spring, .spr-gravity, .tex) {
+  white-space: nowrap;
+}
+
+.viz .viz-scale.narrow .spr-page-controls {
+  gap: 1.5em;
+}
+
+.viz .viz-scale.narrow .reveal .spr-page-controls .lc-sliders {
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.viz .viz-scale.narrow .spr-hang {
+  margin-top: 16px;
+}
+
+.viz .viz-scale.narrow .reveal .spr-side {
+  align-self: stretch;
+  height: auto !important;
+  margin-top: 0.6em;
+}
+
 /* sierra.jsx: drawing a route does not select the map's labels */
 .viz .sierra-map svg {
   user-select: none;

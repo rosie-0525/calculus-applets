@@ -6338,3 +6338,125 @@ html.print-pdf .reveal .slides section .fragment.la-land.visible {
   text-align: center;
   white-space: nowrap;
 }
+
+/* ---------- Let go! (Slide06bSprings.jsx): the springs hang from the top of the slide, on the right ---------- */
+.reveal .slides section.springs {
+  height: 720px;
+  box-sizing: border-box;
+}
+
+.reveal svg.spr-col {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  overflow: visible;
+}
+
+.reveal .spr-main {
+  width: 990px;
+}
+
+.reveal .spr-energy {
+  margin: 0 0 0.7em;
+  font-size: 0.78em;
+}
+
+.reveal .spr-energy p {
+  margin: 0 0 0.15em;
+}
+
+/* the two lines of V, centred as a block so that their = signs stay aligned */
+.reveal .spr-derive {
+  display: table;
+  margin: 0 auto;
+}
+
+.reveal .spr-spring {
+  color: var(--accent-2);
+}
+
+.reveal .spr-gravity {
+  color: #b45309;
+}
+
+.reveal .spr-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 26px;
+}
+
+.reveal .spr-left {
+  flex: 0 0 auto;
+}
+
+.reveal .spr-plot svg {
+  cursor: crosshair;
+}
+
+.reveal .spr-side {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.7em;
+}
+
+.reveal .spr-side > p {
+  margin: 0 0 0.3em;
+}
+
+.reveal .spr-eq .tex-display .katex-display {
+  margin: 0.2em 0 0;
+}
+
+/* what each equation says, indented under it; violet, since teal is the springs' energy */
+.reveal p.spr-says {
+  margin: 0 0 0.5em 1.2em;
+  font-size: 0.9em;
+  color: #6d28d9;
+}
+
+/* the sliders and Let go, in one row along the bottom */
+.reveal .spr-controls {
+  display: flex;
+  align-items: center;
+  gap: 2.2em;
+  margin-top: 0.9em;
+  font-size: 0.7em;
+}
+
+/* the grey "Contour plot for V(x₁, x₂)" under the plot */
+.reveal p.spr-caption {
+  margin: 0.15em 0 0;
+  font-size: 0.66em;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.reveal .spr-controls .lc-sliders {
+  flex-direction: row;
+  gap: 2.2em;
+  margin-top: 0;
+  font-size: 1em;
+}
+
+.reveal .spr-controls .lc-slider input {
+  flex: 0 0 9em;
+}
+
+.reveal .spr-controls .lc-slider .lc-value {
+  width: 3.6em;
+}
+
+.reveal .spr-controls button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.2em 0.8em;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--r-heading-color);
+  cursor: pointer;
+}

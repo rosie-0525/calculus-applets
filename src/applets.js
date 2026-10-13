@@ -479,6 +479,14 @@ export const AREAS = [
               'Along the route the pass is the highest point, and along the crest the lowest. The level curve through the pass crosses itself in an X, and the ground lower than the pass (in blue) is in two pieces, which meet only there.',
             from: { lecture: 9, slides: ['Slide09Donner'] },
           },
+          {
+            id: 'springs',
+            fun: true,
+            title: 'Two springs come to rest at a critical point',
+            caption:
+              'Two identical springs and two weights hang from the ceiling, held so that the springs are not stretched. Let go: they bounce, then settle at the minimum of the potential energy V(x<sub>1</sub>, x<sub>2</sub>), a critical point of V. Click on the contour plot to let them go from somewhere else. Can the bottom spring end up stretched more than the top one?',
+            from: { lecture: 9, slides: ['Slide06bSprings'] },
+          },
         ],
       },
       {
