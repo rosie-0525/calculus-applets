@@ -604,6 +604,62 @@ body {
   width: 440px;
 }
 
+/* Lecture 11: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.lin-error, .l10-st-pics, .l10-crit-row, .l10-sw-stage, .l10-sw-pics, .drop-stage) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .l10-la {
+  grid-template-columns: auto;
+  justify-items: center;
+}
+
+/* level-surfaces.jsx: in a narrow box, two columns (graph, contour plot), each function's name
+   over its row */
+.viz .viz-scale.narrow .reveal .l10-ls-grid {
+  grid-template-columns: repeat(2, auto);
+}
+
+.viz .viz-scale.narrow .l10-ls-grid > div:first-child {
+  display: none;
+}
+
+.viz .viz-scale.narrow .l10-ls-name {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 0.4em;
+}
+
+/* digits.jsx: in a narrow box, the four parts one under the other */
+.viz .viz-scale.narrow .reveal .l10-dg-row {
+  grid-template-columns: auto;
+  grid-template-rows: none;
+  grid-auto-flow: row;
+}
+
+/* raindrop.jsx, lombard.jsx: the text beside the map at a width of its own, so that the applet
+   keeps its size when a drop's rivers or u's grade change it */
+.viz .viz-scale .reveal .drop-side {
+  flex: none;
+  width: 340px;
+}
+
+.viz .viz-scale .reveal .l10-sw .l10-sw-left {
+  flex: none;
+  width: 320px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.drop-side, .l10-sw .l10-sw-left) {
+  width: 560px;
+}
+
+/* raindrop.jsx: the button for the watersheds over the oceans and the rivers */
+.viz .drop-tints {
+  justify-content: flex-start;
+  margin-bottom: 1em;
+}
+
 /* springs.jsx: the springs beside the rest (on the slide they hang from its top right corner,
    placed absolutely), cut off at the bottom of their picture as at the slide's edge; the sliders
    and Let go in one row under the contour plot */

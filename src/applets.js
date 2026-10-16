@@ -356,6 +356,13 @@ export const AREAS = [
             from: { lecture: 7, slides: ['Slide14bExample3D'] },
           },
           {
+            id: 'level-surfaces',
+            title: 'Level surfaces',
+            caption:
+              'The graph of a function of three variables would live in ℝ⁴, but its level surfaces g(x, y, z) = c live in ℝ³, as the level curves of a function of two variables live in ℝ². For g(x, y, z) = x² + y² + z² they are spheres, nested like the layers of an onion.',
+            from: { lecture: 11, slides: ['Slide09cLevelSurfaces'] },
+          },
+          {
             id: 'print-mountain',
             fun: true,
             title: 'How does a 3D printer print a mountain?',
@@ -527,6 +534,112 @@ export const AREAS = [
             caption:
               'E(x, y) = height above sea level at (x, y), on Connecticut only. Bear Mountain is the highest summit in Connecticut, but it is not the highest point. Where is it?',
             from: { lecture: 9, slides: ['Slide14Connecticut'] },
+          },
+        ],
+      },
+      {
+        id: 'gradient',
+        title: 'Gradients and linear approximation',
+        applets: [
+          {
+            id: 'gradient-field',
+            title: 'The gradient is a vector-valued function',
+            caption:
+              'The gradient of f: ℝ<sup>n</sup> → ℝ is the vector of its partial derivatives, ∇f = (∂f/∂x<sub>1</sub>, …, ∂f/∂x<sub>n</sub>): a vector at every point. For f(x, y) = xy, ∇f(x, y) = (y, x), drawn at a quarter of its length. Drag the point <b>a</b>.',
+            from: { lecture: 11, slides: ['Slide04Gradient'] },
+          },
+          {
+            id: 'tangent-plane',
+            title: 'Linear approximation',
+            caption:
+              'The linear approximation to f for <b>x</b> near a point <b>a</b> is f(<b>x</b>) ≈ f(<b>a</b>) + ∇f(<b>a</b>) · (<b>x</b> − <b>a</b>). The tangent plane is drawn for f(x, y) = x² + 2y² + xy at (1, 1).',
+            from: { lecture: 11, slides: ['Slide05LinearApprox'] },
+          },
+          {
+            id: 'linear-error',
+            title: 'How good is the linear approximation?',
+            caption:
+              'f(x, y) = x² + 2y² + xy and its linear approximation at (1, 1), L(x, y) = 4 + 3(x − 1) + 5(y − 1), whose graph is the tangent plane. Near (1, 1) the error f − L is tiny. What happens far from (1, 1)?',
+            from: { lecture: 11, slides: ['Slide06Example1'] },
+          },
+        ],
+      },
+      {
+        id: 'gradient-level-sets',
+        title: 'Gradients and level sets',
+        applets: [
+          {
+            id: 'gradient-directions',
+            title: 'The gradient on a contour plot',
+            caption:
+              'f(x, y) = x³ + xy + y², with ∇f(x, y) = (3x² + y, x + 2y). The arrows show the direction of ∇f at points on the level curves. What do you observe?',
+            from: { lecture: 11, slides: ['Slide08Example2'] },
+          },
+          {
+            id: 'level-curve-tangent',
+            title: 'Gradient and level curves',
+            caption:
+              'The gradient of f: ℝ² → ℝ at a point <b>a</b> is perpendicular to the tangent line to the level curve through <b>a</b>, ∇f(<b>a</b>) · (<b>x</b> − <b>a</b>) = 0. Why? For <b>x</b> on the level curve near <b>a</b>, f(<b>x</b>) = f(<b>a</b>) and f(<b>x</b>) ≈ f(<b>a</b>) + ∇f(<b>a</b>) · (<b>x</b> − <b>a</b>), so ∇f(<b>a</b>) · (<b>x</b> − <b>a</b>) ≈ 0.',
+            from: { lecture: 11, slides: ['Slide09Normal2D'] },
+          },
+        ],
+      },
+      {
+        id: 'gradient-descent',
+        title: 'Gradient descent',
+        applets: [
+          {
+            id: 'fastest-increase',
+            title: 'Direction of fastest increase',
+            caption:
+              '∇f(<b>a</b>) points towards the greatest increase of f, and −∇f(<b>a</b>) towards the greatest decrease (unless ∇f(<b>a</b>) = <b>0</b>). Why? For a unit vector <b>u</b> and t small, f(<b>a</b> + t<b>u</b>) ≈ f(<b>a</b>) + t ∇f(<b>a</b>) · <b>u</b>, and ∇f(<b>a</b>) · <b>u</b> = ‖∇f(<b>a</b>)‖ cos θ is largest for θ = 0 and smallest for θ = π.',
+            from: { lecture: 11, slides: ['Slide13Steepest', 'Slide13bSteepestWhy'] },
+          },
+          {
+            id: 'gradient-critical',
+            title: 'At a critical point',
+            caption:
+              'When ∇f(<b>a</b>) = <b>0</b>, <b>a</b> is a critical point. Which way is the greatest increase there? In the gradient vector field of f(x, y) = x³ − 3x − y³ + 3y, how do the arrows behave around each kind of critical point?',
+            from: { lecture: 11, slides: ['Slide13cCritical'] },
+          },
+          {
+            id: 'descent',
+            title: 'Gradient descent',
+            caption:
+              'To find the minimum of f, repeatedly replace <b>a</b> → <b>a</b> − t∇f(<b>a</b>); to find the maximum, use <b>a</b> → <b>a</b> + t∇f(<b>a</b>). In machine learning, t is called the learning rate. What happens for t = 0.01, 0.26 or 0.3?',
+            from: { lecture: 11, slides: ['Slide18Descent'] },
+          },
+          {
+            id: 'lombard',
+            fun: true,
+            title: 'How steep is Lombard Street?',
+            caption:
+              'E(x, y) = elevation on Russian Hill, San Francisco. The crooked block of Lombard Street winds down the hill in eight hairpin turns, built in 1922 to tame its 27% grade. Drag on the map to turn <b>u</b>: going in the direction <b>u</b>, the grade is ∇E · <b>u</b> = 27% · cos θ.',
+            from: { lecture: 11, slides: ['Slide13bSteepestWhy', 'Slide14Lombard'] },
+          },
+          {
+            id: 'crowd',
+            fun: true,
+            title: 'How do 300 units find their way?',
+            caption:
+              'In strategy games such as Supreme Commander 2, Flow Field Pathfinding computes D(x, y) = walking distance to the goal, and each unit moves in the direction −∇D. Click on the map to send the army somewhere else.',
+            from: { lecture: 11, slides: ['Slide14bCrowd'] },
+          },
+          {
+            id: 'raindrop',
+            fun: true,
+            title: 'Where does a raindrop go?',
+            caption:
+              'E(x, y) = elevation around Triple Divide Peak, Glacier National Park, Montana. A raindrop moves in the direction −∇E. Click on the map to drop one: which ocean does its water reach?',
+            from: { lecture: 11, slides: ['Slide16Raindrop'] },
+          },
+          {
+            id: 'digits',
+            fun: true,
+            title: 'An AI learns to read digits',
+            caption:
+              'An AI model is a function with billions of parameters (this tiny one has 7,850). It learns from lots of examples, inputs and their right outputs: gradient descent finds the parameters that make E, the error on the examples, smallest, as for the line of best fit. Draw a digit, then press Run.',
+            from: { lecture: 11, slides: ['Slide19cAIIdea', 'Slide19bDigits'] },
           },
         ],
       },
