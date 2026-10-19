@@ -654,6 +654,23 @@ body {
   width: 560px;
 }
 
+/* Lecture 12: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.l12-tangent-row, .can-stage, .elec-stage) {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* electricity.jsx: the text beside the prices at a width of its own (on the slides it takes what
+   the picture leaves), and the box for λ = M′(c) a little apart */
+.viz .viz-scale .reveal .elec-stage > .stage-text {
+  flex: none;
+  width: 620px;
+}
+
+.viz .reveal .block.elec-box {
+  margin: 0.8em 0 0.5em;
+}
+
 /* raindrop.jsx: the button for the watersheds over the oceans and the rivers */
 .viz .drop-tints {
   justify-content: flex-start;
@@ -782,8 +799,10 @@ body {
   margin-top: 0.6em;
 }
 
-/* sierra.jsx: drawing a route does not select the map's labels */
-.viz .sierra-map svg {
+/* sierra.jsx: drawing a route does not select the map's labels; lagrange.jsx, rainbow.jsx: nor
+   does dragging a point */
+.viz :is(.sierra-map, .l12-drag) svg,
+.viz svg.l12-landscape {
   user-select: none;
   -webkit-user-select: none;
 }

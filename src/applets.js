@@ -643,6 +643,89 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'constrained-optimization',
+        title: 'Constrained optimization',
+        applets: [
+          {
+            id: 'constrained-graph',
+            title: 'A constrained optimization problem',
+            caption:
+              'Find the maximum or minimum of a function f(<b>x</b>) subject to a constraint g(<b>x</b>) = c. For f(x, y) = x³ + xy + y² subject to x² + y² = 2, they are the highest and lowest points of the graph above the circle (in red). Are they critical points of f?',
+            from: { lecture: 12, slides: ['Slide01Title'] },
+          },
+          {
+            id: 'curve-extrema',
+            title: 'Maximum and minimum on a curve',
+            caption:
+              'The contour map of a function f(x, y), together with a curve C. Where are the global maximum and minimum of f on C? What do you observe there?',
+            from: { lecture: 12, slides: ['Slide02bCurve'] },
+          },
+          {
+            id: 'gradient-normal',
+            title: 'Gradients of f and g',
+            caption:
+              'The gradient ∇f(<b>a</b>) of a function is perpendicular to the tangent line to the level curve through <b>a</b>. The curve g(<b>x</b>) = c is a level set of g, so its tangent line is perpendicular to ∇g(<b>a</b>), at least when the tangent line makes sense. Move <b>x</b> along the level curve f = 12 and <b>a</b> along C: what happens where they meet?',
+            from: { lecture: 12, slides: ['Slide02dRecallNormal'] },
+          },
+          {
+            id: 'gradient-zero',
+            title: 'When ∇g(a) = 0',
+            caption:
+              'If ∇g(<b>a</b>) = <b>0</b>, the tangent line to the curve g = c at <b>a</b> may not make sense. Move <b>a</b> along each curve: what happens to ∇g(<b>a</b>) and to the tangent line at the origin?',
+            from: { lecture: 12, slides: ['Slide02eGradZero'] },
+          },
+          {
+            id: 'rainbow',
+            fun: true,
+            title: 'Why do rainbows form arcs?',
+            caption:
+              'Sunlight that enters a raindrop at an angle i bends to an angle r, with sin i = 1.33 sin r (Snell’s law), reflects inside the drop and leaves it at the angle θ = 4r − 2i to the sunlight. The light piles up near the largest θ: maximize θ subject to the physics law, and θ ≈ 42°, the same for every drop. So the bright drops lie on a cone of 42° around the line from the sun through your eye, which you see as an arc. Drag the drop along the bow.',
+            from: { lecture: 12, slides: ['Slide01aProblems'] },
+          },
+        ],
+      },
+      {
+        id: 'lagrange-multipliers',
+        title: 'Lagrange multipliers',
+        applets: [
+          {
+            id: 'lagrange',
+            title: 'Lagrange multipliers',
+            caption:
+              'What is the local extremum of f on the curve C? What happens to ∇f and ∇g at the local extrema? Drag the point <b>a</b> to explore.',
+            from: { lecture: 12, slides: ['Slide05Lagrange'] },
+          },
+          {
+            id: 'circle-disk',
+            title: 'On a circle and on a disk',
+            caption:
+              'To find the max/min of f constrained to g = c: compute ∇f and ∇g; find the points of g = c where ∇g = <b>0</b>; solve ∇f(<b>a</b>) = λ∇g(<b>a</b>), g(<b>a</b>) = c for <b>a</b> and λ; compare the values of f at the points found. Here f(x, y) = x² + 2y² + x − 1 subject to x² + y² = 1, and then on the disk D. Why is the minimum on D somewhere else?',
+            from: { lecture: 12, slides: ['Slide08bDisk'] },
+          },
+          {
+            id: 'can',
+            title: 'The best shape for a can',
+            caption:
+              'Which cylindrical can holding 355 cm³ uses the least aluminum? Drag its radius r. A real Coke can is taller than the best one: why might that be?',
+            from: { lecture: 12, slides: ['Slide09bCan'] },
+          },
+          {
+            id: 'cusp',
+            title: 'A minimum where ∇g = 0',
+            caption:
+              'Minimize f(x, y) = y subject to g(x, y) = x² − y³ = 0. The equations ∇f(<b>a</b>) = λ∇g(<b>a</b>) and g(<b>a</b>) = 0 have no solution. Where is the minimum, and why does Lagrange’s theorem still hold?',
+            from: { lecture: 12, slides: ['Slide10Example3'] },
+          },
+          {
+            id: 'electricity',
+            fun: true,
+            title: 'Interpretation of the Lagrange multiplier λ',
+            caption: 'Why is electricity 3 times pricier at 6 pm than at noon?',
+            from: { lecture: 12, slides: ['Slide12bLambda', 'Slide12cLambdaMeaning'] },
+          },
+        ],
+      },
     ],
   },
 ];
