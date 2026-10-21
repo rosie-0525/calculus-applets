@@ -7556,6 +7556,51 @@ html.print-pdf .reveal .slides section .fragment.la-land.visible {
   padding-left: 0.3em;
 }
 
+/* the recall's last key press: (iii)'s "(using your knowledge of single-variable calculus)"
+   highlighted, and "Today: alternative way to do this" under it, which takes its space only then
+   (pushing (iv) down), from the space kept under the list (so that the stage keeps its height and
+   the picture stays put): 1.65em = its margin and its line */
+.reveal ol.method-steps.l12-recall-steps.fx-host {
+  padding-bottom: 1.65em;
+  transition: padding-bottom 0.35s ease;
+}
+
+.reveal .fx-marker[data-fx='recall-today'].visible ~ ol.method-steps.l12-recall-steps.fx-host {
+  padding-bottom: 0;
+}
+
+.reveal .l12-recall-hl {
+  padding: 0 0.15em;
+  margin: 0 -0.15em;
+  border-radius: 6px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color 0.35s ease;
+}
+
+.reveal .fx-marker[data-fx='recall-today'].visible ~ .fx-host .l12-recall-hl {
+  background-color: var(--mark-bg);
+}
+
+.reveal .l12-recall-today {
+  display: block;
+  height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.35s ease, margin-top 0.35s ease, opacity 0.35s ease;
+}
+
+.reveal .l12-recall-today strong {
+  color: var(--accent);
+}
+
+.reveal .fx-marker[data-fx='recall-today'].visible ~ .fx-host .l12-recall-today {
+  height: 1.35em; /* the list's line height */
+  margin-top: 0.3em;
+  opacity: 1;
+}
+
 /* ---------- Poll: the four options, two by two ---------- */
 .reveal .l12-poll-options {
   gap: 0.4em 3em;

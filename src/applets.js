@@ -277,6 +277,49 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'linear-functions',
+        title: 'Linear functions and matrices',
+        applets: [
+          {
+            id: 'linear-affine',
+            title: 'Linear and affine functions',
+            caption:
+              'A scalar-valued function f(x<sub>1</sub>, …, x<sub>n</sub>) is affine if f(<b>x</b>) = a<sub>1</sub>x<sub>1</sub> + ⋯ + a<sub>n</sub>x<sub>n</sub> + b for some scalars a<sub>1</sub>, …, a<sub>n</sub>, b, and linear if f(<b>x</b>) = a<sub>1</sub>x<sub>1</sub> + ⋯ + a<sub>n</sub>x<sub>n</sub>. Linear functions are affine; affine functions need not be linear. How can you tell from the graph of a function of two variables?',
+            from: { lecture: 13, slides: ['Slide02Linear'] },
+          },
+          {
+            id: 'linear-maps',
+            title: 'Linear and affine vector-valued functions',
+            caption:
+              'A vector-valued function is affine if all its component functions are affine, and linear if all its component functions are linear. To see a function ℝ² → ℝ², put a photo in the plane and move each point <b>x</b> to f(<b>x</b>). What happens to straight lines, and to <b>0</b>? The third function sends <b>0</b> to <b>0</b>: why is it not linear?',
+            from: { lecture: 13, slides: ['Slide02cGrids'] },
+          },
+          {
+            id: 'matrix-columns',
+            title: 'The columns of A',
+            caption:
+              'A function f: ℝ<sup>n</sup> → ℝ<sup>m</sup> is linear precisely when f(<b>x</b>) = A<b>x</b> for some m × n matrix A, and then the columns of A are f(<b>e</b><sub>1</sub>), …, f(<b>e</b><sub>n</sub>), where <b>e</b><sub>j</sub> is the j-th standard basis vector of ℝ<sup>n</sup>. Why? A<b>e</b><sub>j</sub> = 0<b>c</b><sub>1</sub> + ⋯ + 1<b>c</b><sub>j</sub> + ⋯ + 0<b>c</b><sub>n</sub> = <b>c</b><sub>j</sub>. Can you read A off the picture of f?',
+            from: { lecture: 13, slides: ['Slide09Columns'] },
+          },
+          {
+            id: 'photo-filters',
+            fun: true,
+            title: 'How does a photo editor apply a filter?',
+            caption:
+              'A color photo consists of many pixels, and each pixel is a 3-vector <b>x</b> = (R, G, B). A filter does the same to every pixel: it is a function on these 3-vectors. Click a filter. Click the photo to zoom in there, and a pixel in the block to make it <b>x</b>.',
+            from: { lecture: 13, slides: ['Slide01aFilters'] },
+          },
+          {
+            id: 'own-filter',
+            fun: true,
+            title: 'Photo filters as linear functions',
+            caption:
+              'Sepia is linear, so it maps each pixel to a matrix-vector product. The columns of its matrix are the colors that pure red, green and blue become, and the new color mixes them in the amounts R, G and B. Drag the ring across a photo. Click a square under “Make your own filter” to choose what red, green or blue becomes.',
+            from: { lecture: 13, slides: ['Slide09bFiltersExplained'] },
+          },
+        ],
+      },
     ],
   },
   {
@@ -723,6 +766,27 @@ export const AREAS = [
             title: 'Interpretation of the Lagrange multiplier λ',
             caption: 'Why is electricity 3 times pricier at 6 pm than at noon?',
             from: { lecture: 12, slides: ['Slide12bLambda', 'Slide12cLambdaMeaning'] },
+          },
+        ],
+      },
+      {
+        id: 'derivative-matrix',
+        title: 'The derivative matrix',
+        applets: [
+          {
+            id: 'arm-derivative',
+            title: 'The derivative matrix of a robot arm',
+            caption:
+              'The derivative matrix (Df)(<b>a</b>) of f: ℝ<sup>n</sup> → ℝ<sup>m</sup> is the m × n matrix whose (i, j)-entry is ∂f<sub>i</sub>/∂x<sub>j</sub>(<b>a</b>): its i-th row is ∇f<sub>i</sub>(<b>a</b>). For <b>h</b> near <b>0</b>, f(<b>a</b> + <b>h</b>) ≈ f(<b>a</b>) + (Df)(<b>a</b>)<b>h</b>. Here f(θ<sub>1</sub>, θ<sub>2</sub>) is the position of the hand. Turning the shoulder by h<sub>1</sub> and the elbow by h<sub>2</sub> moves the hand by about h<sub>1</sub><b>c</b><sub>1</sub> + h<sub>2</sub><b>c</b><sub>2</sub>, where <b>c</b><sub>1</sub>, <b>c</b><sub>2</sub> are the columns of (Df)(θ<sub>1</sub>, θ<sub>2</sub>). What happens when the arm is straight?',
+            from: { lecture: 13, slides: ['Slide13cRobotArm'] },
+          },
+          {
+            id: 'vivid',
+            fun: true,
+            title: 'Nonlinear photo filters',
+            caption:
+              'Vivid adds color, then contrast. As a function f: ℝ³ → ℝ³ on colors it is not affine, but for colors <b>x</b> near a color <b>a</b>, f(<b>x</b>) ≈ f(<b>a</b>) + (Df)(<b>a</b>)(<b>x</b> − <b>a</b>), an affine filter. Drag the ring <b>a</b> across a photo: where does the linear approximation look like Vivid, and where not?',
+            from: { lecture: 13, slides: ['Slide13dVivid'] },
           },
         ],
       },

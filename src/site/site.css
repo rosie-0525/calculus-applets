@@ -799,6 +799,77 @@ body {
   margin-top: 0.6em;
 }
 
+/* Lecture 13: in a narrow box, the pictures (and the text beside them) one under the other */
+.viz .viz-scale.narrow :is(.l13-verdicts, .l13-pics, .l13-cols-stage, .l13-arm-stage) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .l13-verdicts {
+  row-gap: 20px;
+}
+
+.viz .viz-scale.narrow .l13-fx-back-grid {
+  grid-template-columns: auto;
+  justify-items: center;
+  row-gap: 24px;
+}
+
+/* photo-filters.jsx: the block of pixels under the editor, whose square on the photo stays where
+   it is (the stage's top left corner), without its lines to the block */
+.viz .viz-scale.narrow .l13-filters-stage {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.viz .viz-scale.narrow .l13-zoom-rays {
+  display: none;
+}
+
+/* vivid.jsx: the arrow f pointing right; in a narrow box, the photos one under the other, the
+   arrow f pointing down, and the approximation, in a box of a fixed width, wrapping after its "=" */
+.viz .l13-fv .l13-fx-arrow.down {
+  display: none;
+}
+
+.viz .viz-scale.narrow .l13-fv {
+  width: 440px;
+}
+
+.viz .viz-scale.narrow .l13-fv .l13-fx-pair {
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.viz .viz-scale.narrow .l13-fv .l13-fx-arrow {
+  display: none;
+}
+
+.viz .viz-scale.narrow .l13-fv .l13-fx-arrow.down {
+  display: block;
+  margin: 0;
+}
+
+.viz .viz-scale.narrow .reveal .l13-fv-approx {
+  margin-top: 0;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l13-fv-math, .l13-fv .l13-credit-corner) {
+  width: auto;
+}
+
+.viz .viz-scale.narrow .reveal .l13-fv-math .l13-display {
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 1.9em; /* room for the squares under the vectors of the first line */
+}
+
+/* linear-maps.jsx: the cat photo's credit flush right, as the other photos' */
+.viz .viz-scale .reveal .l13-maps-credit {
+  text-align: right;
+}
+
 /* sierra.jsx: drawing a route does not select the map's labels; lagrange.jsx, rainbow.jsx: nor
    does dragging a point */
 .viz :is(.sierra-map, .l12-drag) svg,

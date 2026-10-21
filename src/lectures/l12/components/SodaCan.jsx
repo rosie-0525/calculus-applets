@@ -5,7 +5,7 @@ import { MATH } from './svgmath.jsx';
 
 const W = 380;
 const H = 296;
-const V = 355; // cm³ = mL
+const V0 = 355; // cm³ = mL: a Coke can's, the volume unless one is given
 const S = 14; // px per cm
 const CX = 172; // the can's axis
 const FLOOR = 236; // the bottom of its front
@@ -14,7 +14,7 @@ const TILT = 0.24; // the ellipses' height / width
 // = 3.84 cm, h = 2r = 7.67 cm, A = 277.5 cm² (shown as 278), looked shorter and flatter than a
 // real one): a 12 oz Coke can is 12.2 cm tall and 6.6 cm wide, h/d ≈ 1.85, which for 355 mL is
 // r = 3.13 cm, h = 11.6 cm, A = 288 cm² (shown as 289), 4% more than the least.
-const R0 = Math.cbrt(V / (2 * 1.85 * Math.PI));
+const r0 = (V) => Math.cbrt(V / (2 * 1.85 * Math.PI));
 // a real can's lid is narrower than its body, and its bottom tapers to a narrower foot (drawn
 // only: the area and volume are a cylinder's)
 const LID = 0.82;
@@ -24,7 +24,7 @@ const INK = '#14213d';
 const RED = '#8c1515';
 const SANS = 'Source Sans Pro, Helvetica, sans-serif';
 
-const areaOf = (r) => 2 * Math.PI * r * r + (2 * V) / r;
+const areaOf = (r, V) => 2 * Math.PI * r * r + (2 * V) / r;
 
 /**
  * What is the best shape for a Coke can? (Constrained optimization problems): a can holding
@@ -32,10 +32,11 @@ const areaOf = (r) => 2 * Math.PI * r * r + (2 * V) / r;
  * dimension line, and the aluminum, A = 2πr² + 2πrh, at the top left (in words: the slide has
  * few formulas, at the user's request). It starts at a real can's shape (h ≈ 3.7r, 288 cm²); the
  * least area is at h = 2r. With `names` (on Example 3), the lengths and the slider are named r and
- * h, as in the problem.
+ * h, as in the problem. With `volume` (Example 3's 128π cm³, at the user's request), the can holds
+ * that, in place of 355 cm³; the least radius grows with it (as √V), so that h stays as tall.
  */
-export default function SodaCan({ names = false }) {
-  const [r, setR] = useState(R0);
+export default function SodaCan({ names = false, volume: V = V0 }) {
+  const [r, setR] = useState(() => r0(V));
   // ids of its own, as the can is on two slides (Constrained optimization problems and Example 3)
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
   const h = V / (Math.PI * r * r);
@@ -79,7 +80,7 @@ export default function SodaCan({ names = false }) {
         height={H}
         viewBox={`0 0 ${W} ${H}`}
         role="img"
-        aria-label={`A can holding 355 mL, of radius ${r.toFixed(1)} cm and height ${h.toFixed(1)} cm, made of ${areaOf(r).toFixed(0)} square cm of aluminum`}
+        aria-label={`A can holding ${Math.round(V)} mL, of radius ${r.toFixed(1)} cm and height ${h.toFixed(1)} cm, made of ${areaOf(r, V).toFixed(0)} square cm of aluminum`}
       >
         <defs>
           <linearGradient id={`l12-can-red-${uid}`} x1="0" y1="0" x2="1" y2="0">
@@ -123,7 +124,7 @@ export default function SodaCan({ names = false }) {
           fontWeight="700"
           fill="#fff"
         >
-          355 mL
+          {Math.round(V)} mL
         </text>
         <ellipse cx={CX} cy={top} rx={lid} ry={TILT * lid} fill={`url(#l12-can-lid-${uid})`} stroke={SILVER} strokeWidth="2.5" />
         <ellipse cx={CX} cy={top} rx={lid * 0.84} ry={TILT * lid * 0.84} fill="none" stroke="#9ca3af" strokeWidth="1.2" />
@@ -156,11 +157,11 @@ export default function SodaCan({ names = false }) {
         </text>
 
         <text x={14} y={30} fontFamily={SANS} fontSize="19" fill={RED}>
-          aluminum: <tspan fontWeight="700">{areaOf(r).toFixed(0)} cm²</tspan>
+          aluminum: <tspan fontWeight="700">{areaOf(r, V).toFixed(0)} cm²</tspan>
         </text>
       </svg>
       <div className="lc-sliders">
-        <Slider name="radius" label={names ? <Tex tex="r" /> : 'radius'} value={r} onChange={setR} min={2.7} max={6} step={0.01} color={RED} format={() => ''} />
+        <Slider name="radius" label={names ? <Tex tex="r" /> : 'radius'} value={r} onChange={setR} min={2.7 * Math.sqrt(V / V0)} max={6} step={0.01} color={RED} format={() => ''} />
       </div>
     </div>
   );
