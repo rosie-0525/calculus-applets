@@ -870,6 +870,207 @@ body {
   text-align: right;
 }
 
+/* Lecture 14: in a narrow box, the pictures (and the text beside them) one under the other, the
+   arrow f between two pictures pointing down (its f upright, to its right); the cards of
+   linear-or-not.jsx and transformations-r2.jsx two by two, each matrix under its picture */
+.viz .viz-scale.narrow :is(.l14-lm, .l14-squaremap, .l14-rot-stage, .l14-proj-stage, .l14-axes, .l14-compute, .l14-alg-panels, .l14-spin) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l14-lm, .l14-squaremap) svg.l14-map-arrow {
+  margin: 15px 0;
+  transform: rotate(90deg);
+}
+
+.viz .viz-scale.narrow :is(.l14-lm, .l14-squaremap) svg.l14-map-arrow text {
+  transform: rotate(-90deg);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.viz .viz-scale.narrow .reveal .l14-collapse-map svg.figure-svg {
+  height: 300px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l14-lin-grid, .l14-gallery) {
+  grid-template-columns: repeat(2, auto);
+}
+
+.viz .viz-scale.narrow .l14-gallery-row {
+  flex-direction: column;
+}
+
+.viz .viz-scale.narrow .reveal .l14-alg-panels {
+  gap: 20px;
+}
+
+/* linearity-example.jsx and order-algebra.jsx in a narrow box: at a width of their own, so that
+   the text wraps and the buttons go two or three to a row */
+.viz .viz-scale.narrow :is(.lm-applet, .alg-col) {
+  width: 420px;
+}
+
+.viz .viz-scale.narrow .lm-applet .viz-toggle {
+  flex-wrap: wrap;
+}
+
+/* (BA and AB each on a line of its own, not broken inside) */
+.viz .viz-scale.narrow .l14-alg-check .katex {
+  white-space: nowrap;
+}
+
+/* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
+   on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
+   `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
+   glide tip-to-tail and its sum appears, as on its key presses (deck.css's transitions) */
+.viz .viz-scale .lm-pick .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='4'], [data-fragment-index='5'], [data-fragment-index='6'], [data-fragment-index='7'], [data-fragment-index='8'], [data-fragment-index='9']) {
+  opacity: 0;
+}
+
+.viz .viz-scale .lm-pick .l14-lm .fragment.visible .l14-leg {
+  transform: none;
+}
+
+.viz .viz-scale .lm-pick .l14-lm .fragment.visible .l14-pop {
+  opacity: 0;
+}
+
+.viz .viz-scale .lm-pick[data-q='0'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='4'], [data-fragment-index='5']),
+.viz .viz-scale .lm-pick[data-q='1'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='6'], [data-fragment-index='7']),
+.viz .viz-scale .lm-pick[data-q='2'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='8'], [data-fragment-index='9']),
+.viz .viz-scale .lm-pick[data-q='0'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='4'], [data-fragment-index='5']) .l14-pop,
+.viz .viz-scale .lm-pick[data-q='1'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='6'], [data-fragment-index='7']) .l14-pop,
+.viz .viz-scale .lm-pick[data-q='2'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='8'], [data-fragment-index='9']) .l14-pop {
+  opacity: 1;
+}
+
+.viz .viz-scale .lm-pick[data-q='0'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='4'], [data-fragment-index='5']) .l14-leg,
+.viz .viz-scale .lm-pick[data-q='1'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='6'], [data-fragment-index='7']) .l14-leg,
+.viz .viz-scale .lm-pick[data-q='2'] .l14-lm .fragment:not(.semi-fade-out):is([data-fragment-index='8'], [data-fragment-index='9']) .l14-leg {
+  transform: translate(var(--dx), var(--dy));
+}
+
+/* the picked question's answer under the picture, as its sum appears; the three in one place, so
+   that the applet keeps its height */
+.viz .viz-scale .reveal .lm-example {
+  margin: 0;
+}
+
+.viz .lm-answers {
+  display: grid;
+  justify-items: center;
+}
+
+.viz .viz-scale .reveal .lm-answers > p {
+  grid-area: 1 / 1;
+  margin: 0;
+  opacity: 0;
+}
+
+.viz .viz-scale .reveal .lm-answers > p.lm-shown {
+  opacity: 1;
+  transition: opacity 0.3s ease 1.2s;
+}
+
+/* collapse.jsx: f(S), the segment, once f(e₂) has swung onto 2f(e₁) */
+.viz .viz-scale .l14-collapse-map:not(.collapse-flat) .fragment[data-fragment-index='3'] {
+  opacity: 0;
+}
+
+/* rotations-linear.jsx: the right side of an identity (RotationPicture's fragment `splitIndex`, 3
+   for the pair, 6 for cv), hidden until it starts to build */
+.viz .viz-scale .rot-build:not(.rot-split) .fragment:is([data-fragment-index='3'], [data-fragment-index='6']) {
+  opacity: 0;
+}
+
+/* linear-or-not.jsx: each card's picture a button that shows its verdict */
+.viz .viz-scale .reveal button.lin-check {
+  display: block;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal button.lin-check:hover {
+  border-color: #9ca3af;
+}
+
+.viz .viz-scale .reveal button.lin-check:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+/* axis-rotations.jsx: the three pictures a little apart (on the slide its width spreads them), and
+   the slider under them, in the middle */
+.viz .viz-scale .reveal .l14-axes {
+  gap: 20px;
+}
+
+.viz .viz-scale .reveal .axes-slider {
+  align-self: center;
+  margin-top: 0;
+}
+
+/* computing-product.jsx: the entries of AB, and the dot products in the list, to click; the one
+   picked in the list in the entry's yellow, the others faded */
+.viz .prod-pick {
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal button.prod-step {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+.viz .viz-scale .reveal button.prod-step:hover {
+  opacity: 0.8;
+}
+
+.viz .viz-scale .reveal button.prod-step[aria-pressed='true'] {
+  opacity: 1;
+  background: #fde68a;
+}
+
+.viz .viz-scale .reveal button.prod-step:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+.viz .viz-scale .reveal .prod-rule {
+  margin: 0;
+}
+
+/* order-matters.jsx, rotations-commute.jsx: a part about to come in, as on the slide's next key
+   press: hidden, and its ball or panel over the one before it; then it fades in (the decks'
+   fragments' transition), the ball or panel glides to its place, and its ring waits for it */
+.viz .viz-scale .reveal .arriving {
+  opacity: 0;
+}
+
+.viz .viz-scale .reveal .arriving .l14-ball-glide {
+  transform: translateX(var(--dx));
+}
+
+.viz .viz-scale .reveal .arriving .l14-ring-late {
+  opacity: 0;
+}
+
+/* rotations-commute.jsx: the rule and the matrices beside the panels at a width of their own (on
+   the slide they take what the panels leave) */
+.viz .viz-scale .reveal .l14-spin-text {
+  flex: none;
+  width: 470px;
+}
+
 /* sierra.jsx: drawing a route does not select the map's labels; lagrange.jsx, rainbow.jsx: nor
    does dragging a point */
 .viz :is(.sierra-map, .l12-drag) svg,

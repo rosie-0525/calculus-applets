@@ -320,6 +320,109 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'linear-transformations',
+        title: 'Linear transformations',
+        applets: [
+          {
+            id: 'linearity-example',
+            title: 'The Linearity Principle',
+            caption:
+              'A <b>linear transformation</b> is another name for a linear function. A linear transformation f satisfies f(c<sub>1</sub><b>v</b><sub>1</sub> + c<sub>2</sub><b>v</b><sub>2</sub>) = c<sub>1</sub>f(<b>v</b><sub>1</sub>) + c<sub>2</sub>f(<b>v</b><sub>2</sub>) for all scalars c<sub>1</sub>, c<sub>2</sub> and vectors <b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>. Where do <b>e</b><sub>1</sub> + <b>e</b><sub>2</sub>, 2<b>e</b><sub>1</sub> and 2<b>e</b><sub>1</sub> + <b>e</b><sub>2</sub> go? Click one to see.',
+            from: { lecture: 14, slides: ['Slide02aLinearity'] },
+          },
+          {
+            id: 'tiling',
+            title: 'The Tiling Principle',
+            caption:
+              'Let f: ℝ² → ℝ² be linear, f(<b>x</b>) = A<b>x</b>, with f(<b>e</b><sub>1</sub>) and f(<b>e</b><sub>2</sub>) not scalar multiples of each other. f transforms the tiling of ℝ² by copies of the unit square S into a tiling of ℝ² by copies of its image f(S), a parallelogram. Drag the point <b>s</b> = a<b>e</b><sub>1</sub> + b<b>e</b><sub>2</sub> of S, or f(<b>s</b>). Where does the copy of S to its right (green) go, and why?',
+            from: { lecture: 14, slides: ['Slide02bTiling'] },
+          },
+          {
+            id: 'collapse',
+            title: 'When f(e₁) and f(e₂) are scalar multiples',
+            caption:
+              'What if f(<b>e</b><sub>2</sub>) = 2f(<b>e</b><sub>1</sub>), say? Swing f(<b>e</b><sub>2</sub>) onto 2f(<b>e</b><sub>1</sub>), then drag the point <b>s</b> around S. Where can f(<b>s</b>) be? Does f(S) tile ℝ²?',
+            from: { lecture: 14, slides: ['Slide02cCollapse'] },
+          },
+          {
+            id: 'linear-or-not',
+            title: 'Linear or not?',
+            caption:
+              'The Linearity Principle: a function f: ℝ<sup>n</sup> → ℝ<sup>m</sup> is linear precisely when f(<b>x</b> + <b>y</b>) = f(<b>x</b>) + f(<b>y</b>) and f(c<b>x</b>) = c f(<b>x</b>) for any n-vectors <b>x</b>, <b>y</b> and any scalar c. Each picture moves the grid, the unit square and the F in it to their images under a function ℝ² → ℝ², and back. Which of these functions are linear?',
+            from: { lecture: 14, slides: ['Slide05bLinearOrNot'] },
+          },
+          {
+            id: 'rotations-linear',
+            title: 'Rotations are linear',
+            caption:
+              'R<sub>θ</sub>(<b>v</b>) is the rotation of <b>v</b> counterclockwise by θ around <b>0</b>. Why are R<sub>θ</sub>(<b>v</b> + <b>w</b>) = R<sub>θ</sub>(<b>v</b>) + R<sub>θ</sub>(<b>w</b>) and R<sub>θ</sub>(c<b>v</b>) = cR<sub>θ</sub>(<b>v</b>)? Click one to build it both ways: first the left side, then the right side. Drag θ.',
+            from: { lecture: 14, slides: ['Slide07Rotations'] },
+          },
+          {
+            id: 'rotation-matrix',
+            title: 'The matrix of a rotation',
+            caption:
+              'The columns of the matrix of R<sub>θ</sub> are R<sub>θ</sub>(<b>e</b><sub>1</sub>) and R<sub>θ</sub>(<b>e</b><sub>2</sub>), where <b>e</b><sub>1</sub> and <b>e</b><sub>2</sub> go. What is the matrix of the rotation by π/2? By π/4? Work it out, then drag θ there.',
+            from: { lecture: 14, slides: ['Slide07bRotationMatrix'] },
+          },
+          {
+            id: 'axis-rotations',
+            title: 'Rotations around the coordinate axes',
+            caption:
+              'The rotation of ℝ³ by θ around the z-axis turns the xy-plane by θ and leaves <b>e</b><sub>3</sub> where it is. The columns of its matrix R<sub>z</sub>(θ) are where <b>e</b><sub>1</sub>, <b>e</b><sub>2</sub> and <b>e</b><sub>3</sub> go (in red). Why is the −sin θ of R<sub>y</sub>(θ) below the diagonal, and not above it as in R<sub>x</sub>(θ) and R<sub>z</sub>(θ)? Drag a picture to turn it.',
+            from: { lecture: 14, slides: ['Slide10Axes'] },
+          },
+          {
+            id: 'projection-matrix',
+            title: 'The matrix of a projection',
+            caption:
+              'For a nonzero n-vector <b>w</b>, Proj<sub><b>w</b></sub>: ℝ<sup>n</sup> → ℝ<sup>n</sup> is a linear function, because Proj<sub><b>w</b></sub>(a<b>v</b><sub>1</sub> + b<b>v</b><sub>2</sub>) = a Proj<sub><b>w</b></sub>(<b>v</b><sub>1</sub>) + b Proj<sub><b>w</b></sub>(<b>v</b><sub>2</sub>). For <b>w</b> = (1, 2), what is its matrix?',
+            from: { lecture: 14, slides: ['Slide11Projections'] },
+          },
+          {
+            id: 'transformations-r2',
+            title: 'Linear transformations of ℝ²',
+            caption:
+              'Each picture shows a linear transformation of ℝ² by what it does to the unit square S, with an F in it to show which way round its image is. Linear transformations preserve <b>0</b> and parallelograms, and might “collapse” or “flip” stuff. Can you read each matrix off its picture?',
+            from: { lecture: 14, slides: ['Slide08Gallery'] },
+          },
+        ],
+      },
+      {
+        id: 'matrix-multiplication',
+        title: 'Matrix multiplication',
+        applets: [
+          {
+            id: 'computing-product',
+            title: 'Composition and matrix product',
+            caption:
+              'Let A be an m × n matrix and B an n × p matrix, T<sub>A</sub>(<b>x</b>) = A<b>x</b> and T<sub>B</sub>(<b>x</b>) = B<b>x</b>. Then T<sub>A</sub> ∘ T<sub>B</sub> is a linear transformation, (T<sub>A</sub> ∘ T<sub>B</sub>)(<b>x</b>) = A(B<b>x</b>), and its matrix is the <b>matrix product</b> AB: column j of AB is A<b>b</b><sub>j</sub>, where <b>b</b><sub>j</sub> is column j of B, so the (i, j)-entry of AB is (row i of A) · (column j of B). Click an entry of AB. Why can we multiply an m × n and a p × q matrix only when n = p?',
+            from: { lecture: 14, slides: ['Slide14Computing'] },
+          },
+          {
+            id: 'order-matters',
+            title: 'Order matters',
+            caption:
+              'R<sub>1</sub> turns the ball 90° around the z-axis, and R<sub>2</sub> 90° around the y-axis. Turn it by R<sub>1</sub>, then R<sub>2</sub> (top), or by R<sub>2</sub>, then R<sub>1</sub> (bottom): is R<sub>2</sub> ∘ R<sub>1</sub> = R<sub>1</sub> ∘ R<sub>2</sub>? Try it with a ball of your own.',
+            from: { lecture: 14, slides: ['Slide18Order'] },
+          },
+          {
+            id: 'order-algebra',
+            title: 'The algebra behind',
+            caption:
+              'A and B are the matrices of R<sub>1</sub> and R<sub>2</sub>, so R<sub>2</sub> ∘ R<sub>1</sub> has matrix BA, and R<sub>1</sub> ∘ R<sub>2</sub> has matrix AB: AB ≠ BA. The face looks along <b>e</b><sub>1</sub> and the stem along <b>e</b><sub>3</sub>: where does each rotation send them? Find those vectors in the columns of A and B.',
+            from: { lecture: 14, slides: ['Slide18bMatrices'] },
+          },
+          {
+            id: 'rotations-commute',
+            title: 'Rotations of ℝ² commute',
+            caption:
+              'Unlike rotations of ℝ³, rotations of the plane commute: turning by α, then by β, is turning by α + β, either way round. So the product of the matrices of R<sub>β</sub> and R<sub>α</sub> is the matrix of R<sub>α+β</sub>. Which formulas from trigonometry does that give?',
+            from: { lecture: 14, slides: ['Slide18cCommute'] },
+          },
+        ],
+      },
     ],
   },
   {
