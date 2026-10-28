@@ -4,27 +4,27 @@ import { Arrow } from '../components/Plane.jsx';
 import { CubicContour, NamedPoint, cubic, cubicGrad } from '../components/Cubic.jsx';
 
 export const RED = '#8c1515';
-export const LEN = 1.0; // the arrows' length: they show the direction of the gradient
-// more points on the drawn level curves, at about 1.6 or more from each other (and from (1, 0) and
-// (−2, −1)): x given, y the root of y² + xy + x³ = c
+export const SCALE = 0.18; // each arrow is SCALE ∇f(q), so the lengths show the relative magnitudes
+// more points on the drawn level curves, at 1.4 or more from each other (and from (1, 0) and
+// (−2, −1)), whose arrows stay in the plot and apart: x given, y the root of y² + xy + x³ = c. On
+// the levels 35 and 100 (and −20, −50) ∇f is too large for an arrow at this scale.
 export const onLevel = (c, x, sign) => [x, (-x + sign * Math.sqrt(x * x - 4 * (x ** 3 - c))) / 2];
 export const MORE = [
+  onLevel(-5, -2, 1),
+  onLevel(8, 1, -1),
+  onLevel(8, 0.5, 1),
+  onLevel(8, -1.75, -1),
+  onLevel(1, -0.5, 1),
   onLevel(8, 2, -1),
-  onLevel(1, -1, 1),
-  onLevel(35, 3, 1),
-  onLevel(8, -0.5, -1),
-  onLevel(8, 1, 1),
-  onLevel(-5, -3, -1),
-  onLevel(35, 2.5, 1),
+  onLevel(8, 1.5, 1),
 ];
 
-/** The arrow of length LEN from q in the direction of ∇f(q), and the point q. */
+/** The arrow SCALE ∇f(q) from q, and the point q. */
 export function GradArrow({ p, q }) {
   const [u, v] = cubicGrad(...q);
-  const n = Math.hypot(u, v);
   return (
     <g>
-      <Arrow p={p} from={q} to={[q[0] + (LEN * u) / n, q[1] + (LEN * v) / n]} color={RED} width={3} head={12} />
+      <Arrow p={p} from={q} to={[q[0] + SCALE * u, q[1] + SCALE * v]} color={RED} width={3} head={12} />
       <NamedPoint p={p} at={q} />
     </g>
   );
@@ -34,7 +34,7 @@ export function GradArrow({ p, q }) {
  * Example 2 (board; Mark's Example 1, shortened): the contour plot of f(x, y) = x³ + xy + y², ∇f
  * given, with the points (1, 0) and (−2, −1): (i) ∇f(1, 0), and plot it; (ii) the same
  * at (−2, −1), written out; (iii) what do you observe? The three parts from the start (their answers commented
- * out); key press 1: the direction of ∇f(1, 0) on the plot; 2: of ∇f(−2, −1); 3: at seven more
+ * out); key press 1: ∇f(1, 0) on the plot, to scale; 2: ∇f(−2, −1); 3: ∇f at seven more
  * points of the level curves. Mark's part 3, the tangent line at (−2, −1), is Example 2
  * (continued), after Gradient and level curves.
  */

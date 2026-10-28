@@ -5,11 +5,11 @@ import { GradArrow, MORE } from '../lectures/l11/slides/Slide08Example2.jsx';
 export const lecture = 11;
 
 /* Example 2's picture with every arrow showing, without the questions (the caption asks the last
-   one): the contour plot of f(x, y) = x³ + xy + y², and the direction of ∇f at (1, 0), at
+   one): the contour plot of f(x, y) = x³ + xy + y², and ∇f, to scale, at (1, 0), at
    (−2, −1) and at seven more points of the level curves. */
 export default function GradientDirections() {
   return (
-    <CubicContour title="Contour plot of f(x, y) = x³ + xy + y², with arrows in the direction of the gradient at nine points of the level curves">
+    <CubicContour title="Contour plot of f(x, y) = x³ + xy + y², with arrows showing the gradient, to scale, at nine points of the level curves">
       {(p) => (
         <g>
           {MORE.map((q) => (

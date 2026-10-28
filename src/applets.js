@@ -718,7 +718,7 @@ export const AREAS = [
             id: 'gradient-directions',
             title: 'The gradient on a contour plot',
             caption:
-              'f(x, y) = x³ + xy + y², with ∇f(x, y) = (3x² + y, x + 2y). The arrows show the direction of ∇f at points on the level curves. What do you observe?',
+              'f(x, y) = x³ + xy + y², with ∇f(x, y) = (3x² + y, x + 2y). The arrows show ∇f at points on the level curves, all shrunk by the same factor. What do you observe?',
             from: { lecture: 11, slides: ['Slide08Example2'] },
           },
           {

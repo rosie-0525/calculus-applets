@@ -6,7 +6,7 @@ import Ticks from '../lectures/l11/components/Ticks.jsx';
 import Slider from '../lectures/l11/components/Slider.jsx';
 import { lineColor } from '../lectures/l11/components/levels.js';
 import { B, Sub, MAIN } from '../lectures/l11/components/svgmath.jsx';
-import { f, step, T, N, FAR, START, MIN, BOX, LEVELS, RED, INK, blur } from '../lectures/l11/slides/Slide18Descent.jsx';
+import { f, T, START, going, advance, MIN, BOX, LEVELS, RED, INK, blur } from '../lectures/l11/slides/Slide18Descent.jsx';
 
 export const lecture = 11;
 
@@ -28,9 +28,9 @@ function useSeen(ref) {
 /*
  * Gradient descent's example without the definition (the caption says it): the textbook's Example
  * 11.3.5, f(x, y) = x² − 3xy + 3y² + 5y + 2x, its contour plot, on which gradient descent runs from
- * (0, 0) for 100 steps (slowly at first) towards the minimum (−9, −16/3); under it, the learning
- * rate t (a change starts a new run), Replay, the step number and f(a). On the slide the run starts
- * on a key press; here, the first time the applet is on screen.
+ * (0, 0) towards the minimum (−9, −16/3) until ∇f(a) is nearly 0 (slowly at first, faster after 100
+ * steps); under it, the learning rate t (a change starts a new run), Replay, the step number and
+ * f(a). On the slide the run starts on a key press; here, the first time the applet is on screen.
  */
 export default function Descent() {
   const ref = useRef(null);
@@ -39,16 +39,17 @@ export default function Descent() {
   const [run, setRun] = useState(0);
   const [pts, setPts] = useState([START]);
 
-  // the slide's run: a step every 450 ms for the first four, then every 70 ms
+  // the slide's run: a step every 450 ms for the first four, then every 70 ms, several at a time
+  // from step 100 on
   useEffect(() => {
     setPts([START]);
     if (!seen) return undefined;
     let cur = [START];
     let timer;
     const tick = () => {
-      cur = [...cur, step(cur[cur.length - 1], rate)];
+      cur = advance(cur, rate);
       setPts(cur);
-      if (cur.length <= N && Math.hypot(...cur[cur.length - 1]) < FAR) timer = setTimeout(tick, cur.length < 5 ? 450 : 70);
+      if (going(cur)) timer = setTimeout(tick, cur.length < 5 ? 450 : 70);
     };
     timer = setTimeout(tick, 500);
     return () => clearTimeout(timer);

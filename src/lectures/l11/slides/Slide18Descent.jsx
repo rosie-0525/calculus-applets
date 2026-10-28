@@ -15,15 +15,31 @@ import { PRINT } from '../components/print.js';
 export const f = (x, y) => x * x - 3 * x * y + 3 * y * y + 5 * y + 2 * x;
 export const grad = (x, y) => [2 * x - 3 * y + 2, -3 * x + 6 * y + 5];
 export const T = 0.1;
-export const N = 100; // the number of steps
-export const FAR = 50; // a run stops once the point is this far from (0, 0)
+// a run stops once ‖∇f(a)‖ < TOL, when f(a) reads −22.333, the minimum (after 150 steps for t = 0.1,
+// 1524 for t = 0.01, 257 for t = 0.26), or once the point is FAR from (0, 0) (t ≥ 0.27 diverges),
+// or after N steps (every t on the slider stops sooner)
+export const TOL = 0.01;
+export const FAR = 50;
+export const N = 5000;
 export const START = [0, 0];
 export const step = ([x, y], t) => {
   const [gx, gy] = grad(x, y);
   return [x - t * gx, y - t * gy];
 };
-export const STEPS = [START]; // print mode: t = 0.1, after N steps
-for (let n = 0; n < N; n += 1) STEPS.push(step(STEPS[n], T));
+// whether the run goes on from its last point
+export const going = (pts) => {
+  const a = pts[pts.length - 1];
+  return pts.length <= N && Math.hypot(...a) < FAR && Math.hypot(...grad(...a)) >= TOL;
+};
+// a tick of the animation: the next step, and from step 100 on, the next n/50 steps (n the step
+// number), so that t = 0.01 gets to the minimum in about 20 s
+export const advance = (pts, t) => {
+  const out = [...pts];
+  for (let k = Math.max(1, Math.floor((pts.length - 1) / 50)); k > 0 && going(out); k -= 1) out.push(step(out[out.length - 1], t));
+  return out;
+};
+export const STEPS = [START]; // print mode: the run for t = 0.1
+while (going(STEPS)) STEPS.push(step(STEPS[STEPS.length - 1], T));
 export const MIN = [-9, -16 / 3];
 export const BOX = [
   [-11, 1.5],
@@ -38,9 +54,9 @@ export const blur = (e) => e.currentTarget.blur();
  * Gradient descent: Mark's definition as one sentence (repeatedly replacing a → a − t ∇f(a) to find the
  * minimum); under it, two bullets: to find the maximum, use a → a + t ∇f(a); t is the learning rate. Key press
  * 1: the textbook's Example 11.3.5, f(x, y) = x² − 3xy + 3y² + 5y + 2x, its contour plot, on which
- * gradient descent runs from (0, 0) for 100 steps (slowly at first) towards the minimum (−9, −16/3);
- * under it, a slider for the learning rate t (a change starts a new run), Replay, the step number
- * and f(a). The PDF shows t = 0.1 after 100 steps.
+ * gradient descent runs from (0, 0) towards the minimum (−9, −16/3) until ∇f(a) is nearly 0 (slowly
+ * at first, faster after 100 steps); under it, a slider for the learning rate t (a change starts a
+ * new run), Replay, the step number and f(a). The PDF shows the run for t = 0.1 (150 steps).
  */
 export default function Slide18Descent() {
   const marker = useRef(null);
@@ -56,9 +72,9 @@ export default function Slide18Descent() {
     let cur = [START];
     let timer;
     const tick = () => {
-      cur = [...cur, step(cur[cur.length - 1], rate)];
+      cur = advance(cur, rate);
       setPts(cur);
-      if (cur.length <= N && Math.hypot(...cur[cur.length - 1]) < FAR) timer = setTimeout(tick, cur.length < 5 ? 450 : 70);
+      if (going(cur)) timer = setTimeout(tick, cur.length < 5 ? 450 : 70);
     };
     timer = setTimeout(tick, 500);
     return () => clearTimeout(timer);
