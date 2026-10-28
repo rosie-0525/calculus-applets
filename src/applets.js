@@ -534,6 +534,129 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'markov-chains',
+        title: 'Markov chains',
+        applets: [
+          {
+            id: 'birds-stay',
+            title: 'Where will the birds be in 20 years?',
+            caption:
+              'Three islands, 10,000 birds on each (each bird drawn stands for 100). Every year, half the birds on island A fly to B and half to C; half the birds on B fly to A and half to C; the birds on C all stay. Watch the first year, one island at a time, and then the years go by: where are the birds after 20 years?',
+            from: { lecture: 16, slides: ['Slide01bBirds'] },
+          },
+          {
+            id: 'birds-settle',
+            title: 'When some birds leave island C',
+            caption:
+              'Now a third of the birds on island C stay, a third fly to A and a third to B; A and B as before. Watch the years go by: what happens to the numbers of birds? Do the birds stop flying?',
+            from: { lecture: 16, slides: ['Slide01cBirdsSettle'] },
+          },
+          {
+            id: 'transition-diagram',
+            title: 'Transition diagram',
+            caption:
+              'The <b>transition diagram</b> of the migration draws each island as a circle, and each flight as an arrow with the fraction of the island’s birds that take it. Click a rule to draw its island’s arrows again: what do the fractions on the arrows out of an island add up to?',
+            from: { lecture: 16, slides: ['Slide02bDiagram'] },
+          },
+          {
+            id: 'column-sums',
+            title: 'The matrix of the migration',
+            caption:
+              'Let <b>n</b><sub>k</sub> = (A<sub>k</sub>, B<sub>k</sub>, C<sub>k</sub>) be the numbers of birds on islands A, B, C after k years. Then <b>n</b><sub>k+1</sub> = M<b>n</b><sub>k</sub> for this M, so <b>n</b><sub>k</sub> = M<sup>k</sup><b>n</b><sub>0</sub>. Which sums of M must be 1: each row sum, each column sum, or the sum of all its entries? Click a column of M: whose birds does it follow?',
+            from: { lecture: 16, slides: ['Slide04PollSums'] },
+          },
+          {
+            id: 'markov-or-not',
+            title: 'Markov chain or not?',
+            caption:
+              'A <b>Markov chain</b> is a process in which the evolution of a system depends on the current state of the system, but not on its previous states. Which of these four processes are Markov chains? Click a picture to check.',
+            from: { lecture: 16, slides: ['Slide07Markov'] },
+          },
+          {
+            id: 'long-run',
+            title: 'Where do the birds end up?',
+            caption:
+              'Back to the first migration, where no bird leaves island C. Its matrix M is a <b>Markov matrix</b>: a square matrix with non-negative entries, where the entries in each column add up to 1. Let <b>p</b><sub>k</sub> be the fractions of the birds on islands A, B, C after k years, a <b>probability vector</b> (its entries are non-negative and add up to 1): <b>p</b><sub>0</sub> = (⅓, ⅓, ⅓) and <b>p</b><sub>k</sub> = M<sup>k</sup><b>p</b><sub>0</sub>. Click the calendar for the next year: what happens to M<sup>k</sup> and <b>p</b><sub>k</sub>?',
+            from: { lecture: 16, slides: ['Slide08dAllOnCLong'] },
+          },
+          {
+            id: 'casino',
+            fun: true,
+            title: 'A night at the casino',
+            caption:
+              'You walk in with $40, hoping to leave with $100, and bet $20 on red at each spin of a fair roulette wheel (3 of its 6 pockets are red), until you have $100 or nothing. Play a few nights: what is the chance that you leave with $100?',
+            from: { lecture: 16, slides: ['Slide17bCasino'] },
+          },
+          {
+            id: 'gamblers-ruin',
+            fun: true,
+            title: 'Gambler’s ruin',
+            caption:
+              'Your money, $0 to $100, is the state of a Markov chain: at each spin it goes up $20 with probability ½ (red) and down $20 with probability ½ (black), and at $0 or $100 the game is over. With its Markov matrix M, the probabilities <b>p</b>(n) that you have $0, $20, …, $100 after n spins are <b>p</b>(n) = M<sup>n</sup><b>p</b>(0).',
+            from: { lecture: 16, slides: ['Slide18Gambler'] },
+          },
+          {
+            id: 'leave-with-100',
+            fun: true,
+            title: 'Do you leave with $100?',
+            caption:
+              'Step through the spins: where do the probabilities <b>p</b>(n) = M<sup>n</sup><b>p</b>(0) go as n grows? Then change your goal: how does your chance of reaching it change?',
+            from: { lecture: 16, slides: ['Slide19WhoWins'] },
+          },
+        ],
+      },
+      {
+        id: 'equilibrium',
+        title: 'Equilibrium vectors',
+        applets: [
+          {
+            id: 'matrix-powers',
+            title: 'High powers of a Markov matrix',
+            caption:
+              '<b>Theorem.</b> If M is a Markov matrix where M<sup>a</sup> has all positive entries for some positive integer a, then M<sup>k</sup> → [<b>u</b> <b>u</b> ⋯ <b>u</b>] as k → ∞, where <b>u</b> is the unique probability vector with M<b>u</b> = <b>u</b>, the <b>equilibrium vector</b> (or <b>stationary vector</b>) of M. Here M is the textbook’s migration, and M<sup>2</sup> has all positive entries. Step k: what happens to the columns of M<sup>k</sup>? Check that M<b>u</b> = <b>u</b>.',
+            from: { lecture: 16, slides: ['Slide10Equilibrium'] },
+          },
+          {
+            id: 'initial-distribution',
+            title: 'Independence of the initial distribution',
+            caption:
+              'In the long run, the fractions of the birds on islands A, B, C are the entries of <b>u</b> = (2/7, 2/7, 3/7). Click an island to start all 30,000 birds there: where do the numbers settle? Why does M<sup>k</sup> → [<b>u</b> ⋯ <b>u</b>] give <b>p</b><sub>k</sub> = M<sup>k</sup><b>p</b><sub>0</sub> → <b>u</b> for any initial probability vector <b>p</b><sub>0</sub>?',
+            from: { lecture: 16, slides: ['Slide11PollLimit'] },
+          },
+          {
+            id: 'why-positive',
+            title: 'Why all positive entries?',
+            caption:
+              'The theorem needs a power of M with all positive entries. No power of M has all positive entries in these two Markov chains: what goes wrong in each? Think first, then click to check. And the first migration, where no bird leaves island C: is it irreducible? Does M<sup>k</sup> have a limit anyway?',
+            from: { lecture: 16, slides: ['Slide12bWhyPositive'] },
+          },
+          {
+            id: 'random-surfer',
+            fun: true,
+            title: 'A random surfer on the internet',
+            caption:
+              'On each page, a random surfer clicks a random link (85% of the time) or types in a random page (15%). In the long run, what fraction of the time does the surfer spend on each page? The longer, the more important the page.',
+            from: { lecture: 16, slides: ['Slide19bSurfer'] },
+          },
+          {
+            id: 'pagerank-surfers',
+            fun: true,
+            title: 'PageRank',
+            caption:
+              'Google’s PageRank (Larry Page and Sergey Brin, 1998) models the random surfer by a Markov chain. Here 300 surfers click at once, all on Math 51 at first, and each page’s bar shows its entry of <b>p</b><sub>k</sub> = M<sup>k</sup><b>p</b><sub>0</sub>. Click a page to start them all there: where do the bars settle? Google ranks the pages by the entries of the stationary vector <b>u</b>.',
+            from: { lecture: 16, slides: ['Slide13PageRank'] },
+          },
+          {
+            id: 'shuffles',
+            fun: true,
+            title: 'How many times should we shuffle a deck of cards?',
+            caption:
+              'A riffle shuffle cuts the deck in about half and interleaves the two packets. The 52! ≈ 8 × 10<sup>67</sup> orders of the deck are the states of a Markov chain, whose stationary vector makes every order equally likely. Shuffle the rainbow deck: when does it look mixed? Bayer and Diaconis (Stanford, 1992) computed how far k shuffles are from perfectly mixed.',
+            from: { lecture: 16, slides: ['Slide14Shuffles'] },
+          },
+        ],
+      },
     ],
   },
   {

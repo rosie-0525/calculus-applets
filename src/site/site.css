@@ -965,6 +965,84 @@ body {
   border-top: 1.5px solid #d1d5db;
 }
 
+/* Lecture 16: in a narrow box, the pictures and the text or matrices beside them one under the
+   other; the birds' rules (and u) under the picture, set large, since the picture is scaled down
+   so far; the four processes of markov-or-not.jsx and the four matrices of matrix-powers.jsx two
+   by two; the wide pictures (the ladder, the deck of cards) narrower; the cards of
+   why-positive.jsx with their matrix and text under the picture */
+.viz .viz-scale.narrow :is(.l16-sums-why, .l16-gr-row) {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l16-diag, .l16-long, .l16-cas, .l16-gr-wins, .l16-rs, .l16-pr, .l16-shuffle-row) {
+  grid-template-columns: auto;
+  justify-items: center;
+  row-gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-cas {
+  width: 520px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-birds-frame > .l16-birds-rules {
+  position: static;
+  width: auto;
+  margin-top: 14px;
+  background: none;
+  font-size: 40px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-birds-frame > .l16-birds-u {
+  justify-content: center;
+}
+
+.viz .viz-scale.narrow .reveal .l16-birds-frame > .l16-birds-u p {
+  width: auto;
+}
+
+.viz .viz-scale.narrow .viz-col:has(> .l16-birds-frame) > .viz-toggle {
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.viz .viz-scale.narrow .viz-col:has(> .l16-birds-frame) > .viz-toggle .viz-button {
+  font-size: 40px;
+  padding: 8px 30px;
+  border-width: 2px;
+  border-radius: 14px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-mc-examples {
+  grid-template-columns: repeat(2, 1fr);
+  width: 560px;
+  row-gap: 28px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-eq {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  gap: 24px 32px;
+}
+
+.viz .viz-scale.narrow .reveal .l16-why-card {
+  grid-template-columns: auto;
+  justify-items: center;
+  gap: 10px;
+  padding: 0.5em 0.7em;
+}
+
+.viz .viz-scale.narrow .reveal .why-col {
+  width: 620px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l16-ladder, .l16-deck) {
+  width: 640px;
+  height: auto;
+}
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
@@ -1200,6 +1278,138 @@ body {
 .viz .viz-scale .reveal .ops-col .l15-rc-item {
   align-items: flex-start;
   padding-left: 1.2em;
+}
+
+/* Lecture 16's buttons: a rule, a cartoon to click, in the deck's font and colours */
+.viz .viz-scale .reveal :is(button.diag-pick, button.mc-check) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal :is(button.diag-pick, button.mc-check):focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+/* transition-diagram.jsx: a rule as wide as its line, its highlight (the slide's, behind the li)
+   behind the button */
+.viz .viz-scale .reveal button.diag-pick {
+  position: relative;
+}
+
+.viz .viz-scale .reveal button.diag-pick:hover {
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+  text-underline-offset: 4px;
+}
+
+/* markov-or-not.jsx: the cartoons on a card that lifts under the pointer; the cards as wide as on
+   the slide, so that a verdict wraps instead of widening them */
+.viz .viz-scale .reveal .l16-mc-examples {
+  width: 1080px;
+}
+
+.viz .viz-scale .reveal button.mc-check {
+  padding: 6px;
+  transition: box-shadow 0.15s ease;
+}
+
+.viz .viz-scale .reveal button.mc-check:hover,
+.viz .viz-scale .reveal button.mc-check[aria-pressed='true'] {
+  box-shadow: 0 2px 10px rgba(20, 33, 61, 0.18);
+}
+
+.viz .viz-scale .reveal .l16-mc-why .mc-ask {
+  color: #9ca3af;
+}
+
+/* column-sums.jsx: a column of M to click */
+.viz .viz-scale .reveal .sums-pick :is(.l16-ft-entry, .l16-ft-band, .l16-ft-from) {
+  cursor: pointer;
+}
+
+/* transition-diagram.jsx, column-sums.jsx: the arrows drawn once, still (the slide draws them on
+   a key press); the island picked (IslandMap's fragment index 10 or 11, by turns) drawn again on
+   each click, by keyframes of the page's own, one name per index */
+.viz .viz-scale .reveal .redraw-pick .fragment.l16-isles-redraw.visible > * {
+  animation: none;
+}
+
+.viz .viz-scale .reveal .redraw-pick .fragment.l16-isles-redraw.visible[data-fragment-index='10'] > polyline {
+  animation: site-redraw-a 0.8s ease-out both;
+}
+
+.viz .viz-scale .reveal .redraw-pick .fragment.l16-isles-redraw.visible[data-fragment-index='11'] > polyline {
+  animation: site-redraw-b 0.8s ease-out both;
+}
+
+.viz .viz-scale .reveal .redraw-pick .fragment.l16-isles-redraw.visible[data-fragment-index='10'] > :not(polyline) {
+  animation: site-redraw-end-a 0.8s both;
+}
+
+.viz .viz-scale .reveal .redraw-pick .fragment.l16-isles-redraw.visible[data-fragment-index='11'] > :not(polyline) {
+  animation: site-redraw-end-b 0.8s both;
+}
+
+@keyframes site-redraw-a {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes site-redraw-b {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes site-redraw-end-a {
+  0%,
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes site-redraw-end-b {
+  0%,
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* casino.jsx: the story as wide as on the slide, beside the wheel */
+.viz .viz-scale .reveal .l16-cas {
+  width: 1000px;
+}
+
+/* long-run.jsx: room for "Fraction of birds …", which juts out 2em to the left of M^k (the slide
+   has room for it), so that the box is as wide as what it shows */
+.viz .viz-scale .reveal .l16-long-left {
+  padding-left: 2em;
+}
+
+/* shuffles.jsx: the blue box's two lines as one box (on the slide the second is a fragment, and
+   the first's lower corners square only once it is shown) */
+.viz .viz-scale .reveal .l16-shuffle-text .l16-shuffle-more p:first-child {
+  border-radius: 10px 10px 0 0;
 }
 
 /* sierra.jsx: drawing a route does not select the map's labels; lagrange.jsx, rainbow.jsx: nor
