@@ -920,6 +920,51 @@ body {
   white-space: nowrap;
 }
 
+/* Lecture 15: in a narrow box, the pictures (and the text or tiles beside them) one under the
+   other; the two columns of order-cost.jsx's and row-operations.jsx's tables, and the cards of
+   order-uses.jsx, one under the other too, a rule between them */
+.viz .viz-scale.narrow :is(.l15-summap, .l15-cancel, .l15-dmaps, .l15-ex1-parts, .l15-tri-bottom, .l15-triprod) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal .l15-triprod > .l15-eq-row {
+  margin-top: 0;
+}
+
+.viz .viz-scale.narrow .reveal .l15-order {
+  grid-template-columns: 580px;
+}
+
+.viz .viz-scale.narrow .reveal .ops-col.l15-rc {
+  grid-template-columns: auto;
+  width: 560px;
+}
+
+.viz .viz-scale.narrow .reveal .race-col {
+  width: 600px;
+}
+
+.viz .viz-scale.narrow .reveal .l15-race-top {
+  flex-wrap: wrap;
+}
+
+.viz .viz-scale.narrow .reveal .l15-race-row {
+  grid-template-columns: auto 1fr auto;
+}
+
+.viz .viz-scale.narrow .reveal .l15-race-uses {
+  grid-template-columns: auto;
+  row-gap: 20px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l15-order-side, .l15-rc-side) + :is(.l15-order-side, .l15-rc-side) {
+  margin-top: 0.6em;
+  padding-top: 0.6em;
+  border-left: none;
+  border-top: 1.5px solid #d1d5db;
+}
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
@@ -1069,6 +1114,92 @@ body {
 .viz .viz-scale .reveal .l14-spin-text {
   flex: none;
   width: 470px;
+}
+
+/* Lecture 15's buttons: a picture, a tile, a row of a table or a product to click, in the deck's
+   font and colours */
+.viz .viz-scale .reveal :is(button.order-pick, button.scale-pick, button.dmap-pick, button.ops-pick) {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal :is(button.order-pick, button.scale-pick, button.ops-pick) {
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  text-align: left;
+}
+
+.viz .viz-scale .reveal :is(button.order-pick, button.ops-pick):hover {
+  background: #f3f4f6;
+}
+
+.viz .viz-scale .reveal :is(button.order-pick, button.scale-pick, button.dmap-pick, button.ops-pick):focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+/* associativity.jsx: a shortcut not drawn yet (drawn on, by the deck's transition, once it is in a
+   `fragment visible`) */
+.viz .viz-scale .reveal .assoc-undrawn {
+  opacity: 0;
+}
+
+/* order-cost.jsx: a product a row of the table, as wide as it; its count ? until it is clicked */
+.viz .viz-scale .reveal button.order-pick {
+  width: 100%;
+}
+
+/* order-race.jsx, order-uses.jsx: the slide's colours (on its section there) and width */
+.viz .race-col {
+  --race-fwd: #9aa1ad;
+  --race-back: #6fb6f2;
+  --race-back-text: #3f97dd;
+  --race-method: #dd6b20;
+  width: 1100px;
+}
+
+/* scaling.jsx: a picture's columns S(e₁), S(e₂) hidden until it is clicked */
+.viz .viz-scale .scale-closed .l15-scale-plot .fragment {
+  opacity: 0;
+}
+
+/* triangular.jsx: the two patterns over the rest, in the middle (on the slide, beside the
+   definition) */
+.viz .viz-scale .reveal .tri-col .l15-tri-shapes {
+  align-self: center;
+  font-size: 0.8em;
+}
+
+/* adding-rows.jsx, row-operations.jsx: a product a ? until it is clicked; the table as wide as with
+   every product computed, each product from the left, so that nothing moves on a click */
+.viz .viz-scale .reveal .ops-ask {
+  display: block;
+  padding: 0.3em 0.6em;
+  color: var(--ink-soft);
+}
+
+.viz .viz-scale .reveal .adds-col .l15-adds {
+  width: 960px;
+}
+
+.viz .viz-scale .reveal .adds-col .l15-adds-a {
+  align-self: center;
+}
+
+.viz .viz-scale .reveal .ops-col.l15-rc {
+  width: 1100px;
+}
+
+.viz .viz-scale .reveal .ops-col .l15-rc-side {
+  align-items: stretch;
+}
+
+.viz .viz-scale .reveal .ops-col .l15-rc-item {
+  align-items: flex-start;
+  padding-left: 1.2em;
 }
 
 /* sierra.jsx: drawing a route does not select the map's labels; lagrange.jsx, rainbow.jsx: nor

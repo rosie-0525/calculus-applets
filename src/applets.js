@@ -423,6 +423,117 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'matrix-algebra',
+        title: 'Matrix algebra',
+        applets: [
+          {
+            id: 'sum-maps',
+            title: 'What A + B does',
+            caption:
+              'The <b>sum</b> A + B of two m × n matrices adds their entries, and the linear functions associated to A, B and A + B satisfy T<sub>A+B</sub>(<b>x</b>) = T<sub>A</sub>(<b>x</b>) + T<sub>B</sub>(<b>x</b>). Here A is a shear and B the rotation by 90°. Drag <b>x</b>: where is (A + B)<b>x</b>, compared with A<b>x</b> and B<b>x</b>?',
+            from: { lecture: 15, slides: ['Slide04SumMaps'] },
+          },
+          {
+            id: 'scalar-maps',
+            title: 'What cA does',
+            caption:
+              'The <b>scalar multiple</b> cA multiplies every entry of A by c, and T<sub>cA</sub>(<b>x</b>) = cT<sub>A</sub>(<b>x</b>). Drag <b>x</b>, and move c: where is (cA)<b>x</b> when c is negative? When c = 0?',
+            from: { lecture: 15, slides: ['Slide04bScalarMaps'] },
+          },
+          {
+            id: 'associativity',
+            title: 'Multiplication is associative',
+            caption:
+              '(AB)C = A(BC) for any matrices A (m × n), B (n × p) and C (p × k). Why? BC is the matrix of T<sub>B</sub> ∘ T<sub>C</sub>, so A(BC) is the matrix of T<sub>A</sub> ∘ T<sub>BC</sub>, and (AB)C is the matrix of T<sub>AB</sub> ∘ T<sub>C</sub>. Where does each one send <b>x</b> in ℝ<sup>k</sup>? Click a shortcut to draw it.',
+            from: { lecture: 15, slides: ['Slide08Associative'] },
+          },
+          {
+            id: 'order-cost',
+            title: 'Which order is faster?',
+            caption:
+              'By associativity, (AB)C and A(BC) are the same matrix, but they take different amounts of work. Each entry of the product of a p × q and a q × s matrix takes q multiplications. Click a product to count its multiplications: which way round is faster here, and why?',
+            from: { lecture: 15, slides: ['Slide08bOrder'] },
+          },
+          {
+            id: 'order-race',
+            title: 'How much faster?',
+            caption:
+              'For n × n matrices A and B and an n × 1 matrix C, computing (AB)C takes n³ + n² multiplications, and A(BC) takes 2n². Move n: how long does each take, at a billion multiplications a second?',
+            from: { lecture: 15, slides: ['Slide08cRace'] },
+          },
+          {
+            id: 'no-cancellation',
+            title: 'No cancellation law',
+            caption:
+              'For numbers, ab = ac with a ≠ 0 gives b = c, but for matrices AB = AC does not imply B = C. Here B turns <b>x</b> to B<b>x</b>, C flips it to C<b>x</b>, and then A squashes the plane onto the x-axis. Drag <b>x</b>: why is A(B<b>x</b>) = A(C<b>x</b>) for every <b>x</b>? Write down A, B and C, and check that AB = AC.',
+            from: { lecture: 15, slides: ['Slide09Cancellation'] },
+          },
+          {
+            id: 'order-uses',
+            title: 'Neural networks and video games',
+            fun: true,
+            caption:
+              'Training a neural network runs vectors through its layers, forward to a prediction and back (backpropagation), each layer a matrix: products like A(BC), with C a vector, for a huge n. A video game applies the same three 4 × 4 matrices to a million points <b>x</b>, the corners of its blocks: it computes ABC once (128 multiplications), then 16 per point, against 48 per point for A(B(C<b>x</b>)).',
+            from: { lecture: 15, slides: ['Slide08cRace'] },
+          },
+        ],
+      },
+      {
+        id: 'diagonal-triangular',
+        title: 'Diagonal and triangular matrices',
+        applets: [
+          {
+            id: 'scaling',
+            title: 'Scaling',
+            caption:
+              'A <b>scaling</b> S(x<sub>1</sub>, x<sub>2</sub>) = (d<sub>1</sub>x<sub>1</sub>, d<sub>2</sub>x<sub>2</sub>) multiplies x<sub>1</sub> by d<sub>1</sub> and x<sub>2</sub> by d<sub>2</sub>. The columns of its matrix are S(<b>e</b><sub>1</sub>) and S(<b>e</b><sub>2</sub>): what is the matrix of each of these four? Click a picture to check.',
+            from: { lecture: 15, slides: ['Slide02dScaling'] },
+          },
+          {
+            id: 'diagonal-maps',
+            title: 'What diagonal matrices do',
+            caption:
+              'The <b>diagonal</b> of an m × n matrix A consists of its entries a<sub>ii</sub>, and A is <b>diagonal</b> if all its other entries are zero. A diagonal 2 × 2 matrix is a scaling, but d<sub>1</sub> and d<sub>2</sub> can be negative or zero. Click a matrix, or move d<sub>1</sub> and d<sub>2</sub>: which ones stretch, reflect or project the plane?',
+            from: { lecture: 15, slides: ['Slide12DiagonalMaps'] },
+          },
+          {
+            id: 'diagonal-products',
+            title: 'Multiplying by a diagonal matrix',
+            caption:
+              'A = diag(2, 1) doubles x<sub>1</sub>. Watch T<sub>A</sub> ∘ T<sub>B</sub> (first B, then A) and T<sub>B</sub> ∘ T<sub>A</sub> (first A, then B) move the unit square, <b>e</b><sub>1</sub> and <b>e</b><sub>2</sub>. Why does AB double the first row of B, and BA its first column? What do DA and AD do for any diagonal D?',
+            from: { lecture: 15, slides: ['Slide13cExample1Maps'] },
+          },
+          {
+            id: 'triangular',
+            title: 'Triangular matrices',
+            caption:
+              'A matrix is <b>upper triangular</b> when its only nonzero entries are on or above its diagonal, and <b>lower triangular</b> when they are on or below it. The shears [1 1; 0 1] and [1 0; 1 1] are triangular: which way does each one push the unit square?',
+            from: { lecture: 15, slides: ['Slide16Triangular'] },
+          },
+          {
+            id: 'triangular-products',
+            title: 'Products of triangular matrices',
+            caption:
+              'The product of two upper triangular matrices is upper triangular, and the product of two lower triangular matrices is lower triangular. Why? Point at an entry of UV below its diagonal: why does each term of (row i of U) · (column j of V) have a factor 0?',
+            from: { lecture: 15, slides: ['Slide17TriangularProducts'] },
+          },
+          {
+            id: 'adding-rows',
+            title: 'Adding rows and columns',
+            caption:
+              'Each E is the identity matrix with one more entry c. Before you click EA or AE to compute it, guess: what does multiplying by E on the left do to the rows of A? On the right, to its columns?',
+            from: { lecture: 15, slides: ['Slide18bAddRows'] },
+          },
+          {
+            id: 'row-operations',
+            title: 'Row and column operations',
+            caption:
+              'Multiplying A on the left does <b>row operations</b> on A; multiplying on the right does <b>column operations</b>. Here D is diagonal and E adds a multiple of one row or column to another. Click a product to compute it: which operation does it do?',
+            from: { lecture: 15, slides: ['Slide19RowOps'] },
+          },
+        ],
+      },
     ],
   },
   {
