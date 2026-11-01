@@ -657,6 +657,82 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'inverses',
+        title: 'Matrix inverses',
+        applets: [
+          {
+            id: 'undo-life',
+            title: 'Which can be undone?',
+            caption:
+              'A transformation is <b>invertible</b> if it can be undone. Which of these three can be undone? Think first, then click a picture to check.',
+            from: { lecture: 18, slides: ['Slide02aLife'] },
+          },
+          {
+            id: 'invertible-or-not',
+            title: 'Invertible or not?',
+            caption:
+              'A linear transformation T: ℝ<sup>n</sup> → ℝ<sup>n</sup> is <b>invertible</b> (think: “reversible”) if there exists a linear transformation S: ℝ<sup>n</sup> → ℝ<sup>n</sup> for which S ∘ T and T ∘ S are both the identity function. Which of these six are invertible, and what is S for each? Think first, then click a picture to check.',
+            from: { lecture: 18, slides: ['Slide02bUndo', 'Slide03Invertible'] },
+          },
+          {
+            id: 'inverse-matrix',
+            title: 'The inverse of a matrix',
+            caption:
+              'An n × n matrix A is <b>invertible</b> if there exists an n × n matrix B for which AB = BA = I<sub>n</sub>. Then B is called the <b>inverse</b> of A, written A<sup>−1</sup>. Watch the rotation by 90° and the reflection across the y-axis, each undone: why is the reflection its own inverse? One side is enough: if AB = I<sub>n</sub>, then BA = I<sub>n</sub> too.',
+            from: { lecture: 18, slides: ['Slide04aInverseName', 'Slide04bNotAll'] },
+          },
+          {
+            id: 'not-invertible',
+            title: 'Not all square matrices are invertible',
+            caption:
+              'Every real number a ≠ 0 has an inverse 1/a, but not every matrix A ≠ 0 has one. Here T<sub>A</sub> takes two points to the same point: why can no T<sub>B</sub> bring F back?',
+            from: { lecture: 18, slides: ['Slide04bNotAll'] },
+          },
+          {
+            id: 'one-sided',
+            title: 'Only square matrices can be invertible',
+            caption:
+              'A linear transformation T: ℝ<sup>n</sup> → ℝ<sup>m</sup> cannot be invertible when n ≠ m, even though a one-sided inverse might exist. Here T<sub>A</sub> lifts the plane ℝ<sup>2</sup> onto a plane in ℝ<sup>3</sup>, and T<sub>B</sub> squashes ℝ<sup>3</sup> straight down onto ℝ<sup>2</sup>. Why does T<sub>B</sub> ∘ T<sub>A</sub> bring every point back, but not T<sub>A</sub> ∘ T<sub>B</sub>?',
+            from: { lecture: 18, slides: ['Slide04cCaution'] },
+          },
+          {
+            id: 'inverse-formula',
+            title: 'The inverse of a 2 × 2 matrix',
+            caption:
+              'The <b>determinant</b> of a 2 × 2 matrix A = [a b; c d] is det(A) = ad − bc. If det(A) ≠ 0, then A is invertible and A<sup>−1</sup> = (1/(ad − bc)) [d −b; −c a]; if det(A) = 0, then A is not invertible. Take the three steps one by one: why does it fail when ad − bc = 0?',
+            from: { lecture: 18, slides: ['Slide07Determinant'] },
+          },
+          {
+            id: 'determinant-area',
+            title: 'Determinant and area',
+            caption:
+              'A linear transformation T<sub>A</sub>(<b>x</b>) = A<b>x</b> “stretches” things: it takes the unit square to a parallelogram with area |det(A)|. Pick an example, or drag the tips of A<b>e</b><sub>1</sub> and A<b>e</b><sub>2</sub>: when is the area 0, and why is A then not invertible?',
+            from: { lecture: 18, slides: ['Slide08Area'] },
+          },
+          {
+            id: 'diagonal-inverse',
+            title: 'Inverse of a diagonal matrix',
+            caption:
+              'If A is diagonal with diagonal entries a<sub>1</sub>, …, a<sub>n</sub>, all nonzero, then A<sup>−1</sup> is diagonal with diagonal entries 1/a<sub>1</sub>, …, 1/a<sub>n</sub>. If some a<sub>i</sub> = 0, then A is not invertible. Why?',
+            from: { lecture: 18, slides: ['Slide09Diagonal'] },
+          },
+          {
+            id: 'socks-shoes',
+            title: 'Socks and shoes',
+            caption:
+              'If A and B are invertible n × n matrices, then so is AB, and (AB)<sup>−1</sup> = B<sup>−1</sup>A<sup>−1</sup>. First the sock (B), then the shoe (A): in which order do they come off? Step through it.',
+            from: { lecture: 18, slides: ['Slide14Socks'] },
+          },
+          {
+            id: 'systems',
+            title: 'Solving systems of linear equations',
+            caption:
+              'A system of n linear equations in n unknowns can be written as A<b>x</b> = <b>b</b>, where A is an n × n matrix. If A is invertible, A<b>x</b> = <b>b</b> has exactly one solution, <b>x</b> = A<sup>−1</sup><b>b</b>; if not, it has no solution or infinitely many, depending on <b>b</b>. What is det(A) for each of these three systems, and how many solutions does each have? Think first, then click a picture to check.',
+            from: { lecture: 18, slides: ['Slide12Systems'] },
+          },
+        ],
+      },
     ],
   },
   {
@@ -1173,6 +1249,41 @@ export const AREAS = [
             caption:
               'Training a model by gradient descent needs the derivative matrix of the composition f<sub>3</sub> ∘ f<sub>2</sub> ∘ f<sub>1</sub>, a product of three derivative matrices by the chain rule. Why is it so much faster to multiply them from the left?',
             from: { lecture: 17, slides: ['Slide12cAI'] },
+          },
+        ],
+      },
+      {
+        id: 'newtons-method',
+        title: 'Newton’s method',
+        applets: [
+          {
+            id: 'newton-tangent',
+            title: 'Newton’s method in one variable',
+            caption:
+              'To solve f(x) = 0, start with a guess a<sub>1</sub>. Near a<sub>1</sub>, f(x) ≈ f(a<sub>1</sub>) + f′(a<sub>1</sub>)(x − a<sub>1</sub>), the tangent line, which crosses the x-axis at a better guess a<sub>2</sub> = a<sub>1</sub> − f(a<sub>1</sub>)/f′(a<sub>1</sub>). Then a<sub>k+1</sub> = a<sub>k</sub> − f(a<sub>k</sub>)/f′(a<sub>k</sub>) for k = 1, 2, 3, …. Take the steps one by one: how much closer does each step get?',
+            from: { lecture: 18, slides: ['Slide15Newton1'] },
+          },
+          {
+            id: 'newton-1669',
+            title: 'Newton’s example (1669)',
+            caption:
+              'Newton solved x<sup>3</sup> − 2x − 5 = 0, which is hard to solve algebraically. Start with a<sub>1</sub> = 3 and take the steps one by one: how many digits of a<sub>k</sub> are right after each step? The last step shows which.',
+            from: { lecture: 18, slides: ['Slide15bNewtonExample'] },
+          },
+          {
+            id: 'newton-steps',
+            title: 'Newton’s method for many equations',
+            caption:
+              'Any system of n equations in n unknowns may be written as f(<b>x</b>) = <b>0</b> for some f: ℝ<sup>n</sup> → ℝ<sup>n</sup>. Start with a guess <b>a</b><sub>1</sub>, and let <b>a</b><sub>k+1</sub> = <b>a</b><sub>k</sub> − ((Df)(<b>a</b><sub>k</sub>))<sup>−1</sup> f(<b>a</b><sub>k</sub>), as long as (Df)(<b>a</b><sub>k</sub>) is invertible. Here the zeros of f are where its two curves f<sub>1</sub> = 0 and f<sub>2</sub> = 0 cross. Click the picture to start from another point: which zero does it find?',
+            from: { lecture: 18, slides: ['Slide19Path'] },
+          },
+          {
+            id: 'newton-basins',
+            fun: true,
+            title: 'Which zero does Newton’s method find?',
+            caption:
+              'Each starting point <b>a</b><sub>1</sub> is coloured by the zero of f that Newton’s method converges to from it: orange for r<sub>1</sub>, blue for r<sub>2</sub>, green for r<sub>3</sub>. Near the boundaries the colours mix in a fractal. Click a zero to hide or show its region.',
+            from: { lecture: 18, slides: ['Slide18bBasins'] },
           },
         ],
       },

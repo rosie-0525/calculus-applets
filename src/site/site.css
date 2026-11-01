@@ -1100,6 +1100,234 @@ body {
   border-radius: 16px;
 }
 
+/* Lecture 18's buttons: a picture to click (undo-life.jsx, invertible-or-not.jsx, systems.jsx), a
+   zero to show (newton-basins.jsx), on a card that lifts under the pointer, in the deck's font; what
+   a picture asks until it is clicked, gray */
+.viz .viz-scale .reveal :is(button.inv-pick, button.inv-step) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.viz .viz-scale .reveal button.inv-pick:hover,
+.viz .viz-scale .reveal button.inv-pick[aria-pressed='true'] {
+  box-shadow: 0 2px 10px rgba(20, 33, 61, 0.18);
+}
+
+.viz .viz-scale .reveal :is(button.inv-pick, button.inv-step):focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 2px;
+}
+
+.viz .viz-scale .reveal :is(.inv-ask, .l18-system-label.inv-ask) {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.viz .viz-scale .reveal button.inv-pick svg {
+  display: block;
+}
+
+/* inverse-formula.jsx: a step of the recipe to click, underlined under the pointer, the steps done
+   in ink and the others gray */
+.viz .viz-scale .reveal button.inv-step {
+  padding: 0 4px;
+  color: #6b7280;
+}
+
+.viz .viz-scale .reveal button.inv-step[aria-pressed='true'] {
+  color: inherit;
+}
+
+.viz .viz-scale .reveal button.inv-step:hover {
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+  text-underline-offset: 4px;
+}
+
+.viz .viz-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+  color: var(--site-link);
+  background: var(--site-paper);
+}
+
+/* determinant-area.jsx: the picture dragged by the tips of Ae₁ and Ae₂ */
+.viz .viz-scale .reveal .area-drag {
+  cursor: grab;
+  touch-action: none;
+}
+
+.viz .viz-scale .reveal .area-drag:active {
+  cursor: grabbing;
+}
+
+/* systems.jsx: A and det(A) under each picture */
+.viz .viz-scale .reveal .sys-matrix {
+  margin: 0;
+  font-size: 0.7em;
+}
+
+/* newton-1669.jsx: its "tangent line" shown as its step draws it (on the slide, a .l18-head that a
+   fragment's CSS fades in) */
+.viz .viz-scale .reveal .nex-col .l18-head {
+  opacity: 1;
+  transition: none;
+}
+
+/* newton-basins.jsx: a zero of the list a button, its swatch beside it */
+.viz .viz-scale .reveal button.basins-pick {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.viz .viz-scale .reveal button.basins-pick .l18-basins-swatch {
+  transition: opacity 0.2s ease;
+}
+
+/* socks-shoes.jsx: the foot that starts the second row in a narrow box */
+.viz .viz-scale .reveal .socks-again {
+  display: none;
+}
+
+/* Lecture 18: in a narrow box, the pictures (and the text beside them) one under the other, the
+   six cards of invertible-or-not.jsx two by two */
+.viz .viz-scale.narrow .reveal :is(.l18-undo, .l18-n1, .l18-nex, .l18-path, .l18-basins) {
+  grid-template-columns: auto;
+  justify-items: center;
+  row-gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-undo:not(.l18-life) {
+  grid-template-columns: repeat(2, auto);
+  column-gap: 32px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-undo:not(.l18-life) .l18-undo-card figcaption {
+  font-size: 1.1em;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l18-caution-row, .l18-diag, .l18-systems) {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* one-sided.jsx: each picture's steps under it */
+.viz .viz-scale.narrow .reveal .l18-caution-card {
+  flex-direction: column;
+}
+
+.viz .viz-scale.narrow .reveal .l18-caution-steps {
+  padding-top: 0;
+}
+
+/* socks-shoes.jsx: the buttons set large, as the feet are scaled down */
+.viz .viz-scale.narrow .viz-col:has(> .l18-socks) > .viz-toggle .viz-button {
+  font-size: 24px;
+  padding: 6px 18px;
+}
+
+/* newton-basins.jsx: its zeros set large, as the picture is scaled down far */
+.viz .viz-scale.narrow .reveal .l18-basins-text {
+  font-size: 1.5em;
+}
+
+/* inverse-matrix.jsx, not-invertible.jsx in a narrow box: each strip bent into an L, F → AF along
+   the top, then down from AF to the last panel, the second arrow pointing down with its name and
+   matrix on its left (the arrow under the middle of AF: half of the 173px panel less half of the
+   22px it takes turned); the shortcut's bracket, as long as the straight strip, left out */
+.viz .viz-scale.narrow .reveal .l18-istrip-row {
+  grid-template-columns: 173px 190px 173px !important;
+}
+
+.viz .viz-scale.narrow .reveal .l18-istrip-row > :nth-child(4) {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  justify-self: end;
+  padding-right: 75px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-istrip-row > :nth-child(5) {
+  grid-row: 3;
+  grid-column: 3;
+}
+
+.viz .viz-scale.narrow .reveal .l18-istrip-row > :nth-child(4) .l18-istep,
+.viz .viz-scale.narrow .reveal .l18-istrip-row > .l18-istep:nth-child(4) {
+  flex-direction: row;
+  gap: 14px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-istrip-row > :nth-child(4) svg {
+  order: 2;
+  transform: rotate(90deg);
+  margin: 54px -54px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-istrip-row > :nth-child(4) .l18-istep-matrix {
+  order: 1;
+}
+
+.viz .viz-scale.narrow .reveal .l18-ishortcut svg {
+  display: none;
+}
+
+/* socks-shoes.jsx in a narrow box: the shoe going on in one row and coming off in the next (from
+   a copy of the shoe-on foot), each with its name under it, the slide's bracket drawn as a border
+   (from the middle of the first foot to the middle of the last) */
+.viz .viz-scale.narrow .reveal .l18-socks {
+  display: grid;
+  grid-template-columns: 150px 110px 150px 110px 150px;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l18-socks-row, .l18-socks-names) {
+  display: contents;
+}
+
+.viz .viz-scale.narrow .reveal .socks-again {
+  display: block;
+}
+
+.viz .viz-scale.narrow .reveal .l18-socks-row > :nth-child(n + 6) {
+  grid-row: 3;
+}
+
+.viz .viz-scale.narrow .reveal svg.l18-socks-brackets {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .l18-socks-names p {
+  grid-column: 1 / -1;
+  margin: 4px 0 28px;
+}
+
+.viz .viz-scale.narrow .reveal .l18-socks-names p:first-child {
+  grid-row: 2;
+}
+
+.viz .viz-scale.narrow .reveal .l18-socks-names p:last-child {
+  grid-row: 4;
+  margin-bottom: 0;
+}
+
+.viz .viz-scale.narrow .reveal .l18-socks-names p::before {
+  content: '';
+  display: block;
+  height: 16px;
+  margin: 0 75px 6px;
+  border: 2.5px solid #14213d;
+  border-top: none;
+}
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
