@@ -1043,6 +1043,63 @@ body {
   height: auto;
 }
 
+/* Lecture 17: the stories of whiteout.jsx and mosquito.jsx beside their pictures at a width of
+   their own (on the slide they take what the picture leaves), and the parts of training an AI model
+   at the width of its network; in a narrow box, the picture under its story, and the formulas of
+   linear-nonlinear.jsx over their pictures */
+.viz .viz-scale .reveal :is(.l17-climb-stage, .l17-bug-stage) > .stage-text {
+  flex: none;
+  width: 540px;
+}
+
+.viz .viz-scale .reveal .lin-col > .l17-lin-row:first-child {
+  margin-top: 0;
+}
+
+.viz .ai-col {
+  --race-fwd: #9aa1ad;
+  --race-back: #6fb6f2;
+  --race-back-text: #3f97dd;
+  width: 880px;
+}
+
+.viz .viz-scale.narrow :is(.l17-climb-stage, .l17-bug-stage) {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal .l17-lin-row {
+  grid-template-columns: auto;
+  justify-items: center;
+  row-gap: 8px;
+}
+
+.viz .viz-scale.narrow .reveal .l17-lin-row svg {
+  width: 600px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.ai-col, .ai-col .l17-nn) {
+  width: 600px;
+}
+
+/* zoom-in.jsx, chain-zoom.jsx in a narrow box: the picture, one wide svg, is scaled down far, so
+   the box and the button under it are set large */
+.viz .viz-scale.narrow .zoom-col {
+  gap: 40px;
+}
+
+.viz .viz-scale.narrow .reveal .zoom-col > .l17-zoomone-box {
+  font-size: 2em;
+}
+
+.viz .viz-scale.narrow .zoom-col > .viz-toggle .viz-button {
+  font-size: 44px;
+  padding: 8px 36px;
+  border-width: 3px;
+  border-radius: 16px;
+}
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂

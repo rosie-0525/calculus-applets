@@ -1127,6 +1127,55 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'chain-rule',
+        title: 'The multivariable chain rule',
+        applets: [
+          {
+            id: 'linear-nonlinear',
+            title: 'Linear and nonlinear functions',
+            caption:
+              'The Linearity Principle: a linear function T: ℝ² → ℝ² takes the grid of squares to a grid of parallelograms, and the square with the letter F to a parallelogram. What does the nonlinear g do to them? Click a picture to play it again.',
+            from: { lecture: 17, slides: ['Slide05LinearOrNot'] },
+          },
+          {
+            id: 'zoom-in',
+            title: 'Zooming in',
+            caption:
+              'Linear approximation: locally, any function is approximately multiplication by its derivative matrix. As the two pictures zoom in, what happens to the bent image of the square? Drag <b>x</b>: what does g(<b>x</b>) − g(<b>a</b>) turn into?',
+            from: { lecture: 17, slides: ['Slide05aZoomOne'] },
+          },
+          {
+            id: 'chain-zoom',
+            title: 'Why does the chain rule hold?',
+            caption:
+              '<b>The multivariable chain rule.</b> If f: ℝ<sup>p</sup> → ℝ<sup>m</sup> and g: ℝ<sup>n</sup> → ℝ<sup>p</sup>, then (D(f ∘ g))(<b>a</b>) = (Df)(g(<b>a</b>)) (Dg)(<b>a</b>), an m × n matrix, the product of an m × p and a p × n matrix. Why? Zoomed in, g is multiplication by (Dg)(<b>a</b>) and f by (Df)(g(<b>a</b>)), so f ∘ g, one after the other, is multiplication by their product.',
+            from: { lecture: 17, slides: ['Slide05bZoom'] },
+          },
+          {
+            id: 'whiteout',
+            title: 'Climber in a whiteout',
+            caption:
+              'When f: ℝ<sup>p</sup> → ℝ and g: ℝ → ℝ<sup>p</sup>, the chain rule gives (f ∘ g)′(t) = ∇f(g(t)) · g′(t). How fast is the climber climbing at time t? When does he reach the summit, which he cannot see?',
+            from: { lecture: 17, slides: ['Slide11cWhiteout'] },
+          },
+          {
+            id: 'mosquito',
+            title: 'Mosquito in the hunt',
+            caption:
+              'At t = π, how fast is the temperature the mosquito feels changing? Is it on the right track? Drag the room to turn it.',
+            from: { lecture: 17, slides: ['Slide12bMosquito'] },
+          },
+          {
+            id: 'backpropagation',
+            fun: true,
+            title: 'Training an AI model',
+            caption:
+              'Training a model by gradient descent needs the derivative matrix of the composition f<sub>3</sub> ∘ f<sub>2</sub> ∘ f<sub>1</sub>, a product of three derivative matrices by the chain rule. Why is it so much faster to multiply them from the left?',
+            from: { lecture: 17, slides: ['Slide12cAI'] },
+          },
+        ],
+      },
     ],
   },
 ];
