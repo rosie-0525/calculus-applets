@@ -733,6 +733,88 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'linear-independence',
+        title: 'Linear independence',
+        applets: [
+          {
+            id: 'redundancies',
+            title: 'Examples of redundancies',
+            caption:
+              'A vector in a collection is <b>redundant</b> if it is in the span of the others: removing it leaves the same span. Which vector is redundant in each of these three collections? Think first, then click to check. Drag a picture to turn it.',
+            from: { lecture: 20, slides: ['Slide01bRedundancies'] },
+          },
+          {
+            id: 'independence',
+            title: 'Linear independence',
+            caption:
+              'A collection of vectors <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> is <b>linearly dependent</b> precisely when there are scalars c<sub>1</sub>, …, c<sub>k</sub> that are <b>not all zero</b> for which c<sub>1</sub><b>v</b><sub>1</sub> + c<sub>2</sub><b>v</b><sub>2</sub> + ⋯ + c<sub>k</sub><b>v</b><sub>k</sub> = <b>0</b>. Otherwise it is <b>linearly independent</b>. How does each redundancy below turn into such a combination? Think first, then click to check.',
+            from: { lecture: 20, slides: ['Slide02Independence'] },
+          },
+          {
+            id: 'to-basis',
+            title: 'From a spanning set to a basis',
+            caption:
+              'A collection <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> is a <b>basis</b> of V precisely when it is linearly independent and a spanning set of V. Starting from four vectors spanning the plane V, why can we keep removing a vector, without changing the span, until the rest are linearly independent? Step through it.',
+            from: { lecture: 20, slides: ['Slide02aToBasis'] },
+          },
+          {
+            id: 'dependent-r2',
+            title: 'Linear dependence in ℝ²',
+            caption:
+              'Each of these collections in ℝ<sup>2</sup> is linearly dependent: a combination with coefficients not all zero gives <b>0</b>. Which vector is redundant in each, and which basis is left once it is removed? Think first, then click to check.',
+            from: { lecture: 20, slides: ['Slide02bDependentExamples'] },
+          },
+          {
+            id: 'dependent-r3',
+            title: 'Linear dependence in ℝ³',
+            caption:
+              'Each of these collections in ℝ<sup>3</sup> is linearly dependent. Which vector is redundant in each, and which basis is left once it is removed? In the middle one, why can’t <b>v</b><sub>3</sub> be the one removed? Think first, then click to check. Drag a picture to turn it.',
+            from: { lecture: 20, slides: ['Slide02cDependentR3'] },
+          },
+        ],
+      },
+      {
+        id: 'gram-schmidt',
+        title: 'The Gram–Schmidt process',
+        applets: [
+          {
+            id: 'two-vectors',
+            title: 'Making two vectors orthogonal',
+            caption:
+              'For nonzero vectors <b>v</b><sub>1</sub> and <b>v</b><sub>2</sub> in ℝ<sup>n</sup>, <b>w</b><sub>2</sub> = <b>v</b><sub>2</sub> − Proj<sub><b>v</b><sub>1</sub></sub>(<b>v</b><sub>2</sub>) is orthogonal to <b>v</b><sub>1</sub>, and span{<b>v</b><sub>1</sub>, <b>w</b><sub>2</sub>} = span{<b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>}. Why does sliding the tip of <b>v</b><sub>2</sub> parallel to <b>v</b><sub>1</sub> keep the span the same? And what if <b>v</b><sub>2</sub> is a multiple of <b>v</b><sub>1</sub>?',
+            from: { lecture: 20, slides: ['Slide07bTwoVectors'] },
+          },
+          {
+            id: 'gram-schmidt',
+            title: 'The Gram–Schmidt process',
+            caption:
+              'Goal: make a collection of nonzero vectors <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> orthogonal. Let V<sub>i</sub> = span{<b>v</b><sub>1</sub>, …, <b>v</b><sub>i</sub>}. Let <b>w</b><sub>1</sub> = <b>v</b><sub>1</sub>, and at each step <b>w</b><sub>i</sub> = <b>v</b><sub>i</sub> − Proj<sub>V<sub>i−1</sub></sub>(<b>v</b><sub>i</sub>). The resulting nonzero vectors <b>w</b><sub>i</sub> form an orthogonal basis of V = V<sub>k</sub>. Watch the idea, then step through it: why is each <b>w</b><sub>i</sub> orthogonal to the ones before?',
+            from: { lecture: 20, slides: ['Slide09GramSchmidt'] },
+          },
+          {
+            id: 'detects-dependence',
+            title: 'Gram–Schmidt detects linear dependence',
+            caption:
+              'In the Gram–Schmidt process, <b>w</b><sub>i</sub> = <b>0</b> exactly when <b>v</b><sub>i</sub> is redundant, that is, a linear combination of <b>v</b><sub>1</sub>, …, <b>v</b><sub>i−1</sub>. So the nonzero <b>w</b><sub>i</sub>’s form an orthogonal basis of V, dim V is the number of nonzero <b>w</b><sub>i</sub>’s, and <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> are linearly independent exactly when all the <b>w</b><sub>i</sub> are nonzero. Lower <b>v</b><sub>3</sub> into V<sub>2</sub>: what happens to <b>w</b><sub>3</sub>, and why?',
+            from: { lecture: 20, slides: ['Slide13Detects'] },
+          },
+          {
+            id: 'five-vectors',
+            title: 'Gram–Schmidt finds the redundant vectors',
+            caption:
+              'Run the Gram–Schmidt process on five vectors spanning V: here <b>w</b><sub>2</sub> and <b>w</b><sub>4</sub> come out <b>0</b>. Which of the <b>v</b><sub>i</sub> are redundant? Which vectors form a basis of V, and which an orthogonal basis? Step through it.',
+            from: { lecture: 20, slides: ['Slide13Detects'] },
+          },
+          {
+            id: 'orthogonal-complement',
+            title: 'Orthogonal complement',
+            caption:
+              'The <b>orthogonal complement</b> of a linear subspace V of ℝ<sup>n</sup> is V<sup>⊥</sup> = {<b>x</b> ∈ ℝ<sup>n</sup> : <b>x</b> · <b>v</b> = 0 for all <b>v</b> ∈ V}. It is a linear subspace of ℝ<sup>n</sup>, dim V<sup>⊥</sup> = n − dim V, and (V<sup>⊥</sup>)<sup>⊥</sup> = V. Here V<sub>1</sub> = span{(1, 2, 3), (4, 5, 6)}, a plane: why is V<sub>1</sub><sup>⊥</sup> the line through (1, −2, 1)? Step through it, and drag the picture to turn it.',
+            from: { lecture: 20, slides: ['Slide15Complement'] },
+          },
+        ],
+      },
     ],
   },
   {

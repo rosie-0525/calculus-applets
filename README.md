@@ -4,17 +4,18 @@ Interactive pictures for linear algebra and multivariable calculus, for
 <https://rosie-0525.github.io/calculus-applets/>. Each concept (vectors, linear combinations, dot
 products, lines and planes, span, bases, projections, least squares, linear functions and matrices,
 linear transformations, matrix multiplication, matrix algebra, diagonal and triangular matrices,
-Markov chains, equilibrium vectors, matrix inverses; scalar and vector-valued functions, graphs and
-contour plots, partial derivatives, critical points and local extrema, global extrema on a region,
-gradients and linear approximation, gradients and level sets, gradient descent, constrained
-optimization, Lagrange multipliers, the derivative matrix, the multivariable chain rule, Newton’s
-method) has a page of its own: its applets, each with a title and a question to think about, and at
-the bottom, under "Motivation – just for fun!", the applications that students do not need to know
-(PageRank, denoising a chord, a 3-D game, a 3-D printer, a robot arm, where a raindrop goes, an AI
-learning to read digits, why rainbows are arcs, the price of electricity, photo filters, neural
-networks and video games, a night at the casino, shuffling a deck of cards, training an AI model,
-which zero Newton’s method finds, …). The first topic, Vectors, is the front page,
-`/calculus-applets/`; the others are at `/calculus-applets/<topic>/`.
+Markov chains, equilibrium vectors, matrix inverses, linear independence, the Gram–Schmidt process;
+scalar and vector-valued functions, graphs and contour plots, partial derivatives, critical points
+and local extrema, global extrema on a region, gradients and linear approximation, gradients and
+level sets, gradient descent, constrained optimization, Lagrange multipliers, the derivative matrix,
+the multivariable chain rule, Newton’s method) has a page of its own: its applets, each with a title
+and a question to think about, and at the bottom, under "Motivation – just for fun!", the
+applications that students do not need to know (PageRank, denoising a chord, a 3-D game, a 3-D
+printer, a robot arm, where a raindrop goes, an AI learning to read digits, why rainbows are arcs,
+the price of electricity, photo filters, neural networks and video games, a night at the casino,
+shuffling a deck of cards, training an AI model, which zero Newton’s method finds, …). The first
+topic, Vectors, is the front page, `/calculus-applets/`; the others are at
+`/calculus-applets/<topic>/`.
 
 The pictures are the figures from the lecture slides, run as they are: the page imports a slide's
 figure component (its `WindExplorer`, `SpanTwo`, …) without the words around it, and renders it in

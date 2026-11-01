@@ -1328,6 +1328,33 @@ body {
   border-top: none;
 }
 
+/* Lecture 20: gram-schmidt.jsx's buttons holding formulas; in a narrow box, the pictures (and the
+   text beside them) one under the other, the buttons of gram-schmidt.jsx and five-vectors.jsx in
+   rows, and gram-schmidt.jsx's box as wide as its picture, so that it wraps */
+.viz .viz-scale .reveal .gs-pick .viz-button {
+  font-size: 0.7em;
+  padding: 4px 14px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l20-pair, .l20-li-examples, .l20-tb-stage, .l20-ws-stage, .gs-stage, .dd-stage) {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal .gs-pick {
+  flex-wrap: wrap;
+}
+
+.viz .viz-scale.narrow .viz-col:has(> .five-col) > .viz-toggle {
+  flex-wrap: wrap;
+  width: 520px;
+}
+
+.viz .viz-scale.narrow .reveal .viz-col:has(> .gs-stage) {
+  width: 560px;
+}
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
