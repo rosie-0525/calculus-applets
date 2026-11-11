@@ -5,6 +5,9 @@ import 'katex/dist/katex.min.css';
 import './site/site.css';
 import { AREAS, SECTIONS, APPLETS } from './applets.js';
 import Applet from './site/Applet.jsx';
+import { captionHtml } from './site/caption.js';
+import Masthead from './site/Masthead.jsx';
+import DownloadButton from './site/Download.jsx';
 
 const BASE = import.meta.env.BASE_URL; // '/calculus-applets/'
 const FUN = 'Motivation – just for fun!';
@@ -58,38 +61,15 @@ function useScrollSpy(ids) {
   return current;
 }
 
-/** The site's mark, the picture in the favicon: a vector, and its projection onto a line. */
-function Mark() {
-  return (
-    <svg className="mark" viewBox="3 6 26 23" aria-hidden="true">
-      <path d="M5 26 L27 26" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" />
-      <path d="M19 9 L19 26" stroke="#9ca3af" strokeWidth="1.6" strokeDasharray="2.5 2" />
-      <path d="M5 26 L19 9" stroke="#8c1515" strokeWidth="2.6" strokeLinecap="round" />
-      <path d="M5 26 L19 26" stroke="#0e7490" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function Masthead({ children }) {
-  return (
-    <header className="masthead">
-      <a className="wordmark" href={BASE}>
-        <Mark />
-        <span className="wordmark-name">Applets</span>
-        <span className="wordmark-tagline">for linear algebra and multivariable calculus</span>
-      </a>
-      {children}
-    </header>
-  );
-}
-
 function AppletEntry({ applet, as: H = 'h2', solo = false }) {
+  const topic = topicOf(applet);
   return (
     <article className="applet" id={applet.id}>
       {/* the title opens the applet on its own (?only=), e.g. to project it in class */}
       <H className="applet-title">{solo ? applet.title : <a href={`${BASE}?only=${applet.id}`}>{applet.title}</a>}</H>
-      {applet.caption && <p className="caption" dangerouslySetInnerHTML={{ __html: applet.caption }} />}
+      {applet.caption && <p className="caption" dangerouslySetInnerHTML={{ __html: captionHtml(applet.caption) }} />}
       <Applet applet={applet} load={loader(applet.id)} />
+      <DownloadButton applet={applet} topic={{ title: topic.title, href: `${topicUrl(topic)}#${applet.id}` }} />
     </article>
   );
 }
@@ -175,7 +155,7 @@ function TopicPage({ topic }) {
   const current = useScrollSpy(headings(topic).map((h) => h.id));
   return (
     <div className="site">
-      <Masthead>
+      <Masthead home={BASE}>
         <TopicsMenu topic={topic} current={current} />
       </Masthead>
       <div className="layout">
@@ -224,7 +204,7 @@ function Only({ applet }) {
   const topic = topicOf(applet);
   return (
     <div className="site site-only">
-      <Masthead>
+      <Masthead home={BASE}>
         <a className="back" href={`${topicUrl(topic)}#${applet.id}`}>
           {topic.title}
         </a>

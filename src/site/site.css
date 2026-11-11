@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------
    Applets — site styles
    The colours are the figures' own: cardinal (the vector v), teal (w) and navy (v + w), on a
-   cool grey stage. Source Serif for reading, and Source Sans, the figures' face (it comes with
-   reveal's theme), for the navigation.
+   cool grey stage. Source Sans, the face of the slides and the figures (it comes with reveal's
+   theme), for everything, and KaTeX for the math in the captions, as on the slides.
    The variables are prefixed with --site- so they do not collide with the lecture decks' own
    (--rule, --ink-soft).
    ------------------------------------------------------------ */
@@ -16,7 +16,6 @@
   --site-stage: #f4f5f8;
   --site-accent: #8c1515;
   --site-link: #8c1515;
-  --site-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
   --site-sans: "Source Sans Pro", "Source Sans 3", system-ui, sans-serif;
   color-scheme: light;
 }
@@ -29,7 +28,7 @@ body {
   margin: 0;
   background: var(--site-paper);
   color: var(--site-ink);
-  font-family: var(--site-serif);
+  font-family: var(--site-sans);
   font-size: 1.125rem;
   line-height: 1.6;
   font-kerning: normal;
@@ -99,7 +98,7 @@ body {
 }
 
 .wordmark-name {
-  font-family: var(--site-serif);
+  font-family: var(--site-sans);
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -201,11 +200,11 @@ body {
   margin-top: 2.25rem;
 }
 
-/* the subject, set like a heading (in the serif) over its topics */
+/* the subject, set like a heading over its topics */
 .site .toc-area-title {
   margin: 0 0 0.7rem;
   color: var(--site-heading);
-  font-family: var(--site-serif);
+  font-family: var(--site-sans);
   font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.2;
@@ -360,6 +359,25 @@ body {
   font-weight: 600;
 }
 
+/* the math as on the slides (deck.css), a little smaller than KaTeX's own 1.21em */
+.caption {
+  --site-math: 1.08;
+}
+
+.caption .katex {
+  font-size: calc(var(--site-math) * 1em);
+}
+
+/* the punctuation that caption.js typesets with the math, in the caption's face and size */
+.tex-punct,
+.tex-punct * {
+  font-family: var(--site-sans);
+}
+
+.caption .tex-punct {
+  font-size: calc(1em / var(--site-math));
+}
+
 /* Applets under a shared heading (`group` in applets.js): their own titles smaller under it */
 .site .group > .group-title {
   margin-bottom: 1.25rem;
@@ -434,6 +452,67 @@ body {
 /* ?only=<id>: one applet on its own */
 .site-only main {
   padding-top: 2.5rem;
+}
+
+/* A downloaded applet (Download.jsx): its Download button, and an error after an edit to its source */
+.site .applet-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0 0;
+}
+
+.applet-tools .download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--site-ink-soft);
+  font: inherit;
+  font-family: var(--site-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.applet-tools .download:hover {
+  color: var(--site-accent);
+}
+
+.applet-tools .download:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 2px;
+}
+
+.applet-tools .download:disabled {
+  cursor: progress;
+}
+
+.applet-tools .download svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.export-error {
+  margin: 1.1rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: #fbf1f1;
+  color: var(--site-accent);
+  font: 0.85rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#app > .export-error {
+  max-width: 50rem;
+  margin: 2rem auto;
 }
 
 /* Small screens */

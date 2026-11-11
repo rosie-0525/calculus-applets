@@ -6,6 +6,9 @@
 //
 // --page takes whole pages instead, one per topic (<topic>.png). --only then picks topics.
 //
+// --files <dir> takes the downloaded applets in <dir> instead (<id>.html, from the Download button
+// or npm run export), opened from the disk; ONLINE flags a request one of them made to the network.
+//
 // The window is made as tall as what is captured, so that the screenshot never reaches beyond it:
 // with captureBeyondViewport, Chrome shrinks the window to 1 × 1 for a moment, the applets refit,
 // and the screenshot could catch one half-way. Before each capture the script waits until the page
@@ -15,7 +18,8 @@
 import { spawn } from 'node:child_process';
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { APPLETS, SECTIONS } from '../src/applets.js';
 
 const args = process.argv.slice(2);
@@ -28,6 +32,7 @@ const OUT = opt('--out', join(tmpdir(), 'applet-shots'));
 const ONLY = opt('--only')?.split(',');
 const WIDTH = Number(opt('--width', 1400));
 const PAGE = args.includes('--page');
+const FILES = opt('--files');
 const PORT = 9400 + Math.floor(Math.random() * 100);
 const HEIGHT = 1000; // the window's height, at least
 const SETTLE = 500;
@@ -68,6 +73,7 @@ try {
   const pending = new Map();
   const errors = [];
   const inflight = new Set(); // the page's http(s) requests not finished yet
+  const online = []; // with --files: the requests to the network
   ws.addEventListener('message', (e) => {
     const m = JSON.parse(e.data);
     if (m.id && pending.has(m.id)) {
@@ -79,6 +85,7 @@ try {
       errors.push(m.params.args.map((a) => a.value ?? a.description).join(' ').split('\n')[0]);
     } else if (m.method === 'Network.requestWillBeSent' && /^https?:/.test(m.params.request.url)) {
       inflight.add(m.params.requestId);
+      online.push(m.params.request.url);
     } else if (m.method === 'Network.loadingFinished' || m.method === 'Network.loadingFailed') {
       inflight.delete(m.params.requestId);
     }
@@ -170,7 +177,8 @@ try {
   } else {
     for (const a of APPLETS.filter((x) => !ONLY || ONLY.includes(x.id))) {
       errors.length = 0;
-      const url = `${BASE}?only=${a.id}`;
+      online.length = 0;
+      const url = FILES ? pathToFileURL(resolve(FILES, `${a.id}.html`)).href : `${BASE}?only=${a.id}`;
       await resize(HEIGHT);
       await go(url);
       const here = at(url);
@@ -190,6 +198,7 @@ try {
       console.log(
         `${a.id}: ${Math.round(box.width)} × ${Math.round(box.height)} ${scale}` +
           `${(await ready()) ? '' : '  NOT READY'}${settled ? '' : '  NOT SETTLED'}${stable ? '' : '  UNSTABLE'}` +
+          `${FILES && online.length ? `  ONLINE: ${online.join(' ')}` : ''}` +
           `${errors.length ? `  ERRORS: ${errors.join(' | ')}` : ''}`,
       );
     }

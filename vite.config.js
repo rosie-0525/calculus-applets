@@ -2,7 +2,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { SECTIONS } from './src/applets.js';
+import { APPLETS, SECTIONS } from './src/applets.js';
+import { captionHtml } from './src/site/caption.js';
+import exportApplets from './scripts/export-applets.mjs';
 
 /*
  * The lecture decks' stylesheets (src/lectures/l<N>/styles/deck.css) were written for a whole
@@ -97,8 +99,33 @@ gtag('config', '${id}');`,
   };
 }
 
+/*
+ * The captions' math is TeX, typeset by KaTeX (src/site/caption.js). A caption whose TeX KaTeX
+ * cannot read stops the build; the dev server warns, and shows it in red.
+ */
+function checkCaptions() {
+  let command;
+  return {
+    name: 'check-captions',
+    configResolved(config) {
+      command = config.command;
+    },
+    buildStart() {
+      for (const a of APPLETS.filter((x) => x.caption)) {
+        try {
+          captionHtml(a.caption, { throwOnError: true });
+        } catch (e) {
+          const message = `${a.id}: the caption's TeX: ${e.message}`;
+          if (command === 'build') this.error(message);
+          else this.warn(message);
+        }
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), topicPages(), analytics('G-39WKKSKNVW')],
+  plugins: [react(), checkCaptions(), topicPages(), analytics('G-39WKKSKNVW'), exportApplets()],
   base: '/calculus-applets/',
   css: { postcss: { plugins: [scopeLectureDecks()] } },
   build: { chunkSizeWarningLimit: 1500 },

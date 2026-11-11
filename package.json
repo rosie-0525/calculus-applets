@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "export": "node scripts/export.mjs"
   },
   "dependencies": {
     "katex": "^0.16.11",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.1.1",
+    "sucrase": "^3.35.1",
     "vite": "^8.2.2"
   }
 }
