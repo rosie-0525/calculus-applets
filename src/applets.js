@@ -793,6 +793,13 @@ export const AREAS = [
             from: { lecture: 20, slides: ['Slide09GramSchmidt'] },
           },
           {
+            id: 'gs-projection',
+            title: 'The projection at each step',
+            caption:
+              'At each step of the Gram–Schmidt process, <b>w</b><sub>i</sub> = <b>v</b><sub>i</sub> − Proj<sub>V<sub>i−1</sub></sub> <b>v</b><sub>i</sub>. To compute such a projection, use the <b>orthogonal projection formula</b>: if <b>w</b><sub>1</sub>, …, <b>w</b><sub>m</sub> is an orthogonal basis of V, then Proj<sub>V</sub> <b>v</b> = Proj<sub><b>w</b><sub>1</sub></sub> <b>v</b> + ⋯ + Proj<sub><b>w</b><sub>m</sub></sub> <b>v</b>. Drag the picture to turn <b>w</b><sub>2</sub>: why do the two projections add up to Proj<sub>V</sub> <b>v</b> only when <b>w</b><sub>1</sub> and <b>w</b><sub>2</sub> are orthogonal?',
+            from: { lecture: 21, slides: ['Slide01eGSProjection'] },
+          },
+          {
             id: 'detects-dependence',
             title: 'Gram–Schmidt detects linear dependence',
             caption:
@@ -812,6 +819,238 @@ export const AREAS = [
             caption:
               'The <b>orthogonal complement</b> of a linear subspace V of ℝ<sup>n</sup> is V<sup>⊥</sup> = {<b>x</b> ∈ ℝ<sup>n</sup> : <b>x</b> · <b>v</b> = 0 for all <b>v</b> ∈ V}. It is a linear subspace of ℝ<sup>n</sup>, dim V<sup>⊥</sup> = n − dim V, and (V<sup>⊥</sup>)<sup>⊥</sup> = V. Here V<sub>1</sub> = span{(1, 2, 3), (4, 5, 6)}, a plane: why is V<sub>1</sub><sup>⊥</sup> the line through (1, −2, 1)? Step through it, and drag the picture to turn it.',
             from: { lecture: 20, slides: ['Slide15Complement'] },
+          },
+        ],
+      },
+      {
+        id: 'transpose',
+        title: 'Matrix transpose',
+        applets: [
+          {
+            id: 'rotation-inverse',
+            title: 'Inverse of a rotation',
+            caption:
+              'R<sub>θ</sub>, the rotation by θ counterclockwise, is invertible: R<sub>θ</sub><sup>−1</sup> rotates back by θ. Step through it, then compare the two matrices: how is R<sub>θ</sub><sup>−1</sup> obtained from R<sub>θ</sub>? When is the inverse of a matrix computed this way?',
+            from: { lecture: 21, slides: ['Slide01cUndo'] },
+          },
+          {
+            id: 'transpose',
+            title: 'Matrix transpose',
+            caption:
+              'The <b>transpose</b> A<sup>⊤</sup> of a matrix A is obtained by writing the columns of A as rows: if A is m × n, then A<sup>⊤</sup> is n × m, and the (i, j)-th entry of A<sup>⊤</sup> is the (j, i)-th entry of A. Transpose the copy: which entries stay in place, and why?',
+            from: { lecture: 21, slides: ['Slide02Transpose'] },
+          },
+          {
+            id: 'transpose-properties',
+            title: 'Properties of the transpose',
+            caption:
+              'For matrices A and B of the same size and any scalar c: (A<sup>⊤</sup>)<sup>⊤</sup> = A, (cA)<sup>⊤</sup> = cA<sup>⊤</sup> and (A + B)<sup>⊤</sup> = A<sup>⊤</sup> + B<sup>⊤</sup>. Why is each true? Think first, then click its button: the matrices turn over like cards, about the line through their diagonal entries.',
+            from: { lecture: 21, slides: ['Slide03Poll'] },
+          },
+          {
+            id: 'product-transpose',
+            title: 'Transpose of a product',
+            caption:
+              '(AB)<sup>⊤</sup> = B<sup>⊤</sup>A<sup>⊤</sup>: the order is reversed. Why? Compare the (i, j)-th entries of the two sides, here for i = 3 and j = 2, a step at a time. Why does A<sup>⊤</sup>B<sup>⊤</sup> not even make sense here?',
+            from: { lecture: 21, slides: ['Slide05ProductTranspose'] },
+          },
+        ],
+      },
+      {
+        id: 'orthogonal-matrices',
+        title: 'Orthogonal matrices',
+        applets: [
+          {
+            id: 'orthogonal-or-not',
+            title: 'Orthogonal or not?',
+            caption:
+              'A square matrix whose columns are orthonormal is called an <b>orthogonal matrix</b>. If A is orthogonal, then A<sup>⊤</sup>A = I<sub>n</sub>, so A is invertible and A<sup>−1</sup> = A<sup>⊤</sup>. For example, the rotation matrix R<sub>θ</sub> is orthogonal. Which of these eight are orthogonal? Think first, then click a card to check: its picture shows what the matrix does.',
+            from: { lecture: 21, slides: ['Slide18bOrthOrNot'] },
+          },
+          {
+            id: 'orthogonal-transformations',
+            title: 'Orthogonal matrices as linear transformations',
+            caption:
+              'Let A be an orthogonal matrix. The linear transformation T<sub>A</sub>(<b>x</b>) = A<b>x</b> sends <b>e</b><sub>i</sub> to the columns of A, which are by definition orthonormal. Watch A<b>e</b><sub>1</sub> and A<b>e</b><sub>2</sub>: what happens to the unit square on each side? Think first, then click to check.',
+            from: { lecture: 21, slides: ['Slide03eOrthTransform'] },
+          },
+          {
+            id: 'lengths-angles',
+            title: 'Orthogonal matrices preserve lengths and angles',
+            caption:
+              'For any n × n matrix A: ‖A<b>x</b>‖ = ‖<b>x</b>‖ for all <b>x</b> in ℝ<sup>n</sup> exactly when A is orthogonal (Theorem 20.4.1). Orthogonal matrices preserve angles as well: the angle between A<b>x</b> and A<b>y</b> is the angle between <b>x</b> and <b>y</b>, because cos θ = <b>x</b> · <b>y</b> / (‖<b>x</b>‖ ‖<b>y</b>‖) is preserved. On the right, A keeps the lengths of <b>x</b> and <b>y</b> but is not orthogonal: what does it not keep?',
+            from: { lecture: 21, slides: ['Slide19Angles'] },
+          },
+          {
+            id: 'orthogonal-products',
+            title: 'Products of orthogonal matrices',
+            caption:
+              'If A and B are n × n orthogonal matrices, is AB orthogonal? Think first, then click True or False to check, by algebra and by geometry.',
+            from: { lecture: 21, slides: ['Slide21Products'] },
+          },
+          {
+            id: 'orthogonal-inverses',
+            title: 'Inverses of orthogonal matrices',
+            caption:
+              'If A is an n × n orthogonal matrix, is A invertible, and is A<sup>−1</sup> orthogonal? Think first, then click True or False to check.',
+            from: { lecture: 21, slides: ['Slide21bInverses'] },
+          },
+        ],
+      },
+      {
+        id: 'quadratic-forms',
+        title: 'Symmetric matrices and quadratic forms',
+        applets: [
+          {
+            id: 'stretching',
+            title: 'Stretching and shrinking',
+            caption:
+              'When A is not orthogonal, ‖A<b>x</b>‖ can be larger or smaller than ‖<b>x</b>‖: here A stretches F along one diagonal and shrinks it across the other. How much does A stretch or shrink a vector <b>x</b> = (x, y)? Compute ‖A<b>x</b>‖<sup>2</sup> and A<sup>⊤</sup>A: what do you notice?',
+            from: { lecture: 21, slides: ['Slide19bConverse'] },
+          },
+          {
+            id: 'symmetric',
+            title: 'Symmetric matrices',
+            caption:
+              'A matrix M is <b>symmetric</b> if M = M<sup>⊤</sup>. Which of these three are symmetric? Think first, then click a matrix to transpose it and check. If M is symmetric, so are M<sup>2</sup>, M<sup>3</sup>, …, and so is M<sup>−1</sup> if M is invertible. For any matrix A, the <b>Gram matrices</b> A<sup>⊤</sup>A and AA<sup>⊤</sup> are symmetric: why?',
+            from: { lecture: 21, slides: ['Slide09Symmetric'] },
+          },
+          {
+            id: 'quadratic-graphs',
+            title: 'Quadratic forms in two variables',
+            caption:
+              'The <b>quadratic form</b> of a symmetric n × n matrix M is the function q<sub>M</sub>: ℝ<sup>n</sup> → ℝ given by q<sub>M</sub>(<b>x</b>) = <b>x</b><sup>⊤</sup>M<b>x</b>. For M = [a b; b c], q<sub>M</sub>(x, y) = ax<sup>2</sup> + 2bxy + cy<sup>2</sup>. Does each of these have a local minimum, a local maximum or a saddle at 0? Think first, then click to check; drag a graph to turn it. (Chapter 26: the second derivative test.)',
+            from: { lecture: 21, slides: ['Slide13aTwoVariables'] },
+          },
+        ],
+      },
+      {
+        id: 'linear-systems',
+        title: 'Linear systems and the column space',
+        applets: [
+          {
+            id: 'matrix-form',
+            title: 'Linear system in matrix form',
+            caption:
+              'A linear system with m equations and n unknowns can be written as A<b>x</b> = <b>b</b>, where A is an m × n matrix: <b>x</b> ∈ ℝ<sup>n</sup> holds the unknowns and <b>b</b> ∈ ℝ<sup>m</sup> the right-hand sides. Two questions about any system: does it have a solution? If so, is the solution unique? Write each system as A<b>x</b> = <b>b</b>, then draw each T<sub>A</sub> and <b>b</b>: is <b>b</b> an output of T<sub>A</sub>? Click a right-hand side to change it.',
+            from: { lecture: 22, slides: ['Slide02dSystems'] },
+          },
+          {
+            id: 'image-r1',
+            group: 'Image',
+            title: 'Image of a linear transformation ℝ → ℝ and ℝ → ℝ²',
+            caption:
+              'The <b>image</b> of a linear transformation f: ℝ<sup>n</sup> → ℝ<sup>m</sup> is the collection of its outputs f(<b>x</b>), <b>x</b> ∈ ℝ<sup>n</sup>. Each picture moves the inputs of T<sub>A</sub>(<b>x</b>) = A<b>x</b> onto their outputs. What is the image of each? Think first, then click a picture to check.',
+            from: { lecture: 22, slides: ['Slide05bImage'] },
+          },
+          {
+            id: 'image-r2',
+            group: 'Image',
+            title: 'Image of a linear transformation ℝ² → ℝ² and ℝ² → ℝ³',
+            caption:
+              'The image of T<sub>A</sub>: ℝ<sup>n</sup> → ℝ<sup>m</sup> is the span of the columns of A, the <b>column space</b> C(A), a linear subspace of ℝ<sup>m</sup>. We call dim C(A) the <b>rank</b> of A. What is the image of each, and what is the rank of A? Think first, then click a picture to check.',
+            from: { lecture: 22, slides: ['Slide05dImageR2'] },
+          },
+          {
+            id: 'image-r3',
+            group: 'Image',
+            title: 'Image of a linear transformation ℝ³ → ℝ³',
+            caption:
+              'Is the image of each T<sub>A</sub> a point, a line, a plane, or all of ℝ<sup>3</sup>? What is the rank of A? Think first, then click a picture to check. Drag a picture to turn it.',
+            from: { lecture: 22, slides: ['Slide05eImageR3'] },
+          },
+          {
+            id: 'back-to-systems',
+            title: 'Going back to linear systems',
+            caption:
+              'A linear system with m equations in n unknowns can be written as A<b>x</b> = <b>b</b>, where A is an m × n matrix, and A<b>x</b> = <b>b</b> has a solution exactly when <b>b</b> ∈ C(A), where the column space C(A) is a subspace of ℝ<sup>m</sup>. So if dim C(A) = m, every A<b>x</b> = <b>b</b> has a solution; if dim C(A) < m, “most” <b>b</b> ∈ ℝ<sup>m</sup> are not in C(A). Drag <b>b</b> in each picture: where must it be for a solution?',
+            from: { lecture: 22, slides: ['Slide07Rank'] },
+          },
+          {
+            id: 'existence',
+            title: 'Existence of solutions',
+            caption:
+              'A<b>x</b> = <b>b</b> has a solution ⟺ <b>b</b> ∈ C(A) ⟺ Proj<sub>C(A)</sub>(<b>b</b>) = <b>b</b>. To check this condition, find an orthogonal basis {<b>w</b><sub>1</sub>, …, <b>w</b><sub>k</sub>} for C(A) using Gram–Schmidt, then compute Proj<sub>C(A)</sub>(<b>b</b>) using the orthogonal projection formula: Proj<sub>C(A)</sub>(<b>b</b>) = (<b>b</b> · <b>w</b><sub>1</sub>)/(<b>w</b><sub>1</sub> · <b>w</b><sub>1</sub>) <b>w</b><sub>1</sub> + ⋯ + (<b>b</b> · <b>w</b><sub>k</sub>)/(<b>w</b><sub>k</sub> · <b>w</b><sub>k</sub>) <b>w</b><sub>k</sub>. Drag <b>b</b> off the plane C(A), above it or below it, and back: when is <b>b</b> its own projection?',
+            from: { lecture: 22, slides: ['Slide08ProjTest'] },
+          },
+          {
+            id: 'solve-example',
+            title: 'Does the system have a solution?',
+            caption:
+              'For the system (∗): (i) write it in the form A<b>x</b> = <b>b</b>; (ii) find an orthogonal basis for the column space of A; (iii) when <b>b</b> = (0, 0, 0), does (∗) have a solution? (iv) For <b>b</b> = (3, 3, −3), compute Proj<sub>C(A)</sub>(<b>b</b>): does (∗) have a solution? (v) The same for <b>b</b> = (0, 1, 0). Work it out first, then check (iv) and (v) with the buttons. The picture shows the columns <b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>, <b>v</b><sub>3</sub> of A and their span; drag <b>b</b> by its tip, or the picture to turn it.',
+            from: { lecture: 22, slides: ['Slide09Example2'] },
+          },
+          {
+            id: 'ct-scan',
+            fun: true,
+            title: 'How does a CT scan see inside the body?',
+            caption:
+              'The unknowns are the densities of the pixels of the picture. Each X-ray measures the total density along its path, which gives one linear equation in them. From thousands of X-rays at many angles, the scanner solves a huge linear system to draw what is inside.',
+            from: { lecture: 22, slides: ['Slide02bEverywhere'] },
+          },
+          {
+            id: 'bridge',
+            fun: true,
+            title: 'Will the bridge hold the truck?',
+            caption:
+              'The unknowns are the forces in the beams: blue beams are stretched and red ones squeezed, darker the more force they carry. At each joint the forces balance, which gives two linear equations per joint: here 26 equations in the 23 beams’ forces and the 3 forces of the supports, solved again as the truck moves.',
+            from: { lecture: 22, slides: ['Slide02bEverywhere'] },
+          },
+        ],
+      },
+      {
+        id: 'null-space',
+        title: 'Null space and the rank–nullity theorem',
+        applets: [
+          {
+            id: 'null-space',
+            title: 'Null space',
+            caption:
+              'Two solutions of A<b>x</b> = <b>b</b> differ by a solution of A<b>x</b> = <b>0</b>: if A<b>x</b><sub>1</sub> = A<b>x</b><sub>2</sub> = <b>b</b>, then A(<b>x</b><sub>1</sub> − <b>x</b><sub>2</sub>) = <b>0</b>. The <b>null space</b> of an m × n matrix A is N(A) = {<b>x</b> ∈ ℝ<sup>n</sup> : A<b>x</b> = <b>0</b>}, the inputs that T<sub>A</sub> sends to <b>0</b>. It is a linear subspace of ℝ<sup>n</sup>, and dim N(A) is called the <b>nullity</b> of A. What is the null space of each? Think first, then click a picture to check.',
+            from: { lecture: 22, slides: ['Slide10NullSpace'] },
+          },
+          {
+            id: 'rank-nullity-r2',
+            group: 'The rank–nullity theorem',
+            title: 'Rank and nullity of a linear transformation ℝ² → ℝ² and ℝ² → ℝ³',
+            caption:
+              'The <b>rank–nullity theorem</b>: if A is an m × n matrix, then dim C(A) + dim N(A) = n. In each picture, the null space N(A), in green, collapses to <b>0</b> as the inputs move onto their outputs. What are the rank and the nullity of each A? Think first, then click a picture to check.',
+            from: { lecture: 22, slides: ['Slide14RankNullity', 'Slide14eRankNullityR23'] },
+          },
+          {
+            id: 'rank-nullity-r3',
+            group: 'The rank–nullity theorem',
+            title: 'Rank and nullity of a linear transformation ℝ³ → ℝ³',
+            caption:
+              'What are the rank and the nullity of each 3 × 3 matrix? Do they add up to 3? Think first, then click a picture to check. Drag a picture to turn it.',
+            from: { lecture: 22, slides: ['Slide14cRankNullityR3'] },
+          },
+        ],
+      },
+      {
+        id: 'solution-sets',
+        title: 'All solutions of a linear system',
+        applets: [
+          {
+            id: 'solutions-square',
+            title: 'All solutions: two equations in two unknowns',
+            caption:
+              'Suppose A<b>x</b> = <b>b</b> has one solution <b>x</b><sub>0</sub>. Adding <b>n</b> ∈ N(A) gives another solution, and any other solution <b>x</b><sub>1</sub> satisfies <b>x</b><sub>1</sub> − <b>x</b><sub>0</sub> ∈ N(A). So all solutions of A<b>x</b> = <b>b</b> are given by <b>x</b><sub>0</sub> + <b>n</b>, where <b>x</b><sub>0</sub> is any solution and <b>n</b> ∈ N(A). In each picture, N(A) is green, C(A) teal, and the solutions of each equation a gray line. Drag <b>b</b>, and the right-hand sides follow: when is there a solution? Once there is, what are all the solutions? Think first, then click “All solutions”.',
+            from: { lecture: 22, slides: ['Slide16cSolutionSets'] },
+          },
+          {
+            id: 'solutions-other',
+            title: 'All solutions: more equations, or more unknowns',
+            caption:
+              'Let A be an m × n matrix. The equation A<b>x</b> = <b>b</b> has no solution if <b>b</b> ∉ C(A); exactly one solution if <b>b</b> ∈ C(A) and N(A) = {<b>0</b>}; infinitely many solutions if <b>b</b> ∈ C(A) and N(A) ≠ {<b>0</b>}. Which can happen for each of these systems? Drag <b>b</b>, and once there is a solution, click “All solutions”.',
+            from: { lecture: 22, slides: ['Slide16dSolutionSets'] },
+          },
+          {
+            id: 'rule-of-thumb',
+            title: 'Rule of thumb',
+            caption:
+              'For a system of m equations in n unknowns: if m > n (overdetermined), there is usually no solution; if m < n (underdetermined), there are usually infinitely many. Why does the rank–nullity theorem suggest this? But this might fail! Move each slider: for which c does the overdetermined system have a solution, and for which c does the underdetermined one have none?',
+            from: { lecture: 22, slides: ['Slide19RuleOfThumb'] },
           },
         ],
       },

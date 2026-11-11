@@ -1355,6 +1355,299 @@ body {
   width: 560px;
 }
 
+/* Lecture 21 */
+
+/* transpose-properties.jsx: each row's button under its formula, as wide as its words */
+.viz .viz-scale .reveal .tpp-f .viz-button {
+  align-self: flex-start;
+  margin-top: 10px;
+  font-size: 0.75em;
+}
+
+/* orthogonal-or-not.jsx: the question on a card not yet checked; the card itself a button */
+.viz .viz-scale .reveal .l21-oq-answer.oq-ask {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.viz .viz-scale .reveal button.oq-pick {
+  display: block;
+  width: 100%;
+}
+
+/* lengths-angles.jsx: the two pictures side by side, each with its name and button under it */
+.viz .la {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.viz .la-side {
+  margin: 0;
+}
+
+.viz .la-side figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.viz .viz-scale .reveal .la-side .l21-ang-cap {
+  margin: 0.3em 0 0;
+}
+
+/* orthogonal-products.jsx, orthogonal-inverses.jsx: the poll's options are buttons; the one picked
+   wrongly is outlined in red (the right one in the deck's green, its `correct`) */
+.viz .viz-scale .reveal button.tf-opt {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal .tf-poll .poll-options li:not(.correct):hover {
+  background: rgba(20, 33, 61, 0.06);
+}
+
+.viz .viz-scale .reveal .tf-poll .poll-options li.tf-wrong {
+  background: #f6e3e3;
+  box-shadow: inset 0 0 0 2px #8c1515;
+}
+
+.viz .viz-scale .reveal button.tf-opt:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 4px;
+}
+
+/* transpose.jsx: A and its copy side by side */
+.viz .viz-scale .reveal .tp-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* In a narrow box: the pictures (and the text beside them) one under the other; rotation-inverse.jsx's
+   strip in two rows, F → R_θF, then → F; orthogonal-or-not.jsx's cards two by two;
+   orthogonal-transformations.jsx's chart Not orthogonal over Orthogonal; the polls' sentence wrapped
+   to the width of what is under it; the buttons in rows */
+.viz .viz-scale.narrow :is(.la, .tp-pair) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l21-flip-row, .l21-prop, .l21-pt-body, .l21-inv-why, .l21-graphs) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal .l21-prop .tpp-f {
+  height: auto !important;
+  width: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.viz .viz-scale.narrow .reveal .l21-prop .tpp-f .viz-button {
+  margin-top: 0;
+}
+
+.viz .viz-scale.narrow .reveal .rinv .l21-strip {
+  flex-wrap: wrap;
+  width: 620px;
+  margin: 0 auto;
+}
+
+.viz .viz-scale.narrow .viz-col:is(.rinv, .tp) > .viz-toggle {
+  flex-wrap: wrap;
+  width: 560px;
+  margin: 0 auto;
+}
+
+.viz .viz-scale.narrow .reveal .l21-oq-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart {
+  grid-template-columns: 1fr;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > :is(.l21-ot-divider, .l21-ot-rule) {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-left,
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-right {
+  grid-column: 1;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-head.l21-ot-left {
+  grid-row: 1;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-row.l21-ot-left {
+  grid-row: 2;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-says.l21-ot-left {
+  grid-row: 3;
+  padding-bottom: 1em;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-head.l21-ot-right {
+  grid-row: 4;
+  padding-top: 0.6em;
+  border-top: 1px solid #d3d8df;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-row.l21-ot-right {
+  grid-row: 5;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ot-chart > .l21-ot-says.l21-ot-right {
+  grid-row: 6;
+}
+
+.viz .viz-scale.narrow .reveal .l21-ag.l21-poll-ag {
+  grid-template-columns: 1fr;
+}
+
+.viz .viz-scale.narrow .reveal .tf-poll {
+  max-width: 600px;
+}
+
+.viz .viz-scale.narrow .reveal .tf-poll .poll-options li {
+  white-space: normal;
+}
+
+/* end of lecture 21 */
+
+/* Lecture 22 */
+
+/* Click to check (image-r1.jsx's useClickToCheck, null-space.jsx): a card's answer shows once it has
+   been clicked (`data-checked`, `.ns-checked`). Image: "= …" after the word "image" in the picture;
+   rank–nullity: "rank = …, nullity = …" under the card; null space: N(A) in the picture (its green)
+   and what it is under it. */
+.viz .viz-scale .img-ask .l22-img-card:not([data-checked]) svg tspan.fragment {
+  visibility: hidden;
+}
+
+.viz .viz-scale .reveal .rn-ask .l22-rn-cell {
+  cursor: pointer;
+}
+
+.viz .viz-scale .reveal .rn-ask .l22-rn-cell:not([data-checked]) .l22-rn-says {
+  opacity: 0;
+}
+
+.viz .viz-scale .ns-card:not(.ns-checked) svg :is([stroke='#175e54'], [fill='#175e54']) {
+  visibility: hidden;
+}
+
+.viz .viz-scale .reveal .ns-card:not(.ns-checked) .l22-pick-says {
+  opacity: 0;
+}
+
+.viz .viz-scale .reveal .ns-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: end;
+  gap: 28px 56px;
+}
+
+.viz .viz-scale .reveal .ns-card {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.viz .viz-scale .reveal .ns-card .l22-pick-row {
+  margin-top: 0;
+}
+
+.viz .viz-scale .reveal .ns-card:focus-visible {
+  outline: 2px solid #0e7490;
+  outline-offset: 4px;
+}
+
+/* matrix-form.jsx: the four systems side by side, each with its Ax = b and its picture under it, the
+   size of A shown (on the slide, from a key press of its own) */
+.viz .viz-scale .reveal .mf-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 34px;
+}
+
+.viz .viz-scale .reveal .mf-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale .reveal .mf-card .l22-sys-dim {
+  opacity: 1;
+}
+
+/* the last system's wrapper, which glides to the next slide on the deck, at the others' size */
+.viz .viz-scale .reveal .mf-card .l22-glide-sys,
+.viz .viz-scale .reveal .mf-card .l22-glide-sys > span {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.viz .viz-scale .reveal .mf-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.6em;
+}
+
+/* Dragging b (existence.jsx, solve-example.jsx, back-to-systems.jsx, solutions-*.jsx) or a slider
+   (rule-of-thumb.jsx) does not select the pictures' labels */
+.viz .viz-scale .reveal :is(.l22-proj-pic, .solve-ex, .l22-tchart, .l22-duo) svg {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* In a narrow box: the T-charts and the pairs of systems one side under the other; the systems of
+   matrix-form.jsx two by two; Image's and the rank–nullity theorem's rows two cards a row; the null
+   space's cards in one column; Example 1's system over its picture; the reaction on two lines */
+.viz .viz-scale.narrow .reveal :is(.l22-tchart, .l22-duo) {
+  grid-template-columns: 1fr;
+  row-gap: 1.2em;
+}
+
+.viz .viz-scale.narrow .reveal :is(.l22-tcol, .l22-duo-col) + :is(.l22-tcol, .l22-duo-col) {
+  padding-top: 0.8em;
+  border-left: none;
+  border-top: 1.5px solid #e5e7eb;
+}
+
+.viz .viz-scale.narrow .reveal .mf-row {
+  flex-wrap: wrap;
+  width: 720px;
+  row-gap: 1.4em;
+}
+
+.viz .viz-scale.narrow .reveal ul.l22-img-list .l22-img-row.l22-img-spread:not(:has(> .l22-img-grid2)) {
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 12px;
+}
+
+.viz .viz-scale.narrow .reveal .ns-grid {
+  grid-template-columns: auto;
+}
+
+.viz .viz-scale.narrow .reveal .solve-ex .l22-ex-row {
+  flex-direction: column;
+}
+
+/* end of lecture 22 */
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂
