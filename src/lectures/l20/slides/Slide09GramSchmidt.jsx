@@ -35,10 +35,10 @@ export default function Slide09GramSchmidt() {
                 Let <Tex tex={r`\vv w_1=\vv v_1`} />.
               </Fragment>
               <Fragment index={4} as="li">
-                Let <Tex tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}(\vv v_2)`} />.
+                Let <Tex tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}\vv v_2`} />.
               </Fragment>
               <Fragment index={6} as="li">
-                At each step, let <Tex tex={r`\vv w_i=\vv v_i-\operatorname{Proj}_{V_{i-1}}(\vv v_i)`} />.
+                At each step, let <Tex tex={r`\vv w_i=\vv v_i-\operatorname{Proj}_{V_{i-1}}\vv v_i`} />.
               </Fragment>
             </ol>
             <Fragment index={7} as="p">

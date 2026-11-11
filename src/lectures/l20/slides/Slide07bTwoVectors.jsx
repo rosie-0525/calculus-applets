@@ -105,7 +105,7 @@ export default function Slide07bTwoVectors() {
             <p>
               For nonzero vectors <Tex tex={r`\vv v_1`} /> and <Tex tex={r`\vv v_2`} /> in <Tex tex={r`\mathbb R^n`} />,
             </p>
-            <Tex display tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{\vv v_1}(\vv v_2)`} />
+            <Tex display tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{\vv v_1}\vv v_2`} />
             <p>
               is orthogonal to <Tex tex={r`\vv v_1`} />, and
             </p>

@@ -782,14 +782,14 @@ export const AREAS = [
             id: 'two-vectors',
             title: 'Making two vectors orthogonal',
             caption:
-              'For nonzero vectors <b>v</b><sub>1</sub> and <b>v</b><sub>2</sub> in ℝ<sup>n</sup>, <b>w</b><sub>2</sub> = <b>v</b><sub>2</sub> − Proj<sub><b>v</b><sub>1</sub></sub>(<b>v</b><sub>2</sub>) is orthogonal to <b>v</b><sub>1</sub>, and span{<b>v</b><sub>1</sub>, <b>w</b><sub>2</sub>} = span{<b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>}. Why does sliding the tip of <b>v</b><sub>2</sub> parallel to <b>v</b><sub>1</sub> keep the span the same? And what if <b>v</b><sub>2</sub> is a multiple of <b>v</b><sub>1</sub>?',
+              'For nonzero vectors <b>v</b><sub>1</sub> and <b>v</b><sub>2</sub> in ℝ<sup>n</sup>, <b>w</b><sub>2</sub> = <b>v</b><sub>2</sub> − Proj<sub><b>v</b><sub>1</sub></sub> <b>v</b><sub>2</sub> is orthogonal to <b>v</b><sub>1</sub>, and span{<b>v</b><sub>1</sub>, <b>w</b><sub>2</sub>} = span{<b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>}. Why does sliding the tip of <b>v</b><sub>2</sub> parallel to <b>v</b><sub>1</sub> keep the span the same? And what if <b>v</b><sub>2</sub> is a multiple of <b>v</b><sub>1</sub>?',
             from: { lecture: 20, slides: ['Slide07bTwoVectors'] },
           },
           {
             id: 'gram-schmidt',
             title: 'The Gram–Schmidt process',
             caption:
-              'Goal: make a collection of nonzero vectors <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> orthogonal. Let V<sub>i</sub> = span{<b>v</b><sub>1</sub>, …, <b>v</b><sub>i</sub>}. Let <b>w</b><sub>1</sub> = <b>v</b><sub>1</sub>, and at each step <b>w</b><sub>i</sub> = <b>v</b><sub>i</sub> − Proj<sub>V<sub>i−1</sub></sub>(<b>v</b><sub>i</sub>). The resulting nonzero vectors <b>w</b><sub>i</sub> form an orthogonal basis of V = V<sub>k</sub>. Watch the idea, then step through it: why is each <b>w</b><sub>i</sub> orthogonal to the ones before?',
+              'Goal: make a collection of nonzero vectors <b>v</b><sub>1</sub>, …, <b>v</b><sub>k</sub> orthogonal. Let V<sub>i</sub> = span{<b>v</b><sub>1</sub>, …, <b>v</b><sub>i</sub>}. Let <b>w</b><sub>1</sub> = <b>v</b><sub>1</sub>, and at each step <b>w</b><sub>i</sub> = <b>v</b><sub>i</sub> − Proj<sub>V<sub>i−1</sub></sub> <b>v</b><sub>i</sub>. The resulting nonzero vectors <b>w</b><sub>i</sub> form an orthogonal basis of V = V<sub>k</sub>. Watch the idea, then step through it: why is each <b>w</b><sub>i</sub> orthogonal to the ones before?',
             from: { lecture: 20, slides: ['Slide09GramSchmidt'] },
           },
           {

@@ -69,7 +69,10 @@ export function Sp({ n = 'V', i, sup }) {
   );
 }
 
-/** Proj_{V_i}(v_j), set as KaTeX would: Proj upright, the subscript smaller and lower. */
+/**
+ * Proj_{V_i} v_j, set as KaTeX would: Proj upright, the subscript smaller and lower, then a thin space
+ * (no parentheses round v_j: the user's request, as in the slides' formulas).
+ */
 export function ProjName({ i, arg, argI }) {
   return (
     <>
@@ -84,9 +87,8 @@ export function ProjName({ i, arg, argI }) {
           </tspan>
         )}
       </tspan>
-      <tspan>(</tspan>
+      <tspan>{'\u2009'}</tspan>
       <Vn n={arg} i={argI} />
-      <tspan>)</tspan>
     </>
   );
 }

@@ -11,9 +11,9 @@ export const lecture = 20;
 // stages of GSPicture it adds
 const STAGES = [
   [r`\vv w_1=\vv v_1`, ['w1']],
-  [r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}(\vv v_2)`, ['proj2', 'w2']],
+  [r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}\vv v_2`, ['proj2', 'w2']],
   [r`V_2`, ['plane']],
-  [r`\vv w_3=\vv v_3-\operatorname{Proj}_{V_2}(\vv v_3)`, ['proj3', 'w3']],
+  [r`\vv w_3=\vv v_3-\operatorname{Proj}_{V_2}\vv v_3`, ['proj3', 'w3']],
   [r`\vv w_1,\vv w_2,\vv w_3`, ['done']],
 ];
 
@@ -78,10 +78,10 @@ export default function GramSchmidt() {
                 Let <Tex tex={r`\vv w_1=\vv v_1`} />.
               </li>
               <li style={line(2)}>
-                Let <Tex tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}(\vv v_2)`} />.
+                Let <Tex tex={r`\vv w_2=\vv v_2-\operatorname{Proj}_{V_1}\vv v_2`} />.
               </li>
               <li style={line(4)}>
-                At each step, let <Tex tex={r`\vv w_i=\vv v_i-\operatorname{Proj}_{V_{i-1}}(\vv v_i)`} />.
+                At each step, let <Tex tex={r`\vv w_i=\vv v_i-\operatorname{Proj}_{V_{i-1}}\vv v_i`} />.
               </li>
             </ol>
             <p style={line(5)}>
