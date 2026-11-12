@@ -57,7 +57,8 @@ scopeLectureDecks.postcss = true;
  * Every topic is a page: the first one /calculus-applets/, the others /calculus-applets/<topic>/.
  * They are all the same page (src/main.jsx picks the topic from the address); the dev server
  * serves index.html for any of them, and the build gives index.html the first topic's title and
- * writes a copy with each other topic's title to <topic>/index.html, for GitHub Pages.
+ * writes a copy with each topic's title to <topic>/index.html, for GitHub Pages. The first topic
+ * gets one too, so that /calculus-applets/<first topic>/ works like the others' addresses.
  */
 function topicPages() {
   return {
@@ -66,9 +67,8 @@ function topicPages() {
     writeBundle({ dir }, bundle) {
       const html = bundle['index.html'].source;
       const titled = (s) => html.replace(/<title>[^<]*<\/title>/, `<title>${s.title} – Applets</title>`);
-      const [first, ...rest] = SECTIONS;
-      writeFileSync(join(dir, 'index.html'), titled(first));
-      for (const s of rest) {
+      writeFileSync(join(dir, 'index.html'), titled(SECTIONS[0]));
+      for (const s of SECTIONS) {
         mkdirSync(join(dir, s.id), { recursive: true });
         writeFileSync(join(dir, s.id, 'index.html'), titled(s));
       }

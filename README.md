@@ -16,8 +16,8 @@ applications that students do not need to know (PageRank, denoising a chord, a 3
 printer, a robot arm, where a raindrop goes, an AI learning to read digits, why rainbows are arcs,
 the price of electricity, photo filters, neural networks and video games, a night at the casino,
 shuffling a deck of cards, training an AI model, which zero Newton’s method finds, a CT scan, the
-forces in a bridge, …). The first topic, Vectors, is the front page, `/calculus-applets/`; the
-others are at `/calculus-applets/<topic>/`.
+forces in a bridge, …). Each topic is at `/calculus-applets/<topic>/`, and the
+first, Vectors, is also the front page, `/calculus-applets/`.
 
 The pictures are the figures from the lecture slides, run as they are: the page imports a slide's
 figure component (its `WindExplorer`, `SpanTwo`, …) without the words around it, and renders it in
