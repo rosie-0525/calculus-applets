@@ -968,7 +968,7 @@ export const AREAS = [
             id: 'back-to-systems',
             title: 'Going back to linear systems',
             caption:
-              r`A linear system with $m$ equations in $n$ unknowns can be written as $A\vv x = \vv b$, where $A$ is an $m \times n$ matrix, and $A\vv x = \vv b$ has a solution exactly when $\vv b \in C(A)$, where the column space $C(A)$ is a subspace of $\mathbb R^m$. So if $\dim C(A) = m$, every $A\vv x = \vv b$ has a solution; if $\dim C(A) < m$, “most” $\vv b \in \mathbb R^m$ are not in $C(A)$. Drag $\vv b$ in each picture: where must it be for a solution?`,
+              r`A linear system with $m$ equations in $n$ unknowns can be written as $A\vv x = \vv b$, where $A$ is an $m \times n$ matrix, and $A\vv x = \vv b$ has a solution exactly when $\vv b \in C(A)$, where the column space $C(A)$ is a subspace of $\mathbb R^m$. So if $\dim C(A) = m$, then $C(A) = \mathbb R^m$ and $A\vv x = \vv b$ has a solution for every $\vv b$; if $\dim C(A) < m$, $A\vv x = \vv b$ does not have a solution for “most” $\vv b$, since “most” $\vv b \in \mathbb R^m$ are not in $C(A)$. Drag $\vv b$ in each picture: where must it be for a solution?`,
             from: { lecture: 22, slides: ['Slide07Rank'] },
           },
           {
@@ -982,7 +982,7 @@ export const AREAS = [
             id: 'solve-example',
             title: 'Does the system have a solution?',
             caption:
-              r`For the system $(\ast)$: (i) write it in the form $A\vv x = \vv b$; (ii) find an orthogonal basis for the column space of $A$; (iii) when $\vv b = (0, 0, 0)$, does $(\ast)$ have a solution? (iv) For $\vv b = (3, 3, -3)$, compute $\operatorname{Proj}_{C(A)}(\vv b)$: does $(\ast)$ have a solution? (v) The same for $\vv b = (0, 1, 0)$. Work it out first, then check (iv) and (v) with the buttons. The picture shows the columns $\vv v_1, \vv v_2, \vv v_3$ of $A$ and their span; drag $\vv b$ by its tip, or the picture to turn it.`,
+              r`For the system $(\ast)$: (i) write it in the form $A\vv x = \vv b$; (ii) find an orthogonal basis for the column space of $A$; (iii) when $\vv b = (0, 0, 0)$, does $(\ast)$ have a solution? (iv) For $\vv b = (5, 4, -4)$, compute $\operatorname{Proj}_{C(A)}(\vv b)$: does $(\ast)$ have a solution? (v) The same for $\vv b = (0, 1, 0)$. Work it out first, then check (iv) and (v) with the buttons. The picture shows the columns $\vv v_1, \vv v_2, \vv v_3$ of $A$ and their span; drag $\vv b$ by its tip, or the picture to turn it.`,
             from: { lecture: 22, slides: ['Slide09Example2'] },
           },
           {
@@ -1040,14 +1040,21 @@ export const AREAS = [
             id: 'solutions-square',
             title: 'All solutions: two equations in two unknowns',
             caption:
-              r`Suppose $A\vv x = \vv b$ has one solution $\vv x_0$. Adding $\vv n \in N(A)$ gives another solution, and any other solution $\vv x_1$ satisfies $\vv x_1 - \vv x_0 \in N(A)$. So all solutions of $A\vv x = \vv b$ are given by $\vv x_0 + \vv n$, where $\vv x_0$ is any solution and $\vv n \in N(A)$. In each picture, $N(A)$ is green, $C(A)$ teal, and the solutions of each equation a gray line. Drag $\vv b$, and the right-hand sides follow: when is there a solution? Once there is, what are all the solutions? Think first, then click “All solutions”.`,
+              r`Suppose $A\vv x = \vv b$ has one solution $\vv x_0$. Adding $\vv n \in N(A)$ gives another solution, and any other solution $\vv x_1$ satisfies $\vv x_1 - \vv x_0 \in N(A)$. So all solutions of $A\vv x = \vv b$ are given by $\vv x_0 + \vv n$, where $\vv x_0$ is any solution and $\vv n \in N(A)$. On the left, $N(A)$ is green and $C(A)$ teal; on the right, each equation's solutions are a line in the plane of the unknowns $x, y$. Drag $\vv b$, and the right-hand sides and the lines follow: when is there a solution? What are all the solutions then? Drag $\vv n$ along them.`,
             from: { lecture: 22, slides: ['Slide16cSolutionSets'] },
+          },
+          {
+            id: 'solutions-unique',
+            title: 'When is the solution unique?',
+            caption:
+              r`Two solutions of $A\vv x = \vv b$ differ by an element of $N(A)$, so if $N(A) = \{\vv 0\}$, there is at most one. Here $C(A)$ is all of $\mathbb R^2$, tinted teal, and $N(A) = \{\vv 0\}$, the green point. Drag $\vv b$ anywhere: does $A\vv x = \vv b$ always have a solution? How many?`,
+            from: { lecture: 22, slides: ['Slide16eSolutionSets'] },
           },
           {
             id: 'solutions-other',
             title: 'All solutions: more equations, or more unknowns',
             caption:
-              r`Let $A$ be an $m \times n$ matrix. The equation $A\vv x = \vv b$ has no solution if $\vv b \notin C(A)$; exactly one solution if $\vv b \in C(A)$ and $N(A) = \{\vv 0\}$; infinitely many solutions if $\vv b \in C(A)$ and $N(A) \ne \{\vv 0\}$. Which can happen for each of these systems? Drag $\vv b$, and once there is a solution, click “All solutions”.`,
+              r`Let $A$ be an $m \times n$ matrix. The equation $A\vv x = \vv b$ has no solution if $\vv b \notin C(A)$; exactly one solution if $\vv b \in C(A)$ and $N(A) = \{\vv 0\}$; infinitely many solutions if $\vv b \in C(A)$ and $N(A) \ne \{\vv 0\}$. Which can happen for each of these systems? Think first, then drag $\vv b$ to check.`,
             from: { lecture: 22, slides: ['Slide16dSolutionSets'] },
           },
           {

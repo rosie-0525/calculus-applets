@@ -18019,6 +18019,20 @@ html.print-pdf .reveal .slides section .fragment.l13-after-zoom.visible {
   height: auto;
 }
 
+/* the caption under each picture (C(A) = ℝᵐ; "Most" b ∈ ℝᵐ are not in C(A)), centred under it, smaller
+   than the sentence over it */
+.reveal .l22-back-plot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reveal .l22-tcol p.l22-back-cap {
+  white-space: nowrap;
+  margin-top: 0.15em;
+  font-size: 0.75em;
+}
+
 /* b's tip, to drag */
 .reveal .l22-b-grab {
   cursor: grab;
@@ -19320,14 +19334,35 @@ html.print-pdf .reveal .slides section .fragment.l13-after-zoom.visible {
   font-size: 1.15em;
 }
 
-/* Back to linear systems, the examples (Slide16cSolutionSets, Slide16dSolutionSets; SolutionSets.jsx):
-   two examples per slide in equal columns, a hairline between them: the numbers of equations and
-   unknowns, A and its system, rank and nullity, one picture with b to drag, and under it "No
-   solution" or the button "All solutions" and what they are */
+/* How many solutions?, the examples (Slide16cSolutionSets, Slide16eSolutionSets,
+   Slide16dSolutionSets; SolutionSets.jsx): two examples per slide in equal columns, a hairline
+   between them (or one, .l22-duo-one): the numbers of equations and unknowns, A and its system,
+   rank and nullity, one picture with b to drag, and under it "No solution" or the button "All
+   solutions" and what they are */
 .reveal .l22-duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 0.7em;
+}
+
+.reveal .l22-duo-one {
+  grid-template-columns: 1fr;
+}
+
+/* [2 4; 1 2], two pictures side by side (the user's request: the solutions in another applet beside
+   the first): a grid of two columns, 5 rows each, filled a column at a time, so that the pictures
+   line up: the numbers of equations and unknowns, A, rank and nullity, the picture with b; beside
+   them the system, each equation's line and, under them, what the solutions are; under the
+   picture with b, "No solution" or "Solution!" (.l22-duo-yes: green, as "has a solution!" on Solving
+   Ax = b; this example has no button, the user's request) */
+.reveal .l22-duo-wide {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, auto);
+  grid-template-columns: 540px 540px;
+  column-gap: 44px;
+  justify-content: center;
+  justify-items: center;
 }
 
 .reveal .l22-duo-col + .l22-duo-col {
@@ -19386,6 +19421,21 @@ html.print-pdf .reveal .slides section .fragment.l13-after-zoom.visible {
 
 .reveal .l22-duo-what {
   color: #3b6ea8;
+}
+
+.reveal .l22-duo-yes {
+  color: var(--accent-3);
+  font-weight: 700;
+}
+
+/* [1 1; 0 1]: "There is a solution for any b" and, in its place with the nullity, "There is a unique
+   solution for any b": two sentences in one cell, the first a fade-out fragment */
+.reveal .l22-duo-swap {
+  display: grid;
+}
+
+.reveal .l22-duo-swap > * {
+  grid-area: 1 / 1;
 }
 
 /* "All solutions": a small pill in the solutions' blue, filled while they are shown */

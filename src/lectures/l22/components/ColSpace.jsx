@@ -1,7 +1,7 @@
 import Space, { Arrow3, Seg3, Dot3, Patch3, RightAngle3 } from './Space.jsx';
 import { Lbl, Vn } from './GS3D.jsx';
 import { fit } from './gs.js';
-import { INK, TEAL, VIEW, V1, V2, plus, times, minus } from './ls.js';
+import { INK, TEAL, VIEW, W1, W2, plus, times, minus } from './ls.js';
 
 /**
  * Example 1's pictures in ℝ³, drawn in world coordinates and shown through VIEW (ls.js), which
@@ -19,11 +19,13 @@ export default function ColSpace({ width = 520, height = 380, points, pad = 30, 
   );
 }
 
-const at = (sv, tv) => plus(times(sv, V1), times(tv, V2));
+// the plane's points in its orthogonal basis w₁, w₂ (ls.js: Example 1's columns v₁, v₂ are not
+// orthogonal since the user's change)
+const at = (sv, tv) => plus(times(sv, W1), times(tv, W2));
 
 /**
- * The plane C(A) = span{v₁, v₂}: the patch s v₁ + t v₂ for s in `sr`, t in `tr`, faintly teal, with
- * grid lines at the whole multiples of v₁ and v₂, and its name in a corner.
+ * The plane C(A) = span{w₁, w₂}: the patch s w₁ + t w₂ for s in `sr`, t in `tr`, faintly teal, with
+ * grid lines at the whole multiples of w₁ and w₂, and its name in a corner.
  */
 export function CPlane({ s, sr = [-0.6, 2.6], tr = [-0.6, 1.6], label = 'C(A)', labelAt, grid = true, color = TEAL }) {
   const corners = [at(sr[0], tr[0]), at(sr[1], tr[0]), at(sr[1], tr[1]), at(sr[0], tr[1])].map(VIEW);
@@ -81,7 +83,7 @@ export function WLbl({ s, at: p, ...rest }) {
 export function Drop({ s, from, to, color = INK }) {
   const f = VIEW(from);
   const t = VIEW(to);
-  const along = VIEW(V1);
+  const along = VIEW(W1);
   return (
     <g>
       <Seg3 s={s} from={f} to={t} color={color} width={2.6} strokeDasharray="0.1 6.5" />

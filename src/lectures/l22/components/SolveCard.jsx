@@ -5,23 +5,27 @@ import ColSpace, { CPlane, W3, WSeg, WDot, WLbl, Drop, Vn } from './ColSpace.jsx
 import { RightAngle3 } from './Space.jsx';
 import { PRINT } from './print.js';
 import { clipIn } from './clip.js';
-import { INK, TEAL, GRAY, COLS, AMBER, V1, V2, V3, B_IN, B_OUT, VIEW, dot, plus, minus, times, unit, cross } from './ls.js';
+import { INK, TEAL, GRAY, COLS, AMBER, V1, V2, V3, W1, W2, VIEW, dot, plus, minus, times, unit, cross } from './ls.js';
 
-const SR = [-0.6, 2.4]; // the floor: s v₁ + t v₂ for s in SR, t in TR
+// the floor: s w₁ + t w₂ for s in SR, t in TR, in the plane's orthogonal basis w₁, w₂ (ls.js; the
+// columns v₁, v₂ are not orthogonal since the user's change), out to b = (5, 4, −4) = 3w₁ + w₂
+const SR = [-0.6, 3.4];
 const TR = [-0.6, 1.5];
-const onPlane = (a, c) => plus(times(a, V1), times(c, V2));
+const onPlane = (a, c) => plus(times(a, W1), times(c, W2));
 const CORNERS = [SR[0], SR[1]].flatMap((a) => [TR[0], TR[1]].map((c) => onPlane(a, c)));
 const PATCH = [onPlane(SR[0], TR[0]), onPlane(SR[1], TR[0]), onPlane(SR[1], TR[1]), onPlane(SR[0], TR[1])]; // round the patch
 
 // N: the plane's unit normal (b · N is b's height above the plane)
-const N = unit(cross(V1, V2));
+const N = unit(cross(W1, W2));
 const AZ = (-40 * Math.PI) / 180; // Space's default view: this floor direction runs to the right
 const RIGHT = [Math.sin(AZ), Math.cos(AZ)];
-const FA = VIEW(unit(V1));
-const FB = VIEW(unit(V2));
-const R = plus(times(RIGHT[0] * FA[0] + RIGHT[1] * FA[1], unit(V1)), times(RIGHT[0] * FB[0] + RIGHT[1] * FB[1], unit(V2)));
-const BASE = plus(times(2, V1), times(0.25, V2));
-const START = plus(BASE, times(1.3, N));
+const FA = VIEW(unit(W1));
+const FB = VIEW(unit(W2));
+const R = plus(times(RIGHT[0] * FA[0] + RIGHT[1] * FA[1], unit(W1)), times(RIGHT[0] * FB[0] + RIGHT[1] * FB[1], unit(W2)));
+const BASE = plus(times(2, W1), times(0.25, W2));
+// b's start: off the plane, up and to the left of the columns (from over BASE it ran along v₂ once
+// v₂ = (1, 2, −2)); FIT stays round BASE
+const START = plus(plus(times(0.4, W1), times(1.2, W2)), times(1.3, N));
 // the picture is fitted round the plane and these points (b's room)
 const FIT = [-2.6, 0.55].flatMap((u) => [-1.4, 2.4].map((h) => plus(plus(BASE, times(u, R)), times(h, N))));
 const SNAP = 0.13; // within this height of the plane, b lands on it
@@ -106,7 +110,7 @@ function BVector({ s, raw, handlers }) {
             {d[0] > 0 && dotted(b, along(d[0]), INK, 'a')}
             {dotted(along(d[0]), along(d[1]), GRAY, 'b')}
             {d[1] < 1 && dotted(along(d[1]), foot, INK, 'c')}
-            <RightAngle3 s={s} corner={VIEW(foot)} a={VIEW(minus(b, foot))} b={VIEW(V1)} size={0.26} color={d[1] > 1 - 1e-6 ? GRAY : INK} />
+            <RightAngle3 s={s} corner={VIEW(foot)} a={VIEW(minus(b, foot))} b={VIEW(W1)} size={0.26} color={d[1] > 1 - 1e-6 ? GRAY : INK} />
           </g>
         ) : (
           <Drop s={s} from={b} to={foot} />
@@ -224,11 +228,11 @@ export default function SolveCard({ first = 1, stages, head }) {
                   )}
                 </Fragment>
                 {/* the labels last, their halos over b (rule 17b) */}
-                <WLbl s={s} at={plus(times(SR[1], V1), times(TR[0], V2))} dx={-6} dy={28} color={TEAL} anchor="end" size={22}>
+                <WLbl s={s} at={onPlane(SR[1], TR[0])} dx={-6} dy={28} color={TEAL} anchor="end" size={22}>
                   <SpanName />
                 </WLbl>
                 {[V1, V2, V3].map((v, k) => (
-                  <WLbl key={k} s={s} at={v} dx={[4, -10, 10][k]} dy={[26, -8, 4][k]} color={COLS[k]} size={23} anchor={k === 1 ? 'end' : 'start'}>
+                  <WLbl key={k} s={s} at={v} dx={[4, 4, 10][k]} dy={[26, -14, 4][k]} color={COLS[k]} size={23} anchor="start">
                     <Vn n="v" i={k + 1} />
                   </WLbl>
                 ))}

@@ -10,9 +10,11 @@ import { LoopPic, SYSTEM_MAPS, RANK1_MAP } from '../components/ImageCards.jsx';
  * has a solution ⟺ b ∈ C(A), where the column space C(A) ⊂ ℝᵐ. Then Mark's remark in a T-chart (rule
  * 14d; his definition of rank moved to Image and column space, the user's request), a side per key
  * press (2, 3), each with an animation from Linear system in matrix form, played once (the user's
- * request; LoopPic, SYSTEM_MAPS; first still pictures of a dozen b's): dim C(A) = m, every Ax = b
- * has a solution (x + y = 3, y = 1: ℝ² → ℝ², the image all of ℝ², b in it); dim C(A) < m, "most" b
- * are not in C(A) (a 2 × 2 matrix of rank 1, the user's request, in place of 2x = 4, x = 3: the image
+ * request; LoopPic, SYSTEM_MAPS; first still pictures of a dozen b's): dim C(A) = m, Ax = b has a
+ * solution for every b (x + y = 3, y = 1: ℝ² → ℝ², the image all of ℝ², b in it), "C(A) = ℝᵐ" under
+ * the picture; dim C(A) < m, Ax = b does not have a solution for "most" b (the handout's wording, the
+ * user's request), "“Most” b ∈ ℝᵐ are not in C(A)" under the picture, both captions in smaller type
+ * (a 2 × 2 matrix of rank 1, the user's request, in place of 2x = 4, x = 3: the image
  * a line, b off it; b can be dragged in both pictures, and snaps onto the line when close); each side's matrix A written beside its picture (the user's request). (A last line, Example 1: rank
  * of A = 2 < 3, removed at the user's request.)
  */
@@ -39,11 +41,16 @@ export default function Slide07Rank() {
             <Tex tex={r`\dim C(A)=m`} />
           </p>
           <p>
-            Every <Tex tex={r`A\vv x=\vv b`} /> has a solution
+            <Tex tex={r`A\vv x=\vv b`} /> has a solution for every <Tex tex={r`\vv b`} />
           </p>
           <div className="l22-back-pic">
             <Tex tex={r`A=\begin{bmatrix}1&1\\0&1\end{bmatrix}`} />
-            <LoopPic index={2} ex={SYSTEM_MAPS[1]} once drag />
+            <div className="l22-back-plot">
+              <LoopPic index={2} ex={SYSTEM_MAPS[1]} once drag />
+              <p className="l22-back-cap">
+                <Tex tex={r`C(A)=\mathbb R^m`} />
+              </p>
+            </div>
           </div>
         </Fragment>
         <Fragment index={3} className="l22-tcol">
@@ -51,11 +58,16 @@ export default function Slide07Rank() {
             <Tex tex={r`\dim C(A)<m`} />
           </p>
           <p>
-            “Most” <Tex tex={r`\vv b\in\mathbb R^m`} /> are not in <Tex tex="C(A)" />
+            <Tex tex={r`A\vv x=\vv b`} /> does not have a solution for “most” <Tex tex={r`\vv b`} />
           </p>
           <div className="l22-back-pic">
             <Tex tex={r`A=\begin{bmatrix}1&2\\1&2\end{bmatrix}`} />
-            <LoopPic index={3} ex={RANK1_MAP} once drag />
+            <div className="l22-back-plot">
+              <LoopPic index={3} ex={RANK1_MAP} once drag />
+              <p className="l22-back-cap">
+                “Most” <Tex tex={r`\vv b\in\mathbb R^m`} /> are not in <Tex tex="C(A)" />
+              </p>
+            </div>
           </div>
         </Fragment>
       </div>

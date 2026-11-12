@@ -1725,6 +1725,22 @@ body {
   flex-direction: column;
 }
 
+/* solutions-*.jsx: with every key press reached, the fade-out fragments are gone (the page does not
+   load reveal's CSS, which would hide them): T_A's inputs (they fade as C(A) comes), the faint cube
+   left where they were, and "There is a solution for any b" ("unique" in its place) */
+.viz .viz-scale .reveal .l22-duo .fragment.fade-out {
+  display: none;
+}
+
+/* solutions-square.jsx: its two pictures one under the other (the grid filled a row at a time: A,
+   rank and nullity, the picture with b, "Solution!"; then the system, the equations' lines, what
+   the solutions are) */
+.viz .viz-scale.narrow .reveal .l22-duo-wide {
+  grid-auto-flow: row;
+  grid-template-rows: none;
+  grid-template-columns: 540px;
+}
+
 /* end of lecture 22 */
 
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k

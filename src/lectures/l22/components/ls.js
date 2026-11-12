@@ -15,19 +15,23 @@ export const GRAY = '#9ca3af';
 export const ROSE = '#b5407f'; // v₃, first v₁ (the user's request: not blue, the definitions' and b ∈ C(A)'s colour now, nor red)
 export const COLS = [AMBER, PURPLE, ROSE]; // the columns v₁, v₂, v₃: orange, purple, pink (the user's order: orange in ℝ¹)
 
-// Mark's Example 1: 2x − y + z = a, x + y + 2z = b, −x − y − 2z = c
+// Example 1 (Mark's, changed at the user's request so that its first two columns are not orthogonal
+// and Gram–Schmidt has work to do): 2x + y + 3z = a, x + 2y + 3z = b, −x − 2y − 3z = c
 export const A = [
-  [2, -1, 1],
-  [1, 1, 2],
-  [-1, -1, -2],
+  [2, 1, 3],
+  [1, 2, 3],
+  [-1, -2, -3],
 ];
 export const V1 = [2, 1, -1];
-export const V2 = [-1, 1, -1];
-export const V3 = [1, 2, -2]; // = v₁ + v₂
+export const V2 = [1, 2, -2]; // v₁ · v₂ = 6: not orthogonal
+export const V3 = [3, 3, -3]; // = v₁ + v₂
+// the orthogonal basis of C(A) that Gram–Schmidt gives: w₁ = v₁, w₂ = v₂ − v₁ (and w₃ = 0)
+export const W1 = V1;
+export const W2 = [-1, 1, -1];
 export const N1 = [1, 1, -1]; // N(A) = span{(1, 1, −1)}: v₁ + v₂ − v₃ = 0
-export const B_IN = [3, 3, -3]; // = 2v₁ + v₂ = v₁ + v₃: in C(A)
-export const B_OUT = [0, 1, 0]; // not in C(A): Proj = (0, 1/2, −1/2)
-export const X0 = [2, 1, 0]; // two solutions of Ax = (3, 3, −3)
+export const B_IN = [5, 4, -4]; // = 2v₁ + v₂ = 3w₁ + w₂ = v₁ + v₃: in C(A)
+export const B_OUT = [0, 1, 0]; // not in C(A): Proj = w₁/6 + w₂/3 = (0, 1/2, −1/2)
+export const X0 = [2, 1, 0]; // two solutions of Ax = (5, 4, −4)
 export const X1 = [1, 0, 1];
 
 export const mul = (M, x) => M.map((row) => row.reduce((s, a, j) => s + a * x[j], 0));
@@ -37,16 +41,16 @@ export const lerp = (e, f, t) => e.map((c, i) => c + t * (f[i] - c));
 export const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2);
 export const clamp01 = (t) => Math.max(0, Math.min(1, t));
 
-// C(A) is the plane y + z = 0, with the orthogonal basis v₁, v₂ (v₁ · v₂ = 0)
-const U1 = unit(V1);
-const U2 = unit(V2);
-const NHAT = unit(cross(V1, V2)); // (0, 1, 1)/√2
+// C(A) is the plane y + z = 0, with the orthogonal basis w₁, w₂ (w₁ · w₂ = 0)
+const U1 = unit(W1);
+const U2 = unit(W2);
+const NHAT = unit(cross(W1, W2)); // (0, 1, 1)/√2
 
 /**
  * The pictures of Example 1 show C(A) as a horizontal floor (as projection pictures read best,
  * rule 16): a rotation of ℝ³ (the axes are hidden, so nothing else changes) taking C(A) to the plane
- * z = 0, its normal (0, 1, 1) up, and v₁, v₂ to the floor directions `phi` degrees either side of
- * the one that runs to the right at the default view (az −40°): v₁ down-right, v₂ up-right.
+ * z = 0, its normal (0, 1, 1) up, and w₁, w₂ to the floor directions `phi` degrees either side of
+ * the one that runs to the right at the default view (az −40°): w₁ down-right, w₂ up-right.
  */
 export function floorView(phi = -45) {
   const az = (-40 * Math.PI) / 180;
@@ -65,5 +69,5 @@ export function floorView(phi = -45) {
 
 export const VIEW = floorView();
 
-/** Proj_{C(A)}(p) for Example 1, by the orthogonal basis v₁, v₂. */
-export const projC = (p) => plus(proj(p, V1), proj(p, V2));
+/** Proj_{C(A)}(p) for Example 1, by the orthogonal basis w₁, w₂. */
+export const projC = (p) => plus(proj(p, W1), proj(p, W2));
