@@ -6,17 +6,20 @@ products, lines and planes, span, bases, projections, least squares, linear func
 linear transformations, matrix multiplication, matrix algebra, diagonal and triangular matrices,
 Markov chains, equilibrium vectors, matrix inverses, linear independence, the Gram–Schmidt process,
 matrix transpose, orthogonal matrices, symmetric matrices and quadratic forms, linear systems and
-the column space, null space and the rank–nullity theorem, all solutions of a linear system;
-scalar and vector-valued functions, graphs and contour plots, partial derivatives, critical points
-and local extrema, global extrema on a region, gradients and linear approximation, gradients and
-level sets, gradient descent, constrained optimization, Lagrange multipliers, the derivative matrix,
-the multivariable chain rule, Newton’s method) has a page of its own: its applets, each with a title
-and a question to think about, and at the bottom, under "Motivation – just for fun!", the
-applications that students do not need to know (PageRank, denoising a chord, a 3-D game, a 3-D
-printer, a robot arm, where a raindrop goes, an AI learning to read digits, why rainbows are arcs,
-the price of electricity, photo filters, neural networks and video games, a night at the casino,
-shuffling a deck of cards, training an AI model, which zero Newton’s method finds, a CT scan, the
-forces in a bridge, …). Each topic is at `/calculus-applets/<topic>/`, and the
+the column space, null space and the rank–nullity theorem, all solutions of a linear system, the
+QR-decomposition, triangular systems and the LU-decomposition, eigenvectors and eigenvalues,
+eigenspaces, finding eigenvalues and eigenvectors, the spectral theorem, definiteness of quadratic
+forms, A = WDWᵀ and matrix powers; scalar and vector-valued functions, graphs and contour plots,
+partial derivatives, critical points and local extrema, global extrema on a region, gradients and
+linear approximation, gradients and level sets, gradient descent, constrained optimization,
+Lagrange multipliers, the derivative matrix, the multivariable chain rule, Newton’s method) has a
+page of its own: its applets, each with a title and a question to think about, and at the bottom,
+under "Motivation – just for fun!", the applications that students do not need to know (PageRank,
+denoising a chord, a 3-D game, a 3-D printer, a robot arm, where a raindrop goes, an AI learning to
+read digits, why rainbows are arcs, the price of electricity, photo filters, neural networks and
+video games, a night at the casino, shuffling a deck of cards, training an AI model, which zero
+Newton’s method finds, a CT scan, the forces in a bridge, a prism splitting light into its
+spectrum, …). Each topic is at `/calculus-applets/<topic>/`, and the
 first, Vectors, is also the front page, `/calculus-applets/`.
 
 The pictures are the figures from the lecture slides, run as they are: the page imports a slide's

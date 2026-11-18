@@ -41,6 +41,7 @@ const MIME = {
   '.woff': 'font/woff',
   '.ttf': 'font/ttf',
   '.otf': 'font/otf',
+  '.mp4': 'video/mp4',
 };
 
 // The page around the applet, in every file; src/main.jsx, which imports it, is written for each.

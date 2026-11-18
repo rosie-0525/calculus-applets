@@ -1743,6 +1743,538 @@ body {
 
 /* end of lecture 22 */
 
+/* Lecture 23 */
+
+/* back-substitution.jsx's useKeyPresses: a fragment not reached yet plays none of its animations
+   (the page marks every fragment `visible`, which starts them), so that each starts when its key
+   press is reached: the values flying into the equations, the owl's jumps, the row operations */
+.viz .viz-scale .reveal :is(.bsub, .gsqr-site, .elim-lu, .rn-cube) .fragment[data-later],
+.viz .viz-scale .reveal :is(.bsub, .gsqr-site, .elim-lu, .rn-cube) .fragment[data-later] * {
+  animation: none !important;
+}
+
+/* back-substitution.jsx: a variable fades as its value lands (the deck's delay), but its visibility
+   follows the applet's at once (the deck's 0.8 s delay, for reveal's fade-out, which the page does
+   not load, kept it hidden that long after the applet first showed) */
+.viz .viz-scale .reveal .bsub .l23-old.fragment.fade-out.visible {
+  transition: opacity 0.25s ease 0.55s;
+}
+
+/* rank-nullity-cube.jsx: the matrix at the slide's size */
+.viz .viz-scale .reveal .rn-cube .l22-img-text {
+  font-size: 0.8em;
+}
+
+/* In a narrow box: gs-matrix-form.jsx's steps over the formulas, at a width of their own (beside
+   the formulas they had 15em); lu-elimination.jsx's elimination in two rows, A → after the first
+   step, then → U (the T-chart of back-substitution.jsx goes one column under the other by
+   Lecture 22's rule for .l22-tchart) */
+.viz .viz-scale.narrow .reveal .gsqr-site {
+  width: 520px;
+}
+
+.viz .viz-scale.narrow .reveal .gsqr-site .l23-gsqr-cols {
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0.3em;
+}
+
+.viz .viz-scale.narrow .reveal .elim-lu {
+  width: 500px;
+}
+
+.viz .viz-scale.narrow .reveal .elim-lu .l23-elim-steps {
+  flex-wrap: wrap;
+  row-gap: 0.5em;
+}
+
+/* rank-nullity-cube.jsx: A over its picture, the buttons in two rows */
+.viz .viz-scale.narrow .reveal .rn-cube {
+  width: 500px;
+}
+
+.viz .viz-scale.narrow .reveal .rn-cube .l22-img-card {
+  flex-direction: column;
+}
+
+.viz .viz-scale.narrow .reveal .rn-cube-pick {
+  flex-wrap: wrap;
+}
+
+/* end of lecture 23 */
+
+/* Lecture 24 */
+
+/* Dragging x (stretch-shrink.jsx, eigenvector-definition.jsx, eigenlines.jsx,
+   rotation-no-eigenvector.jsx) does not select the pictures' labels */
+.viz .viz-scale .reveal :is(.sts, .evd, .eln, .rot-why) svg {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* eigenvector-definition.jsx: each check keeps its place, hidden, while the question it answers shows
+   over it in gray (`inv-ask`); found, it fades in */
+.viz .viz-scale .reveal .evd .l24-def-row {
+  display: grid;
+  justify-items: start;
+  align-items: center;
+}
+
+.viz .viz-scale .reveal .evd .l24-def-row > * {
+  grid-area: 1 / 1;
+}
+
+.viz .viz-scale .reveal .evd .evd-check {
+  display: flex;
+  align-items: center;
+  gap: 1.3em;
+  transition: opacity 0.45s ease;
+}
+
+.viz .viz-scale .reveal .evd .evd-check.evd-hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* stretch-and-flip.jsx: A, u and v beside the picture */
+.viz .viz-scale .reveal .saf-row {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.viz .viz-scale .reveal .saf-text p {
+  margin: 0.5em 0;
+}
+
+/* projection-eigenvectors.jsx: the lines beside the picture at a width of their own (on the slide
+   they take what the picture leaves) */
+.viz .viz-scale .reveal .pje-text {
+  width: 440px;
+}
+
+.viz .viz-scale .reveal .pje-text > p.pje-b {
+  margin-top: 0;
+}
+
+/* eigenspace-examples.jsx: each example's matrix over its picture, the pictures at their own size
+   (on the slide, beside them, in a row of a fixed height); over Example 1's, the eigenspaces, in its
+   frame, the plane's white and border left out */
+.viz .viz-scale .reveal .es-chart {
+  grid-template-columns: auto auto;
+  column-gap: 0.4em;
+}
+
+.viz .viz-scale .reveal .es-chart .l24-spaces-ex {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viz .viz-scale .reveal .es-chart .l24-spaces-pic {
+  height: auto;
+}
+
+.viz .viz-scale .reveal .es-ex1 {
+  position: relative;
+}
+
+.viz .viz-scale .reveal .es-over {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.viz .viz-scale .reveal .es-over svg.figure-svg {
+  background: none;
+  border-color: transparent;
+}
+
+/* rotation-no-eigenvector.jsx: the slider and the slogan beside the picture, at a width of their own */
+.viz .viz-scale .reveal .rot-side {
+  width: 320px;
+}
+
+/* sum-of-eigenvectors.jsx, rotation-no-eigenvector.jsx: until the poll is answered, the hidden
+   pictures under it take no clicks or drags */
+.viz .viz-scale .reveal :is(.sum-poll, .rot-poll) .tf:not(:has(.tf-correct)) .tf-why {
+  pointer-events: none;
+}
+
+.viz .viz-scale .reveal .sum-poll .l24-psum-card .viz-toggle {
+  margin-top: 10px;
+}
+
+/* how-many-eigenvalues.jsx: the cards are buttons (Lecture 18's inv-pick); a card not yet checked asks
+   in gray */
+.viz .viz-scale .reveal .hm {
+  column-gap: 28px;
+}
+
+.viz .viz-scale .reveal .hm .hm-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 8px;
+}
+
+.viz .viz-scale .reveal .hm p.l24-many-m,
+.viz .viz-scale .reveal .hm p.l24-many-p {
+  align-self: flex-start;
+}
+
+.viz .viz-scale .reveal .hm p.l24-many-v.hm-ask {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* In a narrow box: the text beside a picture over it (stretch-shrink.jsx, eigenvector-definition.jsx,
+   stretch-and-flip.jsx, projection-eigenvectors.jsx, diagonal-eigenvectors.jsx); the two examples of
+   eigenspace-examples.jsx one under the other (the narrow rule for Lecture 22's T-charts); the poll's
+   two applets, and the slider beside the rotation, under each other; How many eigenvalues?'s cards
+   in one column */
+.viz .viz-scale.narrow .reveal :is(.sts-row, .evd-row, .pje-row, .dge-row, .rot-why) {
+  grid-template-columns: auto;
+  justify-items: center;
+  row-gap: 14px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.sts-row, .dge-row) > p {
+  margin: 0;
+}
+
+.viz .viz-scale.narrow .reveal .saf-row {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.viz .viz-scale.narrow .reveal .saf-text {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+}
+
+/* projection-eigenvectors.jsx: B, then the picture and its button, then the lines the steps bring (on
+   the slide's side of the picture, they would leave a gap over it until they come) */
+.viz .viz-scale.narrow .reveal :is(.pje-row, .pje-text) {
+  display: contents;
+}
+
+.viz .viz-scale.narrow .reveal .pje {
+  gap: 14px;
+}
+
+.viz .viz-scale.narrow .reveal .pje-text > p {
+  order: 3;
+  width: 474px;
+  margin: 0;
+}
+
+.viz .viz-scale.narrow .reveal .pje-text > p.pje-b {
+  order: 0;
+  text-align: center;
+}
+
+.viz .viz-scale.narrow .reveal .pje > .l24-proj-pic {
+  order: 1;
+}
+
+.viz .viz-scale.narrow .reveal .pje > .viz-toggle {
+  order: 2;
+  margin-bottom: 6px;
+}
+
+.viz .viz-scale.narrow .reveal .sum-poll .l24-psum {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.viz .viz-scale.narrow .reveal :is(.sum-poll, .rot-poll) .tf-poll {
+  max-width: 470px;
+}
+
+.viz .viz-scale.narrow .reveal .rot-side {
+  width: 384px;
+}
+
+.viz .viz-scale.narrow .reveal .hm {
+  grid-template-columns: auto;
+  row-gap: 18px;
+}
+
+.viz .viz-scale.narrow .reveal .es .viz-toggle,
+.viz .viz-scale.narrow .reveal .eln .viz-toggle,
+.viz .viz-scale.narrow .reveal .saf .viz-toggle {
+  flex-wrap: wrap;
+}
+
+/* end of lecture 24 */
+
+/* Lecture 25 */
+
+/* eigenbasis-projections.jsx: the arrow "change of basis" points right, or down in a narrow box,
+   where the column goes B, its picture and its basis, the arrow, then D's */
+.viz .viz-scale .reveal .ebp-grid svg.ebp-down {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid {
+  grid-template-columns: auto;
+  row-gap: 0.3em;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > * {
+  grid-column: 1;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .ebp-mb {
+  grid-row: 1;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .ebp-pb {
+  grid-row: 2;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .l25-cob-basis-b {
+  grid-row: 3;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .l25-cob-arrow {
+  grid-row: 4;
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 0.4em;
+  min-height: 70px;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .ebp-md {
+  grid-row: 5;
+  margin-top: 0.4em;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .ebp-pd {
+  grid-row: 6;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid > .l25-cob-basis-d {
+  grid-row: 7;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid svg.ebp-right {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .ebp-grid svg.ebp-down {
+  display: block;
+}
+
+/* orthogonal-eigenvectors.jsx: the pair that is not symmetric beside the symmetric pair, a rule
+   between them (one under the other in a narrow box); each card is a button, and its right-angle
+   mark, or the arc of the angle, is hidden until it is clicked */
+.viz .viz-scale .reveal .oe {
+  display: flex;
+  align-items: flex-start;
+}
+
+.viz .viz-scale .reveal .oe-pair {
+  gap: 22px;
+  padding: 0 30px;
+}
+
+.viz .viz-scale .reveal .oe-pair + .oe-pair {
+  border-left: 1.5px solid #dde2ea;
+}
+
+.viz .viz-scale .reveal .oe-card {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.viz .viz-scale .reveal .oe-card:focus-visible {
+  outline: 2px solid var(--site-link);
+  outline-offset: 4px;
+}
+
+.viz .viz-scale .reveal .oe-card:not(.oe-checked) svg g.fragment {
+  visibility: hidden;
+}
+
+.viz .viz-scale.narrow .reveal .oe {
+  flex-direction: column;
+  align-items: center;
+}
+
+.viz .viz-scale.narrow .reveal .oe-pair + .oe-pair {
+  margin-top: 0.9em;
+  padding-top: 0.7em;
+  border-left: none;
+  border-top: 1.5px solid #dde2ea;
+}
+
+/* spectral-prism.jsx: the whole film (on the slide, a strip of it); in a narrow box at a third of its
+   size, so that its button is not tiny, and its name larger */
+.viz .viz-scale.narrow .reveal .sp-film .l25-film {
+  zoom: 0.36;
+}
+
+.viz .viz-scale.narrow .reveal .sp-film .l25-film-name {
+  font-size: 34px;
+}
+
+/* definiteness.jsx, definite-eigenvalues.jsx, semidefinite.jsx: in a narrow box, the columns one
+   under the other; semidefinite.jsx's buttons under their formulas */
+.viz .viz-scale.narrow .reveal :is(.def-cards .l25-defs, .l25-defs.sd-cards) {
+  grid-template-columns: minmax(0, 420px);
+  justify-content: center;
+  row-gap: 0;
+}
+
+.viz .viz-scale.narrow .reveal :is(.def-cards, .sd-cards) .l25-def {
+  border-left: 0;
+  padding-bottom: 0.8em;
+}
+
+.viz .viz-scale.narrow .reveal :is(.def-cards, .sd-cards) .l25-def + .l25-def {
+  padding-top: 0.7em;
+  border-top: 1.5px solid var(--site-rule);
+}
+
+.viz .viz-scale .reveal .sd-toggle {
+  margin-top: 0.5em;
+}
+
+/* positive-entries.jsx: in a narrow box, the two examples one under the other, and the poll
+   narrower than lecture 21's 600px, so that the box isn't scaled down for it */
+.viz .viz-scale.narrow .reveal .pe-signs {
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.viz .viz-scale.narrow .reveal .pe-poll .tf-poll {
+  max-width: 440px;
+}
+
+/* contour-eigenvectors.jsx: the contour plot beside the graph (under it in a narrow box), and the
+   observation in its blue box under them */
+.viz .viz-scale .reveal .ce-pics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.viz .viz-scale .reveal .ce-pics svg.space {
+  background: none;
+  border: 0;
+}
+
+.viz .viz-scale .reveal .block.l25-ex3-box.ce-box {
+  align-self: center;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.viz .viz-scale.narrow .reveal .ce-pics {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viz .viz-scale.narrow .reveal .block.l25-ex3-box.ce-box {
+  max-width: 320px;
+}
+
+/* change-of-basis.jsx: the part of B = WDW⁻¹ that is playing, in a deeper blue on a blue tint (the
+   deck's highlight, which its markers set on the slide). In a narrow box, the column goes down: B,
+   its picture and its basis, then the arrows side by side, pointing down and up, then D's, then the
+   formula */
+.viz .viz-scale .reveal .cob-grid[data-hl='B'] .l25-rc-hB,
+.viz .viz-scale .reveal .cob-grid[data-hl='Wi'] .l25-rc-hWi,
+.viz .viz-scale .reveal .cob-grid[data-hl='D'] .l25-rc-hD,
+.viz .viz-scale .reveal .cob-grid[data-hl='W'] .l25-rc-hW {
+  color: #2f5597;
+  background-color: rgba(74, 111, 165, 0.2);
+}
+
+.viz .viz-scale .reveal .cob-grid svg.cob-v {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid {
+  grid-template-columns: 400px;
+  row-gap: 0.35em;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > * {
+  grid-column: 1;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-mb {
+  grid-row: 1;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-pb {
+  grid-row: 2;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-bb {
+  grid-row: 3;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-mid {
+  grid-row: 4;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 48px;
+  margin: 0.3em 0;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-md {
+  grid-row: 5;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-pd {
+  grid-row: 6;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-bd {
+  grid-row: 7;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid > .cob-formula {
+  grid-row: 8;
+  margin-top: 0.4em;
+}
+
+.viz .viz-scale.narrow .reveal .cob-mid > .l25-rcob-lab {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.viz .viz-scale.narrow .reveal .cob-mid > .cob-down {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.viz .viz-scale.narrow .reveal .cob-mid > .l25-rcob-back {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 0;
+}
+
+.viz .viz-scale.narrow .reveal .cob-mid .l25-rcob-arrow > svg:not(.cob-v) {
+  display: none;
+}
+
+.viz .viz-scale.narrow .reveal .cob-grid svg.cob-v {
+  display: block;
+}
+
+.viz .viz-scale.narrow .viz-col.cob > .viz-toggle {
+  flex-wrap: wrap;
+}
+
+/* end of lecture 25 */
+
 /* linearity-example.jsx: one question at a time. LinearityMap's question k is the fragment 4 + 2k
    on the left and 5 + 2k on the right (the copies inside them that fade back on the slide,
    `semi-fade-out`, are left alone); only the picked one (`data-q`) shows, and its copies of e₁, e₂

@@ -1066,6 +1066,223 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'qr-decomposition',
+        title: 'The QR-decomposition',
+        applets: [
+          {
+            id: 'rank-nullity-cube',
+            title: 'Rank–nullity and invertible matrices',
+            caption:
+              r`The rank–nullity theorem, in a picture: $T_A\colon \mathbb R^n \to\nobreak \mathbb R^m$ collapses $k = \operatorname{nullity}(A)$ dimensions, and the rest ($n - k$) dimensions map invertibly into $\mathbb R^m$. So rank $= n - k$. In particular, $A$ is invertible $\iff$ $A$ is a square $n \times n$ matrix with rank $= n$ and nullity $= 0$ $\iff$ $A\vv x = \vv b$ has a solution for every $\vv b$. Here $T_A$ moves the unit cube onto its image: which dimensions does it collapse, and what is the rank of $A$? Think first, then step through it: $N(A)$ is green, the rest purple, $C(A)$ teal. Drag the picture to turn it.`,
+            from: { lecture: 23, slides: ['Slide01gRankNullity'] },
+          },
+          {
+            id: 'gs-matrix-form',
+            title: 'Gram–Schmidt in matrix form',
+            caption:
+              r`If $A$ is invertible, $A\vv x = \vv b$ has exactly one solution, $\vv x = A^{-1}\vv b$, and for an orthogonal matrix $Q$, $Q^{-1} = Q^{\top}$. The Gram–Schmidt process on the columns of $A$, rearranged and normalized, writes $A = QR$, where $Q$ is an orthogonal matrix and $R$ is upper triangular: the <b>QR-decomposition</b> of $A$. To solve $A\vv x = \vv b$, solve $Q\vv y = \vv b$ by $\vv y = Q^{-1}\vv b = Q^{\top}\vv b$, then $R\vv x = \vv y$. Why are the entries of $R$ below its diagonal 0, and why is $r_{ii} = \norm{\vv w_i}$? Think first, then step through it.`,
+            from: { lecture: 23, slides: ['Slide13GSToQR'] },
+          },
+        ],
+      },
+      {
+        id: 'lu-decomposition',
+        title: 'Triangular systems and the LU-decomposition',
+        applets: [
+          {
+            id: 'back-substitution',
+            title: 'Back substitution',
+            caption:
+              r`A system $A\vv x = \vv b$ with $A$ upper triangular is solved from the bottom up: the last equation gives the last unknown, which goes into the equations above it, and so on (<b>back substitution</b>); with $A$ lower triangular, from the top down. Triangular systems are easy to solve! A square triangular system whose diagonal entries are all nonzero always has exactly one solution, and $A^{-1}$ exists and is triangular too; when there are zeros on the diagonal, it has either none or infinitely many. Why? Solve each system first, then step through it.`,
+            from: { lecture: 23, slides: ['Slide03BackSub'] },
+          },
+          {
+            id: 'lu-elimination',
+            title: 'LU-decomposition by elimination',
+            caption:
+              r`Besides $A = QR$, we can also write $A$ as a product $A = LU$, where $L$ is lower triangular and $U$ is upper triangular: an <b>LU-decomposition</b> of $A$. To find one, perform row operations to make $A$ upper triangular, subtracting multiples of each row from the rows below it; $L$ holds the multipliers, below 1’s on its diagonal. Then $A\vv x = \vv b$ is two triangular systems: $L\vv y = \vv b$, from the top down, then $U\vv x = \vv y$, from the bottom up. Work out $U$ and $L$ first, then click each step to check. (Not every matrix has an LU-decomposition: why not $\left[\begin{smallmatrix} 0 & 1 \\ 1 & 0 \end{smallmatrix}\right]$?)`,
+            from: { lecture: 23, slides: ['Slide08cElimLU'] },
+          },
+        ],
+      },
+      {
+        id: 'eigenvectors',
+        title: 'Eigenvectors and eigenvalues',
+        applets: [
+          {
+            id: 'stretch-shrink',
+            title: 'Stretch and shrink',
+            caption:
+              r`$T_A$ moves the unit square and F to a rhombus: it stretches them along one diagonal and shrinks them along the other. How much is $T_A$ stretching or shrinking, and in what directions? Watch it, then click $\vv x$ and $A\vv x$ and drag $\vv x$: for which $\vv x$ is $A\vv x$ a multiple of $\vv x$?`,
+            from: { lecture: 24, slides: ['Slide01bStretch'] },
+          },
+          {
+            id: 'eigenvector-definition',
+            title: 'Eigenvectors and eigenvalues',
+            caption:
+              r`An <b>eigenvector</b> $\vv v \in \mathbb R^n$ of the $n \times n$ matrix $A$ is a nonzero vector which satisfies $A\vv v = \lambda\vv v$ for some scalar $\lambda$. The scalar $\lambda$ is the <b>eigenvalue</b> of $A$ associated to $\vv v$. (<i>Eigen</i>, German: “own”, “characteristic”.) Is $(1, 1)$ an eigenvector of this $A$? And $(1, -1)$, and $\vv e_1$? Think first, then drag $\vv x$ onto each one’s line to check.`,
+            from: { lecture: 24, slides: ['Slide03Definition'] },
+          },
+          {
+            id: 'stretch-and-flip',
+            title: 'Example: a stretch and a flip',
+            caption:
+              r`Show that $\vv u = (1, 1)$ and $\vv v = (1, -1)$ are eigenvectors of $A = \frac12\left[\begin{smallmatrix}1&3\\3&1\end{smallmatrix}\right]$. What are the eigenvalues associated to $\vv u$ and $\vv v$? Work it out first, then check with the buttons: what $A$ does to the unit square and F, then to $\vv u$ and $\vv v$ on their lines.`,
+            from: { lecture: 24, slides: ['Slide05Example1'] },
+          },
+          {
+            id: 'eigenlines',
+            title: 'Eigenlines',
+            caption:
+              r`Every nonzero scalar multiple of an eigenvector is an eigenvector, with the same eigenvalue. Why? If $A\vv v = \lambda\vv v$, then $A(c\vv v) = c(A\vv v) = c(\lambda\vv v) = \lambda(c\vv v)$. The line $\operatorname{span}\{\vv v\}$ of an eigenvector $\vv v$ of $A$ is an <b>eigenline</b> of $A$. On an eigenline, $T_A$ multiplies by $\lambda$. Here $A = \left[\begin{smallmatrix}1&1/2\\1/2&1\end{smallmatrix}\right]$ again: drag $\vv x$ along each eigenline. Then play $T_A$ on $\vv u$ and $\vv v$: by how much does it stretch or shrink each line?`,
+            from: { lecture: 24, slides: ['Slide04Eigenlines'] },
+          },
+        ],
+      },
+      {
+        id: 'eigenspaces',
+        title: 'Eigenspaces',
+        applets: [
+          {
+            id: 'projection-eigenvectors',
+            title: 'Eigenvectors of a projection',
+            caption:
+              r`Let $B = \frac1{14}\left[\begin{smallmatrix}13&-2&-3\\-2&10&-6\\-3&-6&5\end{smallmatrix}\right]$. (i) Show that $(2, -1, 0)$, $(3, 0, -1)$ and $(1, 2, 3)$ are eigenvectors of $B$. What are the eigenvalues? (ii) Describe the linear transformation $T_B(\vv x) = B\vv x$ geometrically. Work it out first, then take the steps with the button. Drag the picture to turn it.`,
+            from: { lecture: 24, slides: ['Slide09WhatBDoes'] },
+          },
+          {
+            id: 'eigenspace-examples',
+            title: 'Eigenspace',
+            caption:
+              r`The space of all eigenvectors with eigenvalue $\lambda$, $\{\vv v \in \mathbb R^n : A\vv v = \lambda\vv v\} = N(A - \lambda I_n)$, is a linear subspace, and it is called the <b>$\lambda$-eigenspace</b>. In particular, the 0-eigenspace of $A$ is $N(A)$. What are the eigenspaces of $A$ in Example 1 and of $B$ in Example 2? Think first, then take both examples a step at a time with the buttons. Drag the 3-D picture to turn it.`,
+            from: { lecture: 24, slides: ['Slide10Sums', 'Slide05Example1'] },
+          },
+          {
+            id: 'sum-of-eigenvectors',
+            title: 'Is a sum of eigenvectors an eigenvector?',
+            caption:
+              r`True or false: a sum of two eigenvectors is an eigenvector. Think first, then click True or False to check. In each picture $\vv v$ and $\vv w$ are eigenvectors of $T$: on the left $T = 2I_2$ doubles both, on the right $T$ keeps $\vv v$ and doubles $\vv w$. Then click to apply $T$ to $\vv v + \vv w$: does it stay on its line?`,
+            from: { lecture: 24, slides: ['Slide10cPollSums'] },
+          },
+          {
+            id: 'rotation-no-eigenvector',
+            title: 'Does every matrix have an eigenvector?',
+            caption:
+              r`True or false: every square matrix has an eigenvector. Think first, then click True or False to check. Then drag $\vv x$, and move the slider to turn by another angle $\theta$: for which $\theta$ does the rotation $R_\theta$ have an eigenvector, and with which eigenvalue?`,
+            from: { lecture: 24, slides: ['Slide11Poll'] },
+          },
+        ],
+      },
+      {
+        id: 'finding-eigenvalues',
+        title: 'Finding eigenvalues and eigenvectors',
+        applets: [
+          {
+            id: 'diagonal-eigenvectors',
+            title: 'Eigenvectors of a diagonal matrix',
+            caption:
+              r`Find the eigenvectors of $D = \left[\begin{smallmatrix}2&0\\0&-1\end{smallmatrix}\right]$. What are their eigenvalues? Think first, then click to check. If $M$ is diagonal with entries $d_1, \dots, d_n$, then each $\vv e_i$ is an eigenvector with eigenvalue $d_i$. In particular, every nonzero $\vv v$ is an eigenvector of $I_n$ with eigenvalue 1.`,
+            from: { lecture: 24, slides: ['Slide06Diagonal'] },
+          },
+          {
+            id: 'how-many-eigenvalues',
+            title: 'How many eigenvalues?',
+            caption:
+              r`Let $A$ be an $n \times n$ matrix: $\lambda$ is an eigenvalue of $A$ $\iff$ $(A - \lambda I_n)\vv v = \vv 0$ for some nonzero $\vv v$ $\iff$ $A - \lambda I_n$ is not invertible. For a $2 \times 2$ matrix that is $\det(A - \lambda I_2) = 0$: the eigenvalues of $A$ are the roots of its <b>characteristic polynomial</b> $P_A(\lambda) = \det(A - \lambda I_2) = \lambda^2 - \operatorname{tr}(A)\lambda + \det(A)$, where the <b>trace</b> of $A = \left[\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right]$ is $\operatorname{tr}(A) = a + d$. To find the eigenvectors associated to an eigenvalue $\lambda$, determine the null space $N(A - \lambda I_n)$ by solving a system of linear equations. How many eigenvalues does each of these matrices have? Think first, then click a card to check.`,
+            from: { lecture: 24, slides: ['Slide17HowMany'] },
+          },
+        ],
+      },
+      {
+        id: 'spectral-theorem',
+        title: 'The spectral theorem',
+        applets: [
+          {
+            id: 'eigenbasis-projections',
+            title: 'Basis of eigenvectors',
+            caption:
+              r`$B$ is the projection onto the plane $P$: $x + 2y + 3z = 0$, and $D$ the projection onto the $xy$-plane. $\vv u = (2, -1, 0)$ and $\vv v = (3, 0, -1)$ lie in $P$, so $B\vv u = \vv u$ and $B\vv v = \vv v$, and $\vv w = (1, 2, 3)$ is perpendicular to $P$, so $B\vv w = \vv 0$: $\{\vv u, \vv v, \vv w\}$ is a <b>basis of eigenvectors</b> of $B$, with eigenvalues 1, 1 and 0, as $\{\vv e_1, \vv e_2, \vv e_3\}$ is of $D$. Click $B\vv x$ and $D\vv x$ to watch $\vv x$ drop onto each plane: how do the two transformations compare? Then click Change of basis. Drag a picture to turn it.`,
+            from: { lecture: 25, slides: ['Slide02aChangeOfBasis'] },
+          },
+          {
+            id: 'orthogonal-eigenvectors',
+            title: 'Orthogonal eigenvectors',
+            caption:
+              r`<b>The spectral theorem</b>: if $A$ is a symmetric $n \times n$ matrix, there is an orthogonal basis $\vv w_1, \dots, \vv w_n$ of $\mathbb R^n$ consisting of eigenvectors for $A$ (Theorem 24.1.4). A basis of eigenvectors exists for a larger class of matrices: eigenvectors with pairwise different eigenvalues are linearly independent. For symmetric matrices, eigenvectors associated to different eigenvalues are <b>orthogonal</b>. In each picture, $T_A$ stretches (or flips) each of the two eigenvectors along its own line. Are they perpendicular? Think first, then click a picture to check.`,
+            from: { lecture: 25, slides: ['Slide06Perp'] },
+          },
+          {
+            id: 'spectral-prism',
+            fun: true,
+            title: 'Why is it called the spectral theorem?',
+            caption:
+              'A prism splits white light into the pure colors it is made of, which land one above the other: the spectrum of the light. The spectral theorem splits what a symmetric matrix does in the same way: along each of its orthogonal eigenvectors, the matrix just stretches by the eigenvalue, and the eigenvalues of a matrix are called its spectrum. The two spectra are related: in quantum mechanics, the energy levels of an atom are the eigenvalues of a symmetric operator, and the colors of light the atom gives off come from the differences between them. Click Play: white light from a slit crosses a glass prism (a film made with Blender).',
+            from: { lecture: 25, slides: ['Slide07Spectral'] },
+          },
+        ],
+      },
+      {
+        id: 'definiteness',
+        title: 'Definiteness of quadratic forms',
+        applets: [
+          {
+            id: 'definiteness',
+            title: 'Definiteness',
+            caption:
+              r`Let $A$ be an $n \times n$ symmetric matrix and $q_A(\vv x)$ its associated quadratic form. We say $A$ is <b>positive-definite</b> if $q_A(\vv x) > 0$ for all $\vv x \neq \vv 0$; <b>negative-definite</b> if $q_A(\vv x) < 0$ for all $\vv x \neq \vv 0$; <b>indefinite</b> if $q_A(\vv x)$ takes both positive and negative values (Definition 24.2.2). Why is each example of its kind? What does each kind look like on the graph of $q_A$? Drag a graph to turn it.`,
+            from: { lecture: 25, slides: ['Slide16Definite'] },
+          },
+          {
+            id: 'semidefinite',
+            title: 'Positive- and negative-semidefinite',
+            caption:
+              r`We say $A$ is <b>positive-semidefinite</b> if $q_A(\vv x) \geq 0$ for all $\vv x \neq \vv 0$, and <b>negative-semidefinite</b> if $q_A(\vv x) \leq 0$ for all $\vv x \neq \vv 0$. Is $\left[\begin{smallmatrix}1&0\\0&0\end{smallmatrix}\right]$ positive-definite? Is $\left[\begin{smallmatrix}0&0\\0&-1\end{smallmatrix}\right]$ negative-definite? Think first, then click to check where $q_A = 0$. Drag a graph to turn it.`,
+            from: { lecture: 25, slides: ['Slide16bSemidefinite'] },
+          },
+          {
+            id: 'positive-entries',
+            title: 'Positive entries, positive-definite?',
+            caption:
+              r`True or false: if all entries of a symmetric matrix are positive, then it is positive-definite. Think first, then click True or False to check; drag a graph to turn it. So how can we tell if a quadratic form is positive-definite?`,
+            from: { lecture: 25, slides: ['Slide19Poll'] },
+          },
+          {
+            id: 'contour-eigenvectors',
+            title: 'Eigenvectors on the contour plot',
+            caption:
+              r`Let $A = \left[\begin{smallmatrix}13&-3\\-3&5\end{smallmatrix}\right]$, so $q_A(x, y) = 13x^2 - 6xy + 5y^2$. (i) Find the eigenvectors $\vv w_1$ and $\vv w_2$ of $A$ and their eigenvalues. (ii) Draw the eigenvectors on the contour plot. What do you observe? (iii) Write $q_A(t_1\vv w_1 + t_2\vv w_2)$ in terms of $t_1$ and $t_2$. Is $A$ positive-definite? Work it out first, then check (ii) with the button. Drag the graph to turn it.`,
+            from: { lecture: 25, slides: ['Slide14Example3'] },
+          },
+          {
+            id: 'definite-eigenvalues',
+            title: 'Definiteness and eigenvalues',
+            caption:
+              r`<b>Diagonalization formula</b>: if $\vv v = \sum t_i\vv w_i$, where $\vv w_i$ is an orthogonal basis of eigenvectors for the symmetric matrix $A$, then $q_A(\vv v) = \sum \lambda_i\,(\vv w_i \cdot \vv w_i)\,t_i^2$. Why? $q_A(\vv v) = \vv v \cdot (A\vv v) = \big(\sum_i t_i\vv w_i\big) \cdot \big(\sum_j \lambda_j t_j\vv w_j\big)$, and the $\vv w_i$'s are orthogonal. Since each $(\vv w_i \cdot \vv w_i)\,t_i^2 \geq 0$, a symmetric matrix is therefore positive-definite if all its eigenvalues are $> 0$; negative-definite if all its eigenvalues are $< 0$; indefinite if it has both positive and negative eigenvalues; positive-semidefinite if all its eigenvalues are $\geq 0$; negative-semidefinite if all its eigenvalues are $\leq 0$ (Proposition 24.2.10). Is each quadratic form positive-definite, negative-definite, indefinite, or semidefinite? (i) $q(x, y) = -3x^2 + 2xy - 3y^2$; (ii) $q(x, y) = x^2 - 6xy + 9y^2$; (iii) $q(x, y) = x^2 + 4xy - 2y^2$. Drag a graph to turn it.`,
+            from: { lecture: 25, slides: ['Slide18DefiniteEig'] },
+          },
+        ],
+      },
+      {
+        id: 'symmetric-powers',
+        title: 'A = WDWᵀ and matrix powers',
+        applets: [
+          {
+            id: 'change-of-basis',
+            title: 'Change of basis',
+            caption:
+              r`On the left, $B$, the projection onto the plane $P$, with its orthonormal basis of eigenvectors $\vv u = \frac{1}{\sqrt5}(2, -1, 0)$, $\vv v = \frac{1}{\sqrt{70}}(3, 6, -5)$, $\vv w = \frac{1}{\sqrt{14}}(1, 2, 3)$; on the right, $D$, the projection onto the $xy$-plane, with $\vv e_1, \vv e_2, \vv e_3$. The matrix $W = [\vv u\ \vv v\ \vv w]$ sends $\vv e_1 \to \vv u$, $\vv e_2 \to \vv v$, $\vv e_3 \to \vv w$, so the change of basis, from $\vv u, \vv v, \vv w$ to $\vv e_1, \vv e_2, \vv e_3$, is $W^{-1}$, and $B = WDW^{-1}$. Click $B$, then $W^{-1}$, $D$ and $W$: what does each do to $\vv x$? Write out $W$: why is it orthogonal, and what is $W^{-1}$?`,
+            from: { lecture: 25, slides: ['Slide02fRecallBasis'] },
+          },
+          {
+            id: 'wdw-factors',
+            title: 'A = WDWᵀ, a factor at a time',
+            caption:
+              r`<b>Spectral theorem – matrix form</b>: if $A$ is symmetric, then we can find an orthogonal matrix $W$ and a diagonal matrix $D$ so that $A = WDW^{\top}$ (Theorem 24.4.1). If $\vv w_1, \dots, \vv w_n$ are an orthonormal basis of eigenvectors of $A$, with associated eigenvalues $\lambda_1, \dots, \lambda_n$, then $W = [\vv w_1 \cdots \vv w_n]$, with $W^{-1} = W^{\top}$, and $D = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$. Here $A = \left[\begin{smallmatrix}1&1/2\\1/2&1\end{smallmatrix}\right]$: $\vv v_1 = (1, 1)$ is an eigenvector with eigenvalue $\frac32$ and $\vv v_2 = (-1, 1)$ one with eigenvalue $\frac12$, so $D = \left[\begin{smallmatrix}3/2&0\\0&1/2\end{smallmatrix}\right]$; normalized, $\vv w_1 = \frac{1}{\sqrt2}(1, 1)$ and $\vv w_2 = \frac{1}{\sqrt2}(-1, 1)$, so $W = \frac{1}{\sqrt2}\left[\begin{smallmatrix}1&-1\\1&1\end{smallmatrix}\right]$. Click $A$, then $WDW^{-1}$, a factor at a time: does it do the same? Since $W^{-1}W = I_n$, $A^2 = WDW^{-1}WDW^{-1} = WD^2W^{-1}$, and $A^k = WD^kW^{-1}$ for any $k \geq 1$, with $D^k = \operatorname{diag}(\lambda_1^k, \dots, \lambda_n^k)$. Find $A^k$ for any $k \geq 1$, and $A^{-1}$.`,
+            from: { lecture: 25, slides: ['Slide09bWDWExample'] },
+          },
+        ],
+      },
     ],
   },
   {
