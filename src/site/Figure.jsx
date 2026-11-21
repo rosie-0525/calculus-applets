@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
  * One picture on the page, drawn the way the lecture deck draws it, so that the deck's styles
  * apply: an applet (Applet.jsx), or one of the figures of a story (Story.jsx).
  *
- *   <div class="viz">                      the grey stage
+ *   <div class="viz">                      its box on the page
  *     <div class="viz-scale lec-N">        the lecture's scoped stylesheet (see vite.config.js)
  *       <div class="reveal"><div class="slides">
  *         <section class="present">        `present` only while on screen: the 3-D pictures rock
