@@ -48,8 +48,11 @@ without an internet connection, and holds the applet's source to change (see bel
 ```
 src/applets.js            the list: areas → topics → applets (id, title, caption, fun, source slides)
 src/viz/<id>.jsx          one module per applet: the figure(s), plus any glue (state, sliders, layout)
+src/viz/<id>/             a story's pictures, when it has several (contour-ab/)
 src/main.jsx              the pages: the list of topics, and a topic (picked from the address)
-src/site/Applet.jsx       loads a module when it scrolls near, renders and scales it
+src/site/Applet.jsx       loads a module when it scrolls near, and renders it in a Figure (or as a story)
+src/site/Figure.jsx       one picture in the lecture's markup and stylesheet, scaled to fit
+src/site/Story.jsx        the pieces of a story: its parts, paragraphs, equations, questions, answers
 src/site/Masthead.jsx     the top of every page
 src/site/site.css         the look of the site (the figures' colours, Source Sans and KaTeX)
 src/site/caption.js       a caption's HTML, with its math typeset by KaTeX
@@ -77,8 +80,8 @@ scripts/shots.mjs         screenshot the applets with headless Chrome, and repor
 - The decks' stylesheets have drifted apart, so `vite.config.js` scopes each one to its lecture:
   every rule in `src/lectures/l<N>/styles/deck.css` gets the prefix `.lec-N`, and its keyframes are
   renamed. Rules for `html`, `body` and `#root` are dropped.
-- `Applet.jsx` renders a module inside `.viz-scale.lec-N > .reveal > .slides > section`, the markup
-  the deck styles expect. The section gets the class `present` while it is on screen (the 3-D
+- `Applet.jsx` renders a module in a `Figure` (`Figure.jsx`): inside
+  `.viz-scale.lec-N > .reveal > .slides > section`, the markup the deck styles expect. The section gets the class `present` while it is on screen (the 3-D
   pictures rock and the games run only then), and every build step ("fragment") is shown. The
   figure is scaled down to fit a narrow window; below 640px, figures that sit side by side are
   stacked (`.narrow` in `site.css`).
@@ -130,11 +133,22 @@ getting what it imports. The file needs nothing else, and opens from the disk (`
    export default WindExplorer;
    ```
 
+   **A story** is an applet that is text with pictures in it, the text in the page's own face and
+   column (Contour plots of ax² + by², `src/viz/contour-ab.jsx`). Its module also exports
+   `story = true`; its default is then drawn as it is, not in a figure, and puts each of its
+   pictures in a `Figure` (`src/site/Figure.jsx`) itself. Its text is written with the pieces of
+   `src/site/Story.jsx`: `Beat` (a part, with its heading), `P` (a paragraph, written like a
+   caption: HTML with TeX between dollar signs; a link to the site starts with `~/`), `Eq`,
+   `Think` (a question before a picture), `Answer` (the text that answers it, shown once the reader
+   answers in the picture or asks for it) and `Summary`. Its entry in `applets.js` needs no
+   caption: the story starts with its own.
+
 4. Check it: with `npm run dev` running, `npm run shots -- --only <id> --out /tmp/shots` saves a
    screenshot of it and prints any console errors (Google Chrome must be installed). `--page` takes
    whole pages instead (the list of topics and every topic; `--only` picks them), and `--width 390`
    a phone. It waits for the page to settle before each screenshot, and flags `NOT SETTLED` or
-   `UNSTABLE` (the applet changed during the screenshot) when it does not. To check the downloaded
+   `UNSTABLE` (the applet changed during the screenshot) when it does not; for a story it waits for
+   every picture, and takes the whole story. To check the downloaded
    file too: `npm run export -- <id> --out /tmp/files`, then
    `npm run shots -- --files /tmp/files --only <id>`, which opens it from the disk and flags
    `ONLINE` if it asked the network for anything.

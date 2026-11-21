@@ -2,6 +2,7 @@ import { Component, useMemo } from 'react';
 import Applet from './Applet.jsx';
 import { captionHtml } from './caption.js';
 import Masthead from './Masthead.jsx';
+import { Home } from './Story.jsx';
 
 /*
  * The page of a downloaded applet (see Download.jsx): its title, its question and the applet, as on
@@ -10,26 +11,29 @@ import Masthead from './Masthead.jsx';
  *   topic   { title, href }: the applet on its topic's page
  *   home    the site's address
  *   viz     the applet's module (src/viz/<id>.jsx)
+ * A story's links to the site (Story.jsx) go to `home`.
  */
 export default function ExportPage({ applet, topic, home, viz }) {
   const load = useMemo(() => () => Promise.resolve(viz), [viz]);
   return (
-    <div className="site site-only">
-      <Masthead home={home}>
-        <a className="back" href={topic.href}>
-          {topic.title}
-        </a>
-      </Masthead>
-      <main>
-        <article className="applet" id={applet.id}>
-          <h1 className="applet-title">{applet.title}</h1>
-          {applet.caption && <p className="caption" dangerouslySetInnerHTML={{ __html: captionHtml(applet.caption) }} />}
-          <ShowError>
-            <Applet applet={applet} load={load} />
-          </ShowError>
-        </article>
-      </main>
-    </div>
+    <Home.Provider value={home}>
+      <div className="site site-only">
+        <Masthead home={home}>
+          <a className="back" href={topic.href}>
+            {topic.title}
+          </a>
+        </Masthead>
+        <main>
+          <article className="applet" id={applet.id}>
+            <h1 className="applet-title">{applet.title}</h1>
+            {applet.caption && <p className="caption" dangerouslySetInnerHTML={{ __html: captionHtml(applet.caption) }} />}
+            <ShowError>
+              <Applet applet={applet} load={load} />
+            </ShowError>
+          </article>
+        </main>
+      </div>
+    </Home.Provider>
   );
 }
 

@@ -1910,11 +1910,10 @@ export const AREAS = [
             from: { lecture: 26, slides: ['Slide11Zoom'] },
           },
           {
+            // a story (src/viz/contour-ab.jsx): text with a picture in each of its parts
             id: 'contour-ab',
             title: 'Contour plots of ax² + by²',
-            caption:
-              r`Move the sliders. When are the level sets of $ax^2 + by^2$ ellipses, and when are they hyperbolas? If $|a| < |b|$, along which axis is an ellipse longer, and which axis are the asymptotes of a hyperbola closer to? Think first, then check with the button. What happens when $a$ or $b$ is 0?`,
-            from: { lecture: 26, slides: ['Slide12Diagonal'] },
+            from: { lecture: 26, slides: ['Slide12Diagonal', 'Slide01Title'] },
           },
         ],
       },

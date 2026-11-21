@@ -182,9 +182,13 @@ try {
       await resize(HEIGHT);
       await go(url);
       const here = at(url);
-      const ready = async () => (await here()) && !!(await evaluate(`!!document.querySelector('.viz[data-ready]')`).catch(() => false));
+      // every picture ready: an applet has one, a story (Story.jsx) one in each of its parts
+      const ready = async () =>
+        (await here()) &&
+        !!(await evaluate(`(() => { const v = [...document.querySelectorAll('.viz')]; return v.length > 0 && v.every((x) => 'ready' in x.dataset); })()`).catch(() => false));
       let settled = await settle(ready);
-      const where = `(() => { const r = document.querySelector('.viz').getBoundingClientRect();
+      // the applet, or the whole of a story
+      const where = `(() => { const r = (document.querySelector('.story') ?? document.querySelector('.viz')).getBoundingClientRect();
         return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; })()`;
       let box = await evaluate(where);
       // the whole applet in the window
@@ -194,7 +198,7 @@ try {
         box = await evaluate(where);
       }
       const stable = await capture(join(OUT, `${a.id}.png`), box);
-      const scale = await evaluate(`document.querySelector('.viz-scale')?.style.transform || ''`);
+      const scale = await evaluate(`[...document.querySelectorAll('.viz-scale')].map((v) => v.style.transform).join(', ')`);
       console.log(
         `${a.id}: ${Math.round(box.width)} × ${Math.round(box.height)} ${scale}` +
           `${(await ready()) ? '' : '  NOT READY'}${settled ? '' : '  NOT SETTLED'}${stable ? '' : '  UNSTABLE'}` +
