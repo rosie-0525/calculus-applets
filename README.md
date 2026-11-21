@@ -12,8 +12,9 @@ eigenspaces, finding eigenvalues and eigenvectors, the spectral theorem, definit
 forms, A = WDWᵀ and matrix powers; scalar and vector-valued functions, graphs and contour plots,
 partial derivatives, critical points and local extrema, global extrema on a region, gradients and
 linear approximation, gradients and level sets, gradient descent, constrained optimization,
-Lagrange multipliers, the derivative matrix, the multivariable chain rule, Newton’s method) has a
-page of its own: its applets, each with a title and a question to think about, and at the bottom,
+Lagrange multipliers, the derivative matrix, the multivariable chain rule, Newton’s method, the
+Hessian and quadratic approximation, the second derivative test, contour plots near a critical
+point) has a page of its own: its applets, each with a title and a question to think about, and at the bottom,
 under "Motivation – just for fun!", the applications that students do not need to know (PageRank,
 denoising a chord, a 3-D game, a 3-D printer, a robot arm, where a raindrop goes, an AI learning to
 read digits, why rainbows are arcs, the price of electricity, photo filters, neural networks and

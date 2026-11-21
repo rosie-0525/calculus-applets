@@ -1837,6 +1837,87 @@ export const AREAS = [
           },
         ],
       },
+      {
+        id: 'quadratic-approximation',
+        title: 'The Hessian and quadratic approximation',
+        applets: [
+          {
+            id: 'taylor-expansion',
+            title: 'Linear and quadratic approximation in one variable',
+            caption:
+              r`The graph of $f(x) = 1.5 + \sin(x - 1)$. Near $a$, the first two terms of its <b>Taylor expansion</b> are a line, the tangent line at $(a, f(a))$, and the first three a parabola. Click Linear, then Quadratic: which one hugs the graph of $f$ better near $a$? Where does each one part from it?`,
+            from: { lecture: 26, slides: ['Slide02RecallLinear'] },
+          },
+          {
+            id: 'quadratic-approximation',
+            title: 'Quadratic approximation',
+            caption:
+              r`The <b>Hessian matrix</b> of an $n$-variable scalar-valued function $f$ at a point $\vv a \in \mathbb R^n$ contains all of the second partial derivatives of $f$ at $\vv a$; for $n = 2$, $(Hf)(x, y) = \left[\begin{smallmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{smallmatrix}\right]$ (Definition 25.2.1). It is symmetric, by the Clairaut–Schwarz theorem. By analogy with $f(a + h) \approx f(a) + f'(a)h + \frac12 f''(a)h^2$, the quadratic approximation (Definition 25.3.1) is the linear approximation plus a quadratic form, that of the Hessian. Compare the tangent plane and the quadratic approximation at the point on the hill’s slope: which one follows the hill over its top? Drag the picture to turn it.`,
+            from: { lecture: 26, slides: ['Slide05QuadApprox'] },
+          },
+        ],
+      },
+      {
+        id: 'second-derivative-test',
+        title: 'The second derivative test',
+        applets: [
+          {
+            id: 'critical-quadratic',
+            title: 'Quadratic approximation at a critical point',
+            caption:
+              r`At a critical point $\vv a$ of $f$, $(\nabla f)(\vv a) = \vv 0$, so the quadratic approximation is $f(\vv a + \vv h) \approx f(\vv a) + \frac12\,q_{(Hf)(\vv a)}(\vv h)$: near $\vv a$, the graph of $f$ looks like the graph of the quadratic form $q_{(Hf)(\vv a)}$, lifted to the height $f(\vv a)$. In red, the quadratic approximations at the top of the big hill, a local maximum, and at the pass between the hills, a saddle point; on the floor, the contour plot of $f$. What does each one look like? What would it be at the top of the small hill? Drag the picture to turn it.`,
+            from: { lecture: 26, slides: ['Slide01Title'] },
+          },
+          {
+            id: 'one-variable-test',
+            title: 'Second derivative test in one variable',
+            caption:
+              r`Let $f\colon \mathbb R \to\nobreak \mathbb R$ be a function, and $c$ a critical point of $f$. If $f''(c) > 0$, then $c$ is a local minimum. If $f''(c) < 0$, then $c$ is a local maximum. If $f''(c) = 0$, no conclusion. Here $f'(x) = x(x + 2)(x - 2)^2$, so the critical points are $-2$, $0$ and $2$. Which one has $f''(c) > 0$, $f''(c) < 0$, $f''(c) = 0$? Think first, then click to check. How would you generalize the test to $f\colon \mathbb R^n \to\nobreak \mathbb R$?`,
+            from: { lecture: 26, slides: ['Slide06bRecallTest'] },
+          },
+          {
+            id: 'classify-critical',
+            title: 'Classifying critical points',
+            caption:
+              r`<b>Second derivative test</b>: let $f\colon \mathbb R^n \to\nobreak \mathbb R$ be a function. A critical point $\vv a$ of $f$ is a <b>local minimum</b> if $(Hf)(\vv a)$ is positive-definite (equivalently, all eigenvalues of $(Hf)(\vv a)$ are $> 0$); a <b>local maximum</b> if $(Hf)(\vv a)$ is negative-definite (all its eigenvalues are $< 0$); a <b>saddle point</b> if $(Hf)(\vv a)$ is indefinite ($(Hf)(\vv a)$ has both a positive eigenvalue and a negative eigenvalue; some other eigenvalue may be 0). Otherwise, the test is <b>inconclusive</b> (Theorems 26.1.5 and 26.3.1). Why? At a critical point, $f(\vv a + \vv h) \approx f(\vv a) + \frac12\,q_{(Hf)(\vv a)}(\vv h)$. Each of these three functions is a quadratic form, with a critical point at $\vv 0$: what kind of quadratic form is each one? Think first, then click a picture to check. Drag a graph to turn it.`,
+            from: { lecture: 26, slides: ['Slide06cGoal'] },
+          },
+          {
+            id: 'inconclusive',
+            title: 'When the test is inconclusive',
+            caption:
+              r`If 0 is an eigenvalue of $(Hf)(\vv a)$, and its other eigenvalues are all $\geq 0$ or all $\leq 0$, the second derivative test is inconclusive: the quadratic approximation cannot tell. Each of these three functions has a critical point at $\vv 0$, where its Hessian has the eigenvalue 0; the first and the last even have the same Hessian there. Is $\vv 0$ a local minimum, a local maximum or a saddle point of each one? Think first, then click to check. Drag a graph to turn it.`,
+            from: { lecture: 26, slides: ['Slide06gInconclusive'] },
+          },
+          {
+            id: 'classify-example',
+            title: 'Find and classify the critical points',
+            caption:
+              r`Let $f(x, y) = 3x^2y - 6xy^2 + 4y^3 - 3y$. (i) Find the critical points of $f$. (ii) Classify them into local maxima, local minima and saddle points. Work it out first, then click to check on the contour plot of $f$. What does the contour plot look like near each one?`,
+            from: { lecture: 26, slides: ['Slide07Example3'] },
+          },
+        ],
+      },
+      {
+        id: 'contour-critical',
+        title: 'Contour plots near a critical point',
+        applets: [
+          {
+            id: 'contour-poll',
+            title: 'Near a local maximum',
+            caption:
+              r`The level sets of $f$ near a critical point $\vv a$ are well-approximated by the level sets of the quadratic form $q_{(Hf)(\vv a)}$. So think first: what is the quadratic approximation of $f$ near $(0, 0)$? Then click a picture to check.`,
+            from: { lecture: 26, slides: ['Slide11Zoom'] },
+          },
+          {
+            id: 'contour-ab',
+            title: 'Contour plots of ax² + by²',
+            caption:
+              r`Move the sliders. When are the level sets of $ax^2 + by^2$ ellipses, and when are they hyperbolas? If $|a| < |b|$, along which axis is an ellipse longer, and which axis are the asymptotes of a hyperbola closer to? Think first, then check with the button. What happens when $a$ or $b$ is 0?`,
+            from: { lecture: 26, slides: ['Slide12Diagonal'] },
+          },
+        ],
+      },
     ],
   },
 ];
